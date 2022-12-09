@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira:wdth,wght@94.2,512&display=swap');
+:root{
+    --color:#21a74e;
+    --color-hover:rgb(255, 133, 111);
+    --color-active:rgb(255, 81, 50);
+    
+}
+
+*{ 
+    font-family: "Saira", sans-seri; 
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+body{
+    margin: 0;
+    background-color: white;
+}
+
+.main-nav{
+    background-color: white;
+    box-shadow: 0 0 2em 0.2em rgba(50, 49, 104, 0.233);
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin:auto;
+    width: 90%;
+}
+
+.logo > a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-links{
+    display: flex;
+    gap: 2.5em;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: var(--color);
+}
+
+.nav-icons{
+    display: flex;
+    gap: 1.5em;
+}
+
+.fas{
+    color: var(--color);
+    font-size: 20px;
+    font-weight: 100;
+    padding-top: 7px;
+    padding-right: 5px;
+}
+
+.button{
+    
+    background-color: var(--color);
+    color: white;
+    border: 0;
+    border-radius: 0.5em;
+    font-size: 1em;
+    padding: 0.5em 1.5em;
+}
+.button:hover{
+    background-color: var(--color-hover);
+    cursor: pointer;
+}
+.button:active{
+    background-color: var(--color-active);
+}
+
+.card{
+    background-color: white;
+    width: 23em;
+    height: 29em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.3em 0.04em rgba(35, 34, 70, 0.233);
+    overflow: hidden;
+    transition: box-shadow 0.35s ease,transform 0.35s ease;
+}
+.card > img{
+    width:100%;
+    height: 70%;
+    object-fit: cover;
+}
+.card:hover{
+    transform: translateY(-5%);
+    box-shadow: 0 0 2em 0.0em rgba(50, 49, 104, 0.349);
+}
+.card >:not(img){
+    margin-left: 5%;
+}
+
+.card .button{
+    margin-top: 1em;
+}
+
+.cards-grid{
+    padding-top: 1.45em;
+    /* border:0.5em blue solid; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+}
+	
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 0px) {
+    .cards-grid{
+        padding-top: 1.45em;
+        /* border:0.5em blue solid; */
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3em;
+    }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 850px) {
+    .cards-grid{
+        padding-top: 1.45em;
+        /* border:0.5em blue solid; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3em;
+    }
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 1280px) {
+    .cards-grid{
+        padding-top: 1.45em;
+        /* border:0.5em blue solid; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3em;
+    }
+}
+
+.footer{
+    padding: 2em 0em;
+    margin-top:5em ;
+    bottom: 0;
+    color: white;
+    width:100%;
+    background-color: var(--color);
+}
+.footer *{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.main{
+    min-height: 75vh;
+}
+
+
+

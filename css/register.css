@@ -1,0 +1,43 @@
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 65%;
+    margin: auto;
+    margin-top: 6em;
+    gap: 3em;
+}
+
+.left{  
+    box-shadow: 0 0 4em 0em rgba(218, 219, 221, 0.479);
+    border-radius: 1em;
+    padding: 2em;
+    height: fit-content;
+}
+
+.right{
+    box-shadow: 0 0 4em 0em rgba(218, 219, 221, 0.479);
+    border-radius: 1em;
+    padding: 2em;
+    height: fit-content;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+input{
+    padding: 0.5em;
+    border: 1px solid #eee;
+
+}
+
+input:focus{
+    outline: none;
+}
+
+.left a{
+    text-decoration: none;
+    
+}

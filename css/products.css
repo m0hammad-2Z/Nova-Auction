@@ -1,0 +1,59 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-div{
+    margin: 4.5em;
+    padding: 3em;
+    border-radius: 1em;
+    box-shadow: 0 0 4em 0em rgba(218, 219, 221, 0.479);
+}
+
+form{
+    display: flex;
+    gap: 1em;
+    align-items: center;justify-content: center;
+}
+
+input{
+padding: 0.5em;
+border: 1px solid #eee;
+
+}
+
+select{
+    height: 3em;
+    background-color: none;
+    padding: 0.5em 2em;
+    border: solid 2px rgba(245, 229, 229, 0.37);
+    border-radius: 0.5em;
+}
+
+select:focus{
+    border: solid 2px var(--color);
+    outline: none;
+}
+
+.search-no{
+    display: flex;
+    width: 50vw;
+    align-items: center;
+    margin-bottom: 1em;
+    justify-content: space-between;
+}
+
+.page-counter{
+    display: flex;
+    gap: 0.5em;
+    margin-top: 3em;
+    
+}
+
+.page-counter .button{
+    background-color: white;
+    color: black;
+    text-align: center;
+    border: solid 0.19em var(--color);
+}

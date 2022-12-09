@@ -1,0 +1,45 @@
+.main{
+    position: relative;
+    width: 100%;
+    height: 75vh;
+   overflow: hidden;
+}
+.home-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    filter: brightness(60%);
+}
+
+.home-img-text{
+    /* background-image: linear-gradient(to top,rgb(255, 255, 255),transparent 30%,transparent ); */
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    outline: black solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+
+.home-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.button.b_view_all{
+    margin-top: 6em;
+    color: aliceblue;
+}

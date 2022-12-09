@@ -1,0 +1,39 @@
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 65%;
+    margin: auto;
+    margin-top: 6em;
+    gap: 3em;
+}
+
+.left{
+
+}
+
+.left img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1em;
+}
+
+.right{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.right div *{
+    margin: 0;
+}
+
+.item-desc{
+    margin-top: 3em;
+    width: 60%;
+    padding: 2.5%;
+    margin-inline: auto;
+    border-radius: 1em;
+    box-shadow: 0 0 4em 0em rgba(218, 219, 221, 0.479);
+    
+}
