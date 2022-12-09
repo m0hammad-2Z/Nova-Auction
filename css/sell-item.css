@@ -1,0 +1,26 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-form{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 1em;
+
+}
+
+
+select{
+    height: 3em;
+    background-color: none;
+    padding: 0.5em 2em;
+    border: solid 2px rgba(245, 229, 229, 0.37);
+    border-radius: 0.5em;
+}
+
+select:focus{
+    border: solid 2px var(--color);
+    outline: none;
+}
