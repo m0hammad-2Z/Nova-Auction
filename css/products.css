@@ -90,5 +90,6 @@ select:focus{
     height: 2em;
 }
 .page-counter .button:hover{
-   background-color: var(--color-hover);
+    color:white;
+    background-color: var(--color-hover);
 }
