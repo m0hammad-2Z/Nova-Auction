@@ -162,5 +162,6 @@ body{
     min-height: 75vh;
 }
 
-
-
+select{
+    cursor: pointer;
+}
