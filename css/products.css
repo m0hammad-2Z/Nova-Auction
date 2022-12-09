@@ -4,23 +4,52 @@
     align-items: center;
 }
 
-.search-div{
-    margin: 4.5em;
+.search-options{
+    margin: 3em 0;
     padding: 3em;
     border-radius: 1em;
     box-shadow: 0 0 4em 0em rgba(218, 219, 221, 0.479);
 }
 
-form{
-    display: flex;
+.search-form{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
     gap: 1em;
-    align-items: center;justify-content: center;
+
+}
+
+@media only screen and (min-width: 0px) {
+    .search-form{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1em;
+    
+    }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 850px) {
+    .search-form{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 1em;
+    
+    }
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 1280px) {
+    .search-form{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        gap: 1em;
+    
+    }
 }
 
 input{
-padding: 0.5em;
-border: 1px solid #eee;
-
+    padding: 0.5em;
+    border: 1px solid #eee;
 }
 
 select{
@@ -36,7 +65,7 @@ select:focus{
     outline: none;
 }
 
-.search-no{
+.search-details{
     display: flex;
     width: 50vw;
     align-items: center;
@@ -45,15 +74,21 @@ select:focus{
 }
 
 .page-counter{
-    display: flex;
+
     gap: 0.5em;
     margin-top: 3em;
     
 }
 
 .page-counter .button{
-    background-color: white;
+    padding: 0;
+    background-color: transparent;
     color: black;
     text-align: center;
     border: solid 0.19em var(--color);
+    width: 1.5em;
+    height: 2em;
+}
+.page-counter .button:hover{
+   background-color: var(--color-hover);
 }

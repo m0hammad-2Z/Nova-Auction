@@ -5,7 +5,10 @@
     --color-active:rgb(255, 81, 50);
     
 }
+a{
+    text-decoration: none;
 
+}
 *{ 
     font-family: "Saira", sans-serif; 
     padding: 0;
@@ -34,22 +37,26 @@ body{
 }
 
 .logo > a{
-    text-decoration: none;
     color: black;
 }
 
 .nav-links{
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 2.5em;
 }
 
 .nav-links a{
+    padding: 0;
     text-decoration: none;
     color: var(--color);
 }
 
 .nav-icons{
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1.5em;
 }
 
@@ -114,6 +121,18 @@ body{
 	
 /* Small screen devices (600px and above) */
 @media only screen and (min-width: 0px) {
+    .nav-links{
+        display: flex;
+        gap: 0.75em;
+          align-items: center;
+    justify-content: center;
+    }
+    .nav-icons{
+        display: flex;
+        gap: 0.75em;
+          align-items: center;
+    justify-content: center;
+    }
     .cards-grid{
         padding-top: 1.45em;
         /* border:0.5em blue solid; */
@@ -125,6 +144,18 @@ body{
 
 /* Medium screen devices (768px and above) */
 @media only screen and (min-width: 850px) {
+    .nav-links{
+        display: flex;
+        gap: 1.5em;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-icons{
+        display: flex;
+        gap: 1em;
+        align-items: center;
+        justify-content: center;
+    }
     .cards-grid{
         padding-top: 1.45em;
         /* border:0.5em blue solid; */
@@ -136,6 +167,18 @@ body{
 
 /* Big screen devices (889px and above) */
 @media only screen and (min-width: 1280px) {
+    .nav-links{
+        display: flex;
+        gap: 2.5em;
+          align-items: center;
+    justify-content: center;
+    }
+    .nav-icons{
+        display: flex;
+        gap: 1.5em;
+          align-items: center;
+    justify-content: center;
+    }
     .cards-grid{
         padding-top: 1.45em;
         /* border:0.5em blue solid; */
