@@ -27,16 +27,26 @@ form{
     gap: 0.5em;
 }
 
-input{
-    padding: 0.5em;
-    border: 1px solid #eee;
+@media only screen and (min-width: 0px) {
+    .main{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 65%;
+        margin: auto;
+        margin-top: 6em;
+        gap: 3em;
+    }
 }
 
-input:focus{
-    outline: none;
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 850px) {
+    .main{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 65%;
+        margin: auto;
+        margin-top: 6em;
+        gap: 3em;
+    } 
 }
 
-.left a{
-    text-decoration: none;
-    
-}

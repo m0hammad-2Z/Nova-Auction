@@ -231,5 +231,24 @@ body{
 }
 
 select{
+    height: 3em;
+    background-color: none;
+    padding: 0.5em 2em;
+    border: solid 2px rgba(245, 229, 229, 0.37);
+    border-radius: 0.5em;
     cursor: pointer;
+}
+
+select:focus{
+    border: solid 2px var(--color);
+    outline: none;
+}
+
+input{
+    padding: 0.5em;
+    border: 1px solid #eee;
+}
+
+input:focus{
+    outline: none;
 }
