@@ -37,7 +37,7 @@
     <div class="main">
         <div class="left">
             <h1>Log in</h1>
-            <form action="post">
+            <form >
                 <label for="Email">Email</label><input type="email"  placeholder="example@example.exa" required>
                 <label for="password">Password</label><input type="password" required>
                 <div><input type="checkbox"> <label for="Email">Remember me</label></div>
@@ -48,12 +48,12 @@
 
         <div class="right">
             <h1>Register</h1>
-            <form action="post">
-                <label for="Email">Full Name</label><input type="text" placeholder="First Name" required>
-                <input type="text" placeholder="Last Name" required>
-                <label for="Email">Email</label><input type="email" placeholder="example@example.exa" required>
-                <label for="password">Password</label><input type="password"  required>
-                <label for="tel">Phone number</label><input type="tel" placeholder="0712345678" required>
+            <form action="/Nova-Auction/pages/reg.php" method="post">
+                <label for="Email">Full Name</label><input type="text" name="fn" placeholder="First Name" required>
+                <input type="text" name="ln" placeholder="Last Name" required>
+                <label for="Email">Email</label><input name="email" type="email" placeholder="example@example.exa" required>
+                <label for="password">Password</label><input name="pass" type="password"  required>
+                <label for="tel">Phone number</label><input name="tele" type="tel" placeholder="0712345678" required>
                 <button class="button" type="submit">Sign up</button>
             </form>
         </div>
