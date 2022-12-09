@@ -23,6 +23,29 @@ body{
     background-color: white;
 }
 
+
+
+/* Scrolbar */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--color); 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-hover); 
+  }
+/* End Scrolbar */
+
+
+
+
 .main-nav{
     background-color: white;
     box-shadow: 0 0 2em 0.2em rgba(50, 49, 104, 0.233);
