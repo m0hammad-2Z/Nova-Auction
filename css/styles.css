@@ -73,6 +73,7 @@ body{
 .button:hover{
     background-color: var(--color-hover);
     cursor: pointer;
+    box-shadow: 0 0 1em 0.6em rgba(35, 34, 70, 0.233);
 }
 .button:active{
     background-color: var(--color-active);
