@@ -1,3 +1,10 @@
+<?php
+include('login.php'); // Includes Login Script
+if(isset($_SESSION['login_user'])){
+header("location: profile.php"); // Redirecting To Profile Page
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +14,7 @@
     <title>Account</title>
     <link rel="stylesheet" href="/Nova-Auction/css/styles.css">
     <link rel="stylesheet" href="/Nova-Auction/css/register.css">
+    <script src="/Nova-Auction/js/cookies.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -23,12 +31,13 @@
                 <a href="/Nova-Auction/pages/about.html">About</a>
             </div>
             <div class="nav-icons">
-                <a href="/Nova-Auction/pages/products.html">
+                <a id="user-icon" href="/Nova-Auction/pages/products.html">
                     <i class="fas fa-search"></i>
                 </a>
-                <a href="/Nova-Auction/pages/register.html">
+                <a id="search-icon" href="/Nova-Auction/pages/register.html">
                     <i class="fas fa-user-alt"></i>
                 </a>
+                <button name="sell-button" id="sell-button" class="button" style="display: block">Sell</button>
             </div>
         </div>
     </nav>
@@ -37,10 +46,11 @@
     <div class="main">
         <div class="left">
             <h1>Log in</h1>
-            <form >
-                <label for="Email">Email</label><input type="email"  placeholder="example@example.exa" required>
-                <label for="password">Password</label><input type="password" required>
-                <div><input type="checkbox"> <label for="Email">Remember me</label></div>
+            <form action="/Nova-Auction/pages/login.php" method="post">
+                <label for="Email">Email</label><input type="email" name="email" placeholder="example@example.exa" required>
+                <label for="password">Password</label><input type="password" name="pass" required>
+                <div><input type="checkbox" name="remember_me"> <label for="Email">Remember me</label></div>
+                
                 <button class="button" type="submit">Log in</button>
             </form>
             <a href="" >Lost your password?</a>
