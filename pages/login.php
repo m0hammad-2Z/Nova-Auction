@@ -6,7 +6,7 @@ $username = "root";
 $password = "";
 $dbname = "nova_auction";
 
-$isLogeedIn = false;
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){
