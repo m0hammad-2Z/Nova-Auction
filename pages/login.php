@@ -6,6 +6,8 @@ $username = "root";
 $password = "";
 $dbname = "nova_auction";
 
+$isLogeedIn = false;
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error){
     die("Connection failed: " . $conn->connect_error);
@@ -23,6 +25,7 @@ $res = mysqli_query($conn,$l);
 
     if($email==isset($row['email']) and $pass==isset($row['pass'])){
         mysqli_query($conn,$l);
+        $isLogeedIn = true;
         header('Location: /Nova-Auction/');
         echo "login";
 
