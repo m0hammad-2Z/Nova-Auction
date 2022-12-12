@@ -11,30 +11,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
     <body>
-        <nav class="main-nav">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="/Nova-Auction/">
-                        <h1>N<span style="color: var(--color);">O</span>VA</h1>
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="/Nova-Auction/">Home</a>
-                    <a href="/Nova-Auction/pages/products.html">Products</a>
-                    <a href="/Nova-Auction/pages/about.html">About</a>
-                </div>
-                <div class="nav-icons">
-                    <a href="/Nova-Auction/pages/products.html">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="/Nova-Auction/pages/register.html">
-                        <i class="fas fa-user-alt"></i>
-                    </a>
-                    <button name="sell-button" id="sell-button" class="button" style="display: block">Sell</button>
-                    
-                </div>
-            </div>
-        </nav>
+    <?php 
+        require "./lib.php";
+        printNav(0);
+    ?>
         <div class="main">
             <img class="home-img" src="img/cars-home.jpg" alt="Home page">
             <div class="home-img-text">
