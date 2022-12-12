@@ -60,16 +60,18 @@
                 <button class="button" name="register_button" type="submit">Sign up</button>
             </form>
             <?php
-                require "../lib.php";
-                extract($_POST);
-                if(count(Database("select email from user_info where email = '$email'",1)) == 0
-                ||
-                count(Database("select phonenumber from user_info where phonenumber = '$tele'",1))==0)
-                {
-                    Database("INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele')",0);
-                }else{
-                    echo '<span class="register_error">you are not welcome</span>';
-                }
+                if(isset($_POST['register_button'])) {
+                    require "../lib.php";
+                    extract($_POST);
+                    if(count(Database("select email from user_info where email = '$email'",1)) == 0
+                    ||
+                    count(Database("select phonenumber from user_info where phonenumber = '$tele'",1))==0)
+                    {
+                        Database("INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele')",0);
+                    }else{
+                        echo '<span class="register_error">you are not welcome</span>';
+                    }
+            }
             ?>
             
         </div>
