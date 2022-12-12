@@ -1,4 +1,5 @@
 <?php 
+session_start();
 extract($_POST);
 
 $servername = "localhost";
@@ -18,6 +19,7 @@ $l = "SELECT email, pass from user_info where email='$email' and pass='$pass'";
 
 $res = mysqli_query($conn,$l);
 
+if(!isset($_SESSION['login_user'])){
 
     if (mysqli_num_rows($res) > 0){
     $row = mysqli_fetch_assoc($res);
@@ -25,9 +27,12 @@ $res = mysqli_query($conn,$l);
 
     if($email==isset($row['email']) and $pass==isset($row['pass'])){
         mysqli_query($conn,$l);
-        $isLogeedIn = true;
-        header('Location: /Nova-Auction/');
-        echo "login";
+
+        $_SESSION['login_user'] = $email;
+        $_SESSION['pass'] = $pass;
+
+        //header('Location: /Nova-Auction/');
+        echo $_SESSION['login_user'];
 
     }else{
         echo "Error in email or password 0";
@@ -35,6 +40,10 @@ $res = mysqli_query($conn,$l);
    }
    else{
     echo "Error in email or password 1";
-
    }
+}else{
+    mysqli_query($conn,"SELECT email, pass from user_info where email='".$_SESSION['login_user']."' and pass='".$_SESSION['pass']."'");
+    echo "session";
+
+}
 ?>
