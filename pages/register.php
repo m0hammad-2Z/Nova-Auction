@@ -1,10 +1,3 @@
-<?php
-include('login.php'); // Includes Login Script
-if(isset($_SESSION['login_user'])){
-header("location: profile.php"); // Redirecting To Profile Page
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,14 +51,27 @@ header("location: profile.php"); // Redirecting To Profile Page
 
         <div class="right">
             <h1>Register</h1>
-            <form action="/Nova-Auction/pages/reg.php" method="post">
+            <form  method="post">
                 <label for="Email">Full Name</label><input type="text" name="fn" placeholder="First Name" required>
                 <input type="text" name="ln" placeholder="Last Name" required>
                 <label for="Email">Email</label><input name="email" type="email" placeholder="example@example.exa" required>
                 <label for="password">Password</label><input name="pass" type="password"  required>
                 <label for="tel">Phone number</label><input name="tele" type="tel" placeholder="0712345678" required>
-                <button class="button" type="submit">Sign up</button>
+                <button class="button" name="register_button" type="submit">Sign up</button>
             </form>
+            <?php
+                require "../lib.php";
+                extract($_POST);
+                if(count(Database("select email from user_info where email = '$email'",1)) == 0
+                ||
+                count(Database("select phonenumber from user_info where phonenumber = '$tele'",1))==0)
+                {
+                    Database("INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele')",0);
+                }else{
+                    echo '<span class="register_error">you are not welcome</span>';
+                }
+            ?>
+            
         </div>
     </div>
 
