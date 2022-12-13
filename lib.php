@@ -70,7 +70,7 @@ function printNav()
                     </a>
                     <button name='sell-button' id='sell-button' class='button' style='display: block'>Sell</button>
                     <a href='#'>".
-                        Database("select user_firstname from user_info where user_id = '".$_SESSION["user_id"]."'",1)[0][0]
+                        Database("select first_name from user_info where user_id = '".$_SESSION["user_id"]."'",1)[0][0]
                     ."
                         </a>
                 </div>
