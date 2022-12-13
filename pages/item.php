@@ -1,43 +1,45 @@
+<?php
+// init PHP
+require "../lib.php"; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Item name</title>
-    <link rel="stylesheet" href="/Nova-Auction/css/styles.css">
-    <link rel="stylesheet" href="/Nova-Auction/css/item.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel='stylesheet' href='/Nova-Auction/css/styles.css'>
+    <link rel='stylesheet' href='/Nova-Auction/css/item.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
 </head>
+
 <body>
-    <?php 
-    require "../lib.php";
-    printNav();
-?>
+    <?php printNav(); ?>
 
 
-    <div class="main">
-        <div class="left">
-            <img src="https://picsum.photos/512?a" alt="">
+    <div class='main'>
+        <div class='left'>
+            <img src='https://picsum.photos/512?a' alt=''>
         </div>
-        
 
-        <div class="right">
+
+        <div class='right'>
             <div>
                 <h1>Test Ball Signed</h1>
                 <p>Korem ipsum dolor amet, consectetur adipiscing elit. Maece nas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla.</p>
             </div>
-            
+
             <p>Seller Name: Ali Hussian</p>
-            <p>Location: Amman</p>  
+            <p>Location: Amman</p>
 
             <p>ITEM CONDITION: <span>USED</span></p>
             <p>Current price: 253.0$</p>
-            <button class="button">Buy Now</button>
+            <button class='button'>Buy Now</button>
         </div>
     </div>
 
-    <div class="item-desc">
+    <div class='item-desc'>
         <h1>Description</h1>
         <h2>How can have anything you ant in life if you?</h2>
         <p>
@@ -49,13 +51,14 @@
 
             Consectetur adipisicing elit. Maxime reprehenderit quaerat
 
-            Fuga magni veritatis ad temporibus atque adipisci nisi rerum… 
+            Fuga magni veritatis ad temporibus atque adipisci nisi rerum…
         </p>
     </div>
 
 
-    <footer class="footer">
-        <p>Copyright &copy; 2022 Nova Auction | Design By Humble Ghost Team</p>
+    <footer class='footer'>
+        <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 </body>
+
 </html>
