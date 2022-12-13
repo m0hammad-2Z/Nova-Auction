@@ -46,7 +46,7 @@ require "../lib.php"; ?>
                     </select>
 
                     <select onchange='getSelected()' name='car-mekes' id='car-mekes'>
-                        <option onclick="(carMakesReset())" value='0'>Car makes</option>
+                        <option value='0'>Car makes</option>
                         <?php 
                         $res = Database("select makes_name from car_info_makes",1);
                             foreach($res as $row){
@@ -94,9 +94,15 @@ for($i = 0 ; $i<count($res);++$i){
     echo "modelArr[$i]='{$res[$i][1]}';\n";}
 ?>
 function getSelected(){
-    var seleted = document.getElementById('car-mekes').value;
-
+    var seleted = document.getElementById('car-mekes').value; 
     var model = document.getElementById('model');
+    console.log(seleted);
+    if(seleted == '0'){
+        model.disabled = true;
+        return;
+    }
+    
+    
     while (model.lastChild) {
         if(model.lastChild.value == 0)
             break;
@@ -115,17 +121,13 @@ function getSelected(){
    model.disabled = false;
 }
 
-function carMakesReset(){
-    var model = document.getElementById('model').disabled = true;
-}
+
+
+    
 
 
 function hi(){
     console.log("hi bitch");
-    <?php 
-
-    
-    ?>
 }
 
 
