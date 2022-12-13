@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:wdth,wght@94.2,512&display=swap');
 :root{
-    --color:#5EB1BF;
-    --color-hover:#042A2B;
-    --color-active:#CDEDF6;
+    --color:#F7CA00;
+    --color-hover:#AC55FA;
+    --color-active:#C14BDE;
+    --txt-clr:black;
 }
 
 a{
@@ -12,6 +13,7 @@ a{
 *{ 
     font-family: "Saira", sans-serif; 
     padding: 0;
+
 }
 
 html {
@@ -94,7 +96,7 @@ body{
 .button{
     
     background-color: var(--color);
-    color: white;
+    color: var(--txt-clr);
     border: 0;
     border-radius: 0.5em;
     font-size: 1em;
@@ -125,7 +127,7 @@ body{
 }
 .card:hover{
     transform: translateY(-2%) scale(1.05);
-    box-shadow: 0 1em 5em 0.0em rgba(50, 49, 104, 0.158);
+    box-shadow: 0 1em 5em 0.0em rgba(50, 49, 104, 0.349);
 }
 .card >:not(img){
     margin-left: 5%;
@@ -216,7 +218,7 @@ body{
     padding: 2em 0em;
     margin-top:5em ;
     bottom: 0;
-    color: white;
+    color: var(--txt-clr);
     width:100%;
     background-color: var(--color);
 }
