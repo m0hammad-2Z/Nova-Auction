@@ -13,7 +13,11 @@
 <body>
     <?php 
         require "../lib.php";
-        printNav(0);
+        if(!isset($_SESSION['user_id'])){
+            printNav(0);
+        }else{
+            printNav(1);
+        }
     ?>
 
 
@@ -23,28 +27,27 @@
             <form method="post">
                 <label for="Email">Email</label><input type="email" name="email" placeholder="example@example.exa" required>
                 <label for="password">Password</label><input type="password" name="pass" required>
-                <div><input type="checkbox" name="remember_me"> <label for="Email">Remember me</label></div>
+                <!-- <div><input type="checkbox" name="remember_me"> <label for="Email">Remember me</label></div> -->
                 
-                <button class="button" name="login_button" type="submit">Log in</button>
+                <button class="button" name="login_button" type="submit">Log in</button> 
             </form>
             <a href="" >Lost your password?</a>
 
             <?php
-           
+            session_start();
             extract($_POST);
 
             if(!isset($_SESSION['user_id'])){
                 if(isset($_POST['login_button'])) {
                     if(count(Database("select email from user_info where email = '$email' and pass='$pass'",1)) != 0)
                     {
-                        session_start();
                         $_SESSION['user_id'] = Database("select user_id from user_info where email='$email' and pass='$pass'", 1)[0][0];
                         header('Location: /Nova-Auction/');
                     }else{
                         echo '<span class="register_error">Error in email or password</span>';
                     }
-                    }
-                }else{
+                }
+            }else{
                     Database("select email from user_info where user_id = '".$_SESSION['user_id']."'",1);
                     header('Location: /Nova-Auction/');
             }
