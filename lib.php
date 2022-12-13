@@ -68,11 +68,11 @@ function printNav()
                     <a id='user-icon' href='/Nova-Auction/pages/products.php'>
                         <i class='fas fa-search'></i>
                     </a>
+                    <button name='sell-button' id='sell-button' class='button' style='display: block'>Sell</button>
                     <a href='#'>".
                         Database("select user_firstname from user_info where user_id = '".$_SESSION["user_id"]."'",1)[0][0]
                     ."
                         </a>
-                    <button name='sell-button' id='sell-button' class='button' style='display: block'>Sell</button>
                 </div>
             </div>
         </nav>");
