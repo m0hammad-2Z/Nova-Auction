@@ -51,7 +51,7 @@ insert into car_info_makes values
     (default,'mazda'),
     (default,'nissan'),
     (default,'mercedes-benz');
-    
+
  insert into car_info_model values
     (default,1,'avalon'),
     (default,1,'camry'),
@@ -61,4 +61,15 @@ insert into car_info_makes values
     (default,8,'gtr'),
     (default,8,'patrol'),
     (default,8,'sunny'),
-    (default,9,'g'); 
+    (default,9,'g'),
+    (default,5,'fusion'); 
+
+insert into city values
+    (default,'amman'),
+    (default,'aqaba'),
+    (default,'zarqa'),
+    (default,'madaba'),
+    (default,'karak'),
+    (default,'salt'),
+    (default,'jerash'),
+    (default,'irbid');

@@ -33,20 +33,34 @@ require "../lib.php"; ?>
                     <input id='fileupload' type='file' name='image' multiple=''>
 
                 </div>
+               
                 <div class='item-detailt'>
                     <select name='cities' id='cities'>
-                        <option value='Amman'>City</option>
-                        <option value='Irbid'>Amman</option>
+                        <option  value='0'>City</option>
+                        <?php 
+                        $res = Database("select city_name from city",1);
+                            foreach($res as $row){
+                                print("<option onclick='getSelected()' value='$row[0]'>$row[0]</option>");
+                            }
+                        
+                        ?>
                     </select>
 
                     <select name='car-mekes' id='car-mekes'>
-                        <option value='0'>Car makes</option>
-                        <option value='BMW'>BMW</option>
+                        <option onclick="(carMakesReset())" value='0'>Car makes</option>
+                        <?php 
+                        $res = Database("select makes_name from car_info_makes",1);
+                            foreach($res as $row){
+                                print("<option onclick='getSelected()' value='$row[0]'>$row[0]</option>");
+                            }
+                        
+                        ?>
                     </select>
-
-                    <select name='model' id='model'>
+                        <?php
+                      
+                        ?>
+                    <select name='model' id='model' disabled>
                         <option value='0'>Model</option>
-                        <option value='BMW'>BMW</option>
                     </select>
 
                     <select name='Year-from' id='year-from'>
@@ -63,9 +77,58 @@ require "../lib.php"; ?>
             </form>
         </div>     
     </div>
+<?php 
 
+?>
     <footer class='footer'>
         <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 </body>
+<script>
+var makesArr = new Array();
+var modelArr = new Array();
+
+<?php
+$res =Database("select makes_name , model_name from car_info_makes,car_info_model where makes = car_info_makes.id ",1);
+for($i = 0 ; $i<count($res);++$i){
+    echo "makesArr[$i]='{$res[$i][0]}';\n";
+    echo "modelArr[$i]='{$res[$i][1]}';\n";}
+?>
+function getSelected(){
+    var seleted = document.getElementById('car-mekes').value;
+
+    var model = document.getElementById('model');
+    while (model.lastChild) {
+        if(model.lastChild.value == 0)
+            break;
+        model.removeChild(model.lastChild);
+    }
+
+    for(var i = 0; i<makesArr.length;++i){
+        if(makesArr[i]==seleted)
+        {
+            var node = document.createElement("option");
+            node.value = modelArr[i];
+            node.innerHTML = modelArr[i];
+            model.appendChild(node);
+        }
+    }
+   model.disabled = false;
+}
+
+function carMakesReset(){
+    var model = document.getElementById('model').disabled = true;
+}
+
+
+function hi(){
+    console.log("hi bitch");
+    <?php 
+
+    
+    ?>
+}
+
+
+</script>
 </html>
