@@ -27,7 +27,7 @@ require "../lib.php"; ?>
             <?php
             extract($_POST);
 
-            if (!isset($_SESSION["user_id"])) {
+            if (!isset($_SESSION["id"])) {
                 if (isset($_POST["login_button"])) {
                     if (
                         count(
@@ -37,8 +37,8 @@ require "../lib.php"; ?>
                             )
                         ) != 0
                     ) {
-                        $_SESSION["user_id"] = Database(
-                            "select user_id from user_info where email='$email' and pass='$pass'",
+                        $_SESSION["id"] = Database(
+                            "select id from user_info where email='$email' and pass='$pass'",
                             1
                         )[0][0];
                         header("Location: /Nova-Auction/");
@@ -48,8 +48,8 @@ require "../lib.php"; ?>
                 }
             } else {
                 Database(
-                    "select email from user_info where user_id = '" .
-                        $_SESSION["user_id"] .
+                    "select email from user_info where id = '" .
+                        $_SESSION["id"] .
                         "'",
                     1
                 );
@@ -90,8 +90,8 @@ require "../lib.php"; ?>
                         "INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele')",
                         0
                     );
-                    $_SESSION["user_id"] = Database(
-                        "select user_id from user_info where email='$email' and pass='$pass'",
+                    $_SESSION["id"] = Database(
+                        "select id from user_info where email='$email' and pass='$pass'",
                         1
                     )[0][0];
                     header("Location: /Nova-Auction/");

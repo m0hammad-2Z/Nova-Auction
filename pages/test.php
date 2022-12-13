@@ -1,8 +1,8 @@
 <?php
 // init PHP
 require "../lib.php"; 
-$q = "select first_name from user_info where user_id = '".$_SESSION["user_id"]."'";
+$q = "select first_name from user_info where id = '".$_SESSION["id"]."'";
 echo $q . "<br>";
-print_r(Database("select first_name from user_info where user_id = '".$_SESSION["user_id"]."'",1));
+print_r(Database("select first_name from user_info where id = '".$_SESSION["id"]."'",1));
 ?>
 

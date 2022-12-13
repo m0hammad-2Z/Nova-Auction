@@ -26,7 +26,7 @@ function Database($query, $type)
 
 function printNav()
 {
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['id'])) {
         print("
         <nav class='main-nav'>
             <div class='navbar'>
@@ -70,7 +70,7 @@ function printNav()
                     </a>
                     <button name='sell-button' id='sell-button' class='button' style='display: block'>Sell</button>
                     <a href='#'>".
-                        Database("select first_name from user_info where user_id = '".$_SESSION["user_id"]."'",1)[0][0]
+                        Database("select first_name from user_info where id = '".$_SESSION["id"]."'",1)[0][0]
                     ."
                         </a>
                 </div>
