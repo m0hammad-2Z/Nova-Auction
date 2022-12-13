@@ -9,8 +9,7 @@ require "../lib.php"; ?>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Account</title>
     <link rel='stylesheet' href='/Nova-Auction/css/styles.css'>
-    <link rel='stylesheet' href='/Nova-Auction/css/sell-item.css'>
-   
+    <link rel='stylesheet' href='/Nova-Auction/css/sell.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
 </head>
 <body>
@@ -34,24 +33,24 @@ require "../lib.php"; ?>
 
                 </div>
                
-                <div class='item-detailt'>
-                    <select name='cities' id='cities'>
+                <div class='item-details'>
+                    <select  name='cities' id='cities'>
                         <option  value='0'>City</option>
                         <?php 
                         $res = Database("select city_name from city",1);
                             foreach($res as $row){
-                                print("<option onclick='getSelected()' value='$row[0]'>$row[0]</option>");
+                                print("<option value='$row[0]'>$row[0]</option>");
                             }
                         
                         ?>
                     </select>
 
-                    <select name='car-mekes' id='car-mekes'>
+                    <select onchange='getSelected()' name='car-mekes' id='car-mekes'>
                         <option onclick="(carMakesReset())" value='0'>Car makes</option>
                         <?php 
                         $res = Database("select makes_name from car_info_makes",1);
                             foreach($res as $row){
-                                print("<option onclick='getSelected()' value='$row[0]'>$row[0]</option>");
+                                print("<option value='$row[0]'>$row[0]</option>");
                             }
                         
                         ?>
