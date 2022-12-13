@@ -44,11 +44,6 @@ require "../lib.php"; ?>
                         <option value='BMW'>BMW</option>
                     </select>
 
-                    <select name='Car-type' id='car-type'>
-                        <option value='0'>Car type</option>
-                        <option value='BMW'>4*4</option>
-                    </select>
-
                     <select name='model' id='model'>
                         <option value='0'>Model</option>
                         <option value='BMW'>BMW</option>
