@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 function Database($query,$type){
     //0 for insert
     //1 for load
@@ -22,8 +24,8 @@ function Database($query,$type){
 
 
 
-function printNav($logedIn){
-    if($logedIn == 0){
+function printNav(){
+    if(!isset($_SESSION['user_id'])){
         print('
         <nav class="main-nav">
             <div class="navbar">

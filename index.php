@@ -13,7 +13,7 @@
     <body>
     <?php 
         require "./lib.php";
-        printNav(0);
+        printNav();
     ?>
         <div class="main">
             <img class="home-img" src="img/cars-home.jpg" alt="Home page">

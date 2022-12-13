@@ -13,11 +13,7 @@
 <body>
     <?php 
         require "../lib.php";
-        if(!isset($_SESSION['user_id'])){
-            printNav(0);
-        }else{
-            printNav(1);
-        }
+        printNav();
     ?>
 
 
@@ -34,7 +30,6 @@
             <a href="" >Lost your password?</a>
 
             <?php
-            session_start();
             extract($_POST);
 
             if(!isset($_SESSION['user_id'])){
@@ -66,14 +61,15 @@
                 <button class="button" name="register_button" type="submit">Sign up</button>
             </form>
             <?php
+            extract($_POST);
                 if(isset($_POST['register_button'])) {
-                    
-                    extract($_POST);
                     if(count(Database("select email from user_info where email = '$email'",1)) == 0
                     ||
                     count(Database("select phonenumber from user_info where phonenumber = '$tele'",1))==0)
                     {
                         Database("INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele')",0);
+                        $_SESSION['user_id'] = Database("select user_id from user_info where email='$email' and pass='$pass'", 1)[0][0];
+                        header('Location: /Nova-Auction/');
                     }else{
                         echo '<span class="register_error">you are not welcome</span>';
                     }

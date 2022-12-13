@@ -13,7 +13,7 @@
 <body>
 <?php 
         require "../lib.php";
-        printNav(0);
+        printNav();
     ?>
 
     
