@@ -55,9 +55,7 @@ require "../lib.php"; ?>
                         
                         ?>
                     </select>
-                        <?php
-                      
-                        ?>
+                    
                     <select name='model' id='model' disabled>
                         <option value='0'>Model</option>
                     </select>
@@ -74,6 +72,12 @@ require "../lib.php"; ?>
                 </div>
                 <button class='button' type='submit'>Submit</button>
             </form>
+
+            <?php
+                
+
+            ?>
+
         </div>     
     </div>
 <?php 
@@ -85,7 +89,7 @@ require "../lib.php"; ?>
 </body>
 <script>
 var CarArr = <?php
-echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info_makes,car_info_model where makes_id = car_info_makes.id order by model_name asc",1,MYSQLI_NUM));
+echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info where order by model_name asc",1,MYSQLI_NUM));
 ?>;
 
 

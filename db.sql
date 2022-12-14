@@ -10,23 +10,36 @@ pass varchar(50),
 phonenumber varchar(20)
 );
 
-create table city(
-id int PRIMARY key AUTO_INCREMENT,
-city_name varchar(20)
-);
 
 create table cars(
 id int PRIMARY key AUTO_INCREMENT,
 makes_name varchar(50),
 model_name varchar(50),
 year_of_make date
-
 );
+
+create table items(
+name varchar(50),
+des varchar(200),
+img VARBINARY(8000),
+price int,
+user_id int,
+car_id int,
+FOREIGN KEY (user_id) REFERENCES user_info(id),
+FOREIGN KEY (car_id) REFERENCES cars(id)
+);
+
+
+create table city(
+id int PRIMARY key AUTO_INCREMENT,
+city_name varchar(20)
+);
+
 
 create table car_info(
 id int PRIMARY key AUTO_INCREMENT,
 makes_name varchar(50),
-model_name varchar(50),
+model_name varchar(50)
 );
 
 insert into car_info values

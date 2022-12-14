@@ -70,7 +70,7 @@ function printNav()
                     </a>
                     <a name='sell' id='sell' class='button' href='/Nova-Auction/pages/sell.php'>Sell</a>
                     <a href='#'>".
-                        Database("select first_name from user_info where id = '".$_SESSION["id"]."'",1)[0][0]
+                        Database("select first_name from user_info where id = '".$_SESSION["id"]."'",1, MYSQLI_BOTH)[0][0]
                     ."
                         </a>
                 </div>
