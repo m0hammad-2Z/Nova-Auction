@@ -48,14 +48,14 @@ require "../lib.php"; ?>
                     <select onchange='getSelected()' name='car-mekes' id='car-mekes'>
                         <option value='0'>Car makes</option>
                         <?php 
-                        $res = Database("select upper(makes_name) from car_info_makes",1);
+                        $res = Database("select upper(makes_name) from car_info",1);
                             foreach($res as $row){
                                 print("<option value='$row[0]'>$row[0]</option>");
                             }
                         
                         ?>
                     </select>
-                    
+
                     <select name='model' id='model' disabled>
                         <option value='0'>Model</option>
                     </select>
