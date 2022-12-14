@@ -48,7 +48,7 @@ require "../lib.php"; ?>
                     <select onchange='getSelected()' name='car-mekes' id='car-mekes'>
                         <option value='0'>Car makes</option>
                         <?php 
-                        $res = Database("select upper(makes_name) from car_info",1);
+                        $res = Database("select upper(makes_name) from car_info group by makes_name",1);
                             foreach($res as $row){
                                 print("<option value='$row[0]'>$row[0]</option>");
                             }
@@ -60,10 +60,7 @@ require "../lib.php"; ?>
                         <option value='0'>Model</option>
                     </select>
 
-                    <select name='Year-from' id='year-from'>
-                        <option value='0'>Year from</option>
-                        <option value='BMW'>2000</option>
-                    </select>
+                    <input type="year">
 
                     <select name='Year-To' id='year-to'>
                         <option value='0'>Year to</option>
@@ -89,7 +86,7 @@ require "../lib.php"; ?>
 </body>
 <script>
 var CarArr = <?php
-echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info where order by model_name asc",1,MYSQLI_NUM));
+echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info order by model_name asc",1,MYSQLI_NUM));
 ?>;
 
 
