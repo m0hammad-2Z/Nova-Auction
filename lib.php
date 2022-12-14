@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function Database($query, $type)
+function Database($query, $Insert_or_Load,$arrayType = MYSQLI_BOTH)
 {
     //0 for insert
     //1 for load
@@ -11,10 +11,10 @@ function Database($query, $type)
     }
 
 
-    if ($type == 0) {
+    if ($Insert_or_Load == 0) {
         $res = mysqli_query($conn, $query);
-    } else if ($type == 1) {
-        $res = mysqli_query($conn, $query)->fetch_all(MYSQLI_BOTH);
+    } else if ($Insert_or_Load == 1) {
+        $res = mysqli_query($conn, $query)->fetch_all($arrayType);
     }
 
     mysqli_close($conn);

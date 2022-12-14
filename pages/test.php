@@ -1,8 +1,16 @@
 <?php
 // init PHP
 require "../lib.php"; 
-$q = "select first_name from user_info where id = '".$_SESSION["id"]."'";
-echo $q . "<br>";
-print_r(Database("select first_name from user_info where id = '".$_SESSION["id"]."'",1));
+$res =Database("select makes_name , model_name from car_info_makes,car_info_model where makes = car_info_makes.id ",1);
+
 ?>
 
+
+
+<script type="text/javascript">
+    
+    var jArray = <?php echo json_encode($res); ?>;
+    console.log(jArray);
+ 
+
+ </script>

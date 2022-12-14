@@ -37,7 +37,7 @@ require "../lib.php"; ?>
                     <select  name='cities' id='cities'>
                         <option  value='0'>City</option>
                         <?php 
-                        $res = Database("select city_name from city",1);
+                        $res = Database("select concat(upper(substring(city_name,1,1)),lower(substring(city_name,2))) from city",1);
                             foreach($res as $row){
                                 print("<option value='$row[0]'>$row[0]</option>");
                             }
@@ -48,7 +48,7 @@ require "../lib.php"; ?>
                     <select onchange='getSelected()' name='car-mekes' id='car-mekes'>
                         <option value='0'>Car makes</option>
                         <?php 
-                        $res = Database("select makes_name from car_info_makes",1);
+                        $res = Database("select upper(makes_name) from car_info_makes",1);
                             foreach($res as $row){
                                 print("<option value='$row[0]'>$row[0]</option>");
                             }
@@ -84,15 +84,11 @@ require "../lib.php"; ?>
     </footer>
 </body>
 <script>
-var makesArr = new Array();
-var modelArr = new Array();
+var CarArr = <?php
+echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info_makes,car_info_model where makes_id = car_info_makes.id order by model_name asc",1,MYSQLI_NUM));
+?>;
 
-<?php
-$res =Database("select makes_name , model_name from car_info_makes,car_info_model where makes = car_info_makes.id ",1);
-for($i = 0 ; $i<count($res);++$i){
-    echo "makesArr[$i]='{$res[$i][0]}';\n";
-    echo "modelArr[$i]='{$res[$i][1]}';\n";}
-?>
+
 function getSelected(){
     var seleted = document.getElementById('car-mekes').value; 
     var model = document.getElementById('model');
@@ -109,12 +105,12 @@ function getSelected(){
         model.removeChild(model.lastChild);
     }
 
-    for(var i = 0; i<makesArr.length;++i){
-        if(makesArr[i]==seleted)
+    for(var i = 0; i<CarArr.length;++i){
+        if(CarArr[i][0]==seleted)
         {
             var node = document.createElement("option");
-            node.value = modelArr[i];
-            node.innerHTML = modelArr[i];
+            node.value = CarArr[i][1];
+            node.innerHTML = CarArr[i][1];
             model.appendChild(node);
         }
     }
