@@ -23,10 +23,10 @@ require "../lib.php"; ?>
             <form class='search-form' action='' method='post'>
                 <div class='item-info'>
                     <label for='product-name'>Product Name</label>
-                    <input type='text' name='product-name' id='product-name'>
+                    <input type='text' name='product_name' id='product-name'>
                     
                     <label for='product-name'>Product Descreption</label>
-                    <input type='text' name='product-name' id='product-name'>
+                    <input type='text' name='product_des' id='product-name'>
 
                     <label for='photo-upload'>Upload Photo</label>
                     <input id='fileupload' type='file' name='image' multiple=''>
@@ -45,7 +45,7 @@ require "../lib.php"; ?>
                         ?>
                     </select>
 
-                    <select onchange='getSelected()' name='car-mekes' id='car-mekes'>
+                    <select onchange='getSelected()' name='car_mekes' id='car-mekes'>
                         <option value='0'>Car makes</option>
                         <?php 
                         $res = Database("select upper(makes_name) from car_info group by makes_name",1);
@@ -60,18 +60,20 @@ require "../lib.php"; ?>
                         <option value='0'>Model</option>
                     </select>
 
-                    <input type="year">
+                    <input name='year' placeholder='year'>
 
-                    <select name='Year-To' id='year-to'>
-                        <option value='0'>Year to</option>
-                        <option value='BMW'>2023</option>
-                    </select>
                 </div>
-                <button class='button' type='submit'>Submit</button>
+                <button class='button' name="submit_button" type='submit'>Submit</button>
             </form>
 
             <?php
-                
+            
+            if(isset($_POST['submit_button'])){
+                Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}-01-01')", 0);
+                Database("insert into items values('{$_POST['product_name']}','{$_POST['product_des']}', null, '{$_POST['year']}-01-01')", 0);
+
+                // Database("insert into items values('$product_name', '$product_des', img, price, user_id, car_id)", 0);
+            }
 
             ?>
 
