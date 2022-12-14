@@ -21,7 +21,7 @@ year_of_make date
 create table items(
 name varchar(50),
 des varchar(200),
-img VARBINARY(8000),
+img MEDIUMBLOB,
 price int,
 user_id int,
 car_id int,
