@@ -2,9 +2,9 @@
 // init PHP
 require "../lib.php"; 
 
-checkUserId();
 
-if(!isset($_SESSION['user_id'])){
+
+if(!checkUserId()){
     header("Location: /Nova-Auction/pages/register.php");
 }
 
@@ -78,6 +78,9 @@ if(!isset($_SESSION['user_id'])){
             <?php
             
             if(isset($_POST['submit_button'])){
+                if(!checkUserId()){
+                    header("Location: /Nova-Auction/pages/register.php");
+                }
                 Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}-01-01')", 0);
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];  
