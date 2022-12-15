@@ -26,6 +26,7 @@ img_path varchar(100),
 price int,
 user_id int,
 car_id int,
+city_name varchar(20),
 FOREIGN KEY (user_id) REFERENCES user_info(id),
 FOREIGN KEY (car_id) REFERENCES cars(id)
 );
