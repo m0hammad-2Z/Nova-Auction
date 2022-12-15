@@ -91,3 +91,19 @@ function printNav()
         </nav>");
     }
 }
+
+
+// function printCard(){
+//     print("<div class='cards-grid'>
+//     <div class='card'>
+//         <img name src=".Database("select img_path from items where user_id = {$_SESSION['user_id']}", 1)[0][0]." alt=''>
+//         <span  style='font-size:25px ;'>Test car</span>
+//         <br>
+//         <span>Current bid: <bold>252$</bold>
+//         </span>
+//         <br>
+//         <button class='button b_card'>Place a bid</button>
+//     </div>");
+// }
+
+?>

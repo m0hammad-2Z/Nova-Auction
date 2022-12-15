@@ -32,56 +32,25 @@ require "./lib.php";
         <h1>Best Items</h1>
         <p>Explore on the world"s best & largest Bidding marketplace with our beautiful Bidding products. <br> We want to be a part of your smile, success and future growth. </p>
         <div class='cards-grid'>
-            <div class='card'>
-                <img src='https://picsum.photos/10?a' alt=''>
-                <span style='font-size:25px ;'>Test car</span>
+        <?php            
+            $res = Database("select name, price, img_path from items order by id DESC limit 6", 1);
+            for($i = 0; $i < count($res); $i++) {
+                    $name = $res[$i][0];
+                    $price = $res[$i][1];
+                    $img_p = $res[$i][2];
+        ?>
+                <div class='card'>
+                <img src="<?php echo $img_p; ?>" alt=''>
+                <span style='font-size:25px ;'><?php echo $name; ?></span>
                 <br>
-                <span>Current bid: <bold>252$</bold>
+                <span>Price: <bold><?php echo $price; ?>$</bold>
                 </span>
                 <br>
                 <button class='button b_card'>Place a bid</button>
             </div>
 
-            <?php
-                
-            ?>
+        <?php  }?>
 
-            <div class='card'>
-                <img src='https://picsum.photos/10?b' alt=''>
-                <span style='font-size:25px ;'>Test car</span>
-                <br>
-                <span>Current bid: <bold>252$</bold>
-                </span>
-                <br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?c' alt=''>
-                <span style='font-size:25px ;'>Test car</span>
-                <br>
-                <span>Current bid: <bold>252$</bold>
-                </span>
-                <br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?d' alt=''>
-                <span style='font-size:25px ;'>Test car</span>
-                <br>
-                <span>Current bid: <bold>252$</bold>
-                </span>
-                <br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?e' alt=''>
-                <span style='font-size:25px ;'>Test car</span>
-                <br>
-                <span>Current bid: <bold>252$</bold>
-                </span>
-                <br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
         </div>
         <button class='button'>View more!</button>
     </div>

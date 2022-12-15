@@ -83,20 +83,20 @@ if(!checkUserId()){
 
                 if(!checkUserId()){
                     header("Location: /Nova-Auction/pages/register.php");
-                }
-                Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}-01-01')", 0);
+                }else{
 
                 Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', {$_POST['year']})", 0);
 
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];  
-                $folder = "../user_images/" . $_SESSION['user_id'].(Database("select max(id) from items",1)[0][0]+1).".".explode("/",$_FILES["image"]["type"])[1];
+                $folder = "user_images/" . $_SESSION['user_id'].(Database("select max(id) from items",1)[0][0]+1).".".explode("/",$_FILES["image"]["type"])[1];
                 $car_id = Database("select max(id) from cars",1)[0][0];
                 // echo $car_id . "<br>";
-                move_uploaded_file($tempname, $folder);
+                move_uploaded_file($tempname, "../".$folder);
                 // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
                 Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id)", 0);
                 echo "<span class='register_error'>Item added</span>";
+                }
             }
 
             ?>
