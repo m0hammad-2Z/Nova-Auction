@@ -1,7 +1,7 @@
 <?php
 // init PHP
 require "../lib.php"; 
-
+echo $_GET["name"]."<br>";
 ?>
 <!DOCTYPE html>
 <html lang="en">

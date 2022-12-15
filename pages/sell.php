@@ -29,22 +29,22 @@ if(!checkUserId()){
     
      <div class='main'>
         <div class='search-options'>
-            <form class='search-form' action='' method='post' enctype="multipart/form-data">
+            <form class='search-form' method='post' enctype="multipart/form-data">
                 <div class='item-info'>
                     <label for='product-name'>Product Name</label>
-                    <input type='text' name='product_name' id='product-name'>
+                    <input type='text' name='product_name' id='product-name' required>
                     
                     <label for='product-name'>Product Descreption</label>
-                    <input type='text' name='product_des' id='product-name'>
-
+                    <textarea rows="5" cols="60" name='product_des' id='product-name'   required></textarea>
+      
                     <label for='photo-upload'>Upload Photo</label>
-                    <input id='fileupload' type='file' name='image' multiple=''>
+                    <input id='fileupload' type='file' name='image'    required>
 
                 </div>
                
                 <div class='item-details'>
-                    <select  name='cities' id='cities'>
-                        <option  value='0'>City</option>
+                    <select  name='city' id='city' placehold  required>
+                        <option  value="" disabled selected>City</option>
                         <?php 
                         $res = Database("select concat(upper(substring(city_name,1,1)),lower(substring(city_name,2))) from city",1);
                             foreach($res as $row){
@@ -54,8 +54,8 @@ if(!checkUserId()){
                         ?>
                     </select>
 
-                    <select onchange='getSelected()' name='car_mekes' id='car-mekes'>
-                        <option value='0'>Car makes</option>
+                    <select onchange='getSelected()' name='car_mekes' id='car-mekes'  required>
+                        <option value="" disabled selected>Car makes</option>
                         <?php 
                         $res = Database("select upper(makes_name) from car_info group by makes_name",1);
                             foreach($res as $row){
@@ -65,13 +65,13 @@ if(!checkUserId()){
                         ?>
                     </select>
 
-                    <select name='model' id='model' disabled>
-                        <option value='0'>Model</option>
+                    <select name='model' id='model' disabled  required>
+                        <option value="" disabled selected>Model</option>
                     </select>
 
-                    <input type="number" min="1" name='price' placeholder='Price'>
+                    <input type="number" min="1" name='price' placeholder='Price' required>
 
-                    <input type="number" min="1900" max="2023" step="1" name='year' placeholder='Year'>
+                    <input type="number" min="1900" max="2023" step="1" name='year' placeholder='Year' required>
 
                 </div>
                 <button class='button' name="submit_button" type='submit'>Submit</button>
@@ -86,7 +86,6 @@ if(!checkUserId()){
                 }else{
 
                 Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', {$_POST['year']})", 0);
-
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];  
                 $folder = "user_images/" . $_SESSION['user_id'].(Database("select max(id) from items",1)[0][0]+1).".".explode("/",$_FILES["image"]["type"])[1];
@@ -94,7 +93,7 @@ if(!checkUserId()){
                 // echo $car_id . "<br>";
                 move_uploaded_file($tempname, "../".$folder);
                 // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
-                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id)", 0);
+                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id,'{$_POST['city']}')", 0);
                 echo "<span class='register_error'>Item added</span>";
                 }
             }
