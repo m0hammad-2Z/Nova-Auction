@@ -41,6 +41,11 @@ require "./lib.php";
                 <br>
                 <button class='button b_card'>Place a bid</button>
             </div>
+
+            <?php
+                
+            ?>
+
             <div class='card'>
                 <img src='https://picsum.photos/10?b' alt=''>
                 <span style='font-size:25px ;'>Test car</span>

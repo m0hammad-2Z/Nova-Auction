@@ -66,7 +66,9 @@ if(!isset($_SESSION['user_id'])){
                         <option value='0'>Model</option>
                     </select>
 
-                    <input name='year' placeholder='year'>
+                    <input type="number" min="1" name='price' placeholder='Price'>
+
+                    <input type="number" min="1900" max="2023" step="1" name='year' placeholder='Year'>
 
                 </div>
                 <button class='button' name="submit_button" type='submit'>Submit</button>
@@ -75,18 +77,16 @@ if(!isset($_SESSION['user_id'])){
             <?php
             
             if(isset($_POST['submit_button'])){
-                Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}-01-01')", 0);
+                Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', {$_POST['year']})", 0);
                 $filename = $_FILES["image"]["name"];
                 $tempname = $_FILES["image"]["tmp_name"];  
                 $folder = "../user_images/" . $_SESSION['user_id'].(Database("select max(id) from items",1)[0][0]+1).".".explode("/",$_FILES["image"]["type"])[1];
                 $car_id = Database("select max(id) from cars",1)[0][0];
-                echo $car_id . "<br>";
+                // echo $car_id . "<br>";
                 move_uploaded_file($tempname, $folder);
-                echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
-                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)", 0);
-                
-                
-                // Database("insert into items values('$product_name', '$product_des', img, price, user_id, car_id)", 0);
+                // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
+                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id)", 0);
+                echo "<span class='register_error'>Item added</span>";
             }
 
             ?>
