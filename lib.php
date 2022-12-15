@@ -22,16 +22,19 @@ function Database($query, $Insert_or_Load,$arrayType = MYSQLI_BOTH)
 }
 
 
-
-
-function printNav()
-{
+function checkUserId(){
     if (isset($_SESSION['user_id'])) {
         if(empty( Database("select first_name from user_info where id = '".$_SESSION['user_id']."'",1))){
             session_destroy();
             $_SESSION = [];
         }
     }
+}
+
+function printNav()
+{
+    checkUserId();
+    
     if (!isset($_SESSION['user_id'])) {
         print("
         <nav class='main-nav'>

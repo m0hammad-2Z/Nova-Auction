@@ -1,6 +1,9 @@
 <?php
 // init PHP
 require "../lib.php"; 
+
+checkUserId();
+
 if(!isset($_SESSION['user_id'])){
     header("Location: /Nova-Auction/pages/register.php");
 }
