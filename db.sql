@@ -15,7 +15,7 @@ create table cars(
 id int PRIMARY key AUTO_INCREMENT,
 makes_name varchar(50),
 model_name varchar(50),
-year_of_make date
+year_of_make int(4)
 );
 
 create table items(
