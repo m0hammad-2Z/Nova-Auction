@@ -58,36 +58,27 @@ require "../lib.php"; ?>
         </div>
 
         <div class='cards-grid'>
-            <div class='card'>
-                <img src='https://picsum.photos/10?a' alt=''>
-                <span style='font-size:25px ;'>Test car</span><br>
-                <span>Current bid: <bold>252$</bold></span><br>
-                <button class='button b_card'>Place a bid</button>
+        <?php            
+            $res = Database("select name, price, img_path from items order by id DESC limit 6", 1);
+            for($i = 0; $i < count($res); $i++) {
+                    $name = $res[$i][0];
+                    $price = $res[$i][1];
+                    $img_p = "../".$res[$i][2];
+                    if(isset($_POST['button_b_card'])) {
+                        echo "<a href='newpage.php'>New Page</a>";
+                    }
+        ?>
+                <div class='card'>
+                <img src="<?php echo $img_p; ?>" alt=''>
+                <span style='font-size:25px ;'><?php echo $name; ?></span>
+                <br>
+                <span>Price: <bold><?php echo $price; ?>$</bold>
+                </span>
+                <br>
+                <button class='button b_card' name="button_b_card">Buy</button>            
             </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?b' alt=''>
-                <span style='font-size:25px ;'>Test car</span><br>
-                <span>Current bid: <bold>252$</bold></span><br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?c' alt=''>
-                <span style='font-size:25px ;'>Test car</span><br>
-                <span>Current bid: <bold>252$</bold></span><br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?d' alt=''>
-                <span style='font-size:25px ;'>Test car</span><br>
-                <span>Current bid: <bold>252$</bold></span><br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
-            <div class='card'>
-                <img src='https://picsum.photos/10?e' alt=''>
-                <span style='font-size:25px ;'>Test car</span><br>
-                <span>Current bid: <bold>252$</bold></span><br>
-                <button class='button b_card'>Place a bid</button>
-            </div>
+
+        <?php  }?>
         </div>
 
         <div class='page-counter'>

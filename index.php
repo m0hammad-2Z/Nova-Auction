@@ -46,7 +46,7 @@ require "./lib.php";
                 <span>Price: <bold><?php echo $price; ?>$</bold>
                 </span>
                 <br>
-                <button class='button b_card'>Place a bid</button>
+                <button class='button b_card'>Buy</button>
             </div>
 
         <?php  }?>
