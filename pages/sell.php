@@ -94,7 +94,7 @@ if(!checkUserId()){
                 // echo $car_id . "<br>";
                 move_uploaded_file($tempname, "../".$folder);
                 // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
-                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id)", 0);
+                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id,'{$_POST['cities']}')", 0);
                 echo "<span class='register_error'>Item added</span>";
                 }
             }
