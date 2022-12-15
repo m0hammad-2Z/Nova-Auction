@@ -32,7 +32,7 @@ if(!checkUserId()){
             <form class='search-form' method='post' enctype="multipart/form-data">
                 <div class='item-info'>
                     <label for='product-name'>Product Name</label>
-                    <input type='text' name='product_name' id='product-name' required>
+                    <input type='text' name='product_name' id='product-name' maxlength="20" required>
                     
                     <label for='product-name'>Product Descreption</label>
                     <textarea rows="5" cols="60" name='product_des' id='product-name'   required></textarea>

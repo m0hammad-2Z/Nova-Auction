@@ -33,11 +33,12 @@ require "./lib.php";
         <p>Explore on the world"s best & largest Bidding marketplace with our beautiful Bidding products. <br> We want to be a part of your smile, success and future growth. </p>
         <div class='cards-grid'>
         <?php            
-            $res = Database("select name, price, img_path from items order by id DESC limit 6", 1);
+            $res = Database("select name, price, img_path ,id from items order by id DESC limit 6", 1);
             for($i = 0; $i < count($res); $i++) {
                     $name = $res[$i][0];
                     $price = $res[$i][1];
                     $img_p = $res[$i][2];
+                    $item_id = $res[$i][3];
         ?>
                 <div class='card'>
                 <img src="<?php echo $img_p; ?>" alt=''>
@@ -46,7 +47,7 @@ require "./lib.php";
                 <span>Price: <bold><?php echo $price; ?>$</bold>
                 </span>
                 <br>
-                <button class='button b_card'>Buy</button>
+                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>' ><button class='button b_card' >Buy</button></a>
             </div>
 
         <?php  }?>
