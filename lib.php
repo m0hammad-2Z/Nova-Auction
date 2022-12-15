@@ -26,7 +26,13 @@ function Database($query, $Insert_or_Load,$arrayType = MYSQLI_BOTH)
 
 function printNav()
 {
-    if (!isset($_SESSION['id'])) {
+    if (isset($_SESSION['user_id'])) {
+        if(empty( Database("select first_name from user_info where id = '".$_SESSION['user_id']."'",1))){
+            session_destroy();
+            $_SESSION = [];
+        }
+    }
+    if (!isset($_SESSION['user_id'])) {
         print("
         <nav class='main-nav'>
             <div class='navbar'>
@@ -51,6 +57,7 @@ function printNav()
             </div>
         </nav>");
     } else {
+        
         print("
         <nav class='main-nav'>
             <div class='navbar'>
@@ -69,8 +76,8 @@ function printNav()
                         <i class='fas fa-search'></i>
                     </a>
                     <a name='sell' id='sell' class='button' href='/Nova-Auction/pages/sell.php'>Sell</a>
-                    <a href='#'>".
-                        Database("select first_name from user_info where id = '".$_SESSION["id"]."'",1, MYSQLI_BOTH)[0][0]
+                    <a href='/Nova-Auction/pages/register.php'>".
+                        Database("select first_name from user_info where id = '".$_SESSION['user_id']."'",1)[0][0]
                     ."
                         </a>
                 </div>

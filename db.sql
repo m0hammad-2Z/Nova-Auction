@@ -19,9 +19,10 @@ year_of_make date
 );
 
 create table items(
+id int PRIMARY key AUTO_INCREMENT,
 name varchar(50),
-des varchar(200),
-img MEDIUMBLOB,
+des varchar(10000),
+img_path varchar(100),
 price int,
 user_id int,
 car_id int,

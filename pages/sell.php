@@ -1,6 +1,12 @@
 <?php
 // init PHP
-require "../lib.php"; ?>
+require "../lib.php"; 
+if(!isset($_SESSION['user_id'])){
+    header("Location: /Nova-Auction/pages/register.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -20,7 +26,7 @@ require "../lib.php"; ?>
     
      <div class='main'>
         <div class='search-options'>
-            <form class='search-form' action='' method='post'>
+            <form class='search-form' action='' method='post' enctype="multipart/form-data">
                 <div class='item-info'>
                     <label for='product-name'>Product Name</label>
                     <input type='text' name='product_name' id='product-name'>
@@ -70,8 +76,16 @@ require "../lib.php"; ?>
             
             if(isset($_POST['submit_button'])){
                 Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}-01-01')", 0);
-                Database("insert into items values('{$_POST['product_name']}','{$_POST['product_des']}', null, '{$_POST['year']}-01-01')", 0);
-
+                $filename = $_FILES["image"]["name"];
+                $tempname = $_FILES["image"]["tmp_name"];  
+                $folder = "../user_images/" . $_SESSION['user_id'].(Database("select max(id) from items",1)[0][0]+1).".".explode("/",$_FILES["image"]["type"])[1];
+                $car_id = Database("select max(id) from cars",1)[0][0];
+                echo $car_id . "<br>";
+                move_uploaded_file($tempname, $folder);
+                echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
+                Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)", 0);
+                
+                
                 // Database("insert into items values('$product_name', '$product_des', img, price, user_id, car_id)", 0);
             }
 
