@@ -1,47 +1,73 @@
 .main{
-    box-sizing: border-box;
     display: grid;
     grid-template-columns:1fr;
-    width:90%;
+    justify-items: center;
+    align-content: center;
+    width:100%;
     max-width: 50em;
     margin: auto;
     margin-top: 6em;
     gap: 3em;
-    padding: 2em 2em;
-    background-color: white;
-    border-radius: 1em;
-    box-shadow: 0 0 3em 0em #8389947a;
+    
+  
 }
-
-.left{
-
+.main > *{
+    box-sizing: border-box;
 }
-
-.left img{
-    height: 100%;
+.item-details > img {
     width: 100%;
     object-fit: cover;
     border-radius: 1em;
 }
 
-.right{
-
-    display: flex;
-    flex-direction: column;
-}
-
-.right div *{
-    margin: 0;
+.item-details{
+    
+    width: 100%;
+    padding: 2em 2em;
+    height: fit-content;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 0 0 3em 0em #8389947a;
 }
 
 .item-desc{
-    box-sizing: border-box;
-    margin-top: 3em;
-    width: 90%;
-    max-width: 50em;
+    width: 100%;
     padding:1em 2em;
-    margin-inline: auto;
     border-radius: 1em;
     box-shadow: 0 0 3em 0em #8389947a;
     
+}
+
+
+
+.item-comment-container{
+    width:100%;
+    padding:1em 2em;
+    background-color: white;
+    border-radius: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+}
+.item-comment-container .item-comments{
+    height: 15em;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25em;
+}
+.item-comment-container .item-comments .item-comment{
+    box-sizing: border-box;
+    padding: 0 1em;
+     /* might remove it */
+    max-width:50%; 
+    background-color: red;
+    border-radius: 1em;
+    align-self: center;
+    font-size: 1.25em;
+}
+.item-comment-container .comment-form{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 2em;
 }
