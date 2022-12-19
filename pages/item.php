@@ -62,19 +62,19 @@ require "../lib.php";
                         Database("INSERT INTO comment VALUES (default,'{$_POST["user_comment"]}',{$_SESSION["user_id"]},{$_GET["item_id"]},(select sysdate()))",0);
                     }
                 }
-                    if(!empty($comments = Database("select * from comment where item_id = {$_GET["item_id"]} order by date_of_comment asc",1))){
-                        for($i = 0 ;$i<count($comments);++$i){
-                            if($comments[$i]["user_id"] == Database("select user_id from items where id = {$_GET["item_id"]}",1)[0][0]){
-                                print (
-                                    "<div class='item-comment' style='justify-self:start; background-color:var(--color-hover)'>{$comments[$i]["comment"]}</div>"
-                                );
-                            }else{
-                                print (
-                                    "<div class='item-comment' style='justify-self:end; background-color:greenyellow'>{$comments[$i]["comment"]}</div>"
-                                );
-                            }
-                        }
-                    }
+                    // if(!empty($comments = Database("select * from comment where item_id = {$_GET["item_id"]} order by date_of_comment asc",1))){
+                    //     for($i = 0 ;$i<count($comments);++$i){
+                    //         if($comments[$i]["user_id"] == Database("select user_id from items where id = {$_GET["item_id"]}",1)[0][0]){
+                    //             print (
+                    //                 "<div class='item-comment' style='justify-self:start; background-color:var(--color-hover)'>{$comments[$i]["comment"]}</div>"
+                    //             );
+                    //         }else{
+                    //             print (
+                    //                 "<div class='item-comment' style='justify-self:end; background-color:greenyellow'>{$comments[$i]["comment"]}</div>"
+                    //             );
+                    //         }
+                    //     }
+                    // }
                 ?>
                 <!-- <div class='item-comment' style='justify-self:end; background-color:greenyellow'>how much is this item?</div>
                 <div class='item-comment' style='justify-self:start; background-color:var(--color-hover)'>as it is included in the post it is 15000 jod</div>
@@ -94,5 +94,31 @@ require "../lib.php";
         <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 </body>
+<script>
 
+    async function s(){
+        var container = document.getElementsByClassName('item-comments')[0];
+        let obj;
+        const arr = await fetch("getComments.php?item_id=4");
+            obj = await arr.json();
+            console.log(obj)
+            while (container.lastChild) {
+                container.removeChild(container.lastChild);
+                }
+            for(var i = 0;i<obj.length;++i){
+                var node = document.createElement("div");
+                node.className = 'item-comment';
+                if(obj[i][2] == 0){
+                    node.style = 'justify-self:start; background-color:var(--color-hover)';
+                }
+                else {
+                    node.style = 'justify-self:end; background-color:greenyellow';
+                }
+                node.innerHTML = obj[i][0];
+                container.appendChild(node);
+            }
+        }
+    s();
+    setInterval(s,5000);
+</script>
 </html>
