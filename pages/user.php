@@ -30,18 +30,31 @@ if(!checkUserId()){
         
         <div class="left">
             <h1><?php 
-            $user_info = Database("select first_name, last_name from user_info where id = '".$_SESSION['user_id']."'",1);
-            echo $user_info[0][0]." ".$user_info[0][1];
+            $user_info = Database("select * from user_info where id = '".$_SESSION['user_id']."'",1);
+            echo $user_info[0]['first_name']." ".$user_info[0]['last_name'];
             ?></h1>
+            <a href="">Your Commodities</a>
             <a href='/Nova-Auction/pages/register.php'>Logout</a>
         </div>
 
         <div class="users-items">
+            <h1>Items</h1>
+            
+            <?php
+            $res = Database("SELECT * FROM items WHERE user_id = '".$_SESSION['user_id']."'", 1);  
+            for($i = 0; $i < count($res); $i++) {
+                 $name = $res[$i]['name'];
+                 $img_p = "../".$res[$i]['img_path'];
+                 $item_id = $res[$i]['id'];
+            ?>
+
             <div class="item">
-                <img src="https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width=30px height=30px>
-                <h2>Toyota cmasop</h2>
-                <a href="">Select</a>
+                <img src="<?php echo $img_p;?>">
+                <h2><?php echo $name;?></h2>
+                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>'>Select</a>
             </div>
+
+            <?php }?>
         </div>
 
     </div>
