@@ -56,11 +56,24 @@ if(!checkUserId()){
                 <h2><?php echo $name;?></h2>
                 <div class="item-options">
                 <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>'>Select</a>
-                <a class="item-delete-option" href='/Nova-Auction/pages/item.php?item_id=<?php echo '4'?>'>Delete</a>
+                <form method="post">
+                    <button value="<?php echo $item_id?>" class="item-delete-option" name="item-delete-option">Delete</button>
+                </form>
+                
                 </div>
             </div>
 
-            <?php }?>
+            <?php 
+        
+        }
+
+        if(isset($_POST['item-delete-option'])){
+            Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
+        }
+
+        ?>
+
+                
         </div>
 
     </div>
