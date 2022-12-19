@@ -65,9 +65,9 @@ require "../lib.php"; ?>
                     $price = $res[$i][1];
                     $img_p = "../".$res[$i][2];
                     $item_id = $res[$i][3];
-                    if(isset($_POST['button_b_card'])) {
-                        echo "<a href='newpage.php'>New Page</a>";
-                    }
+                    // if(isset($_POST['button_b_card'])) {
+                    //     echo "<a href='newpage.php'>New Page</a>";
+                    // }
         ?>
                 <div class='card'>
                 <img src="<?php echo $img_p; ?>" alt=''>

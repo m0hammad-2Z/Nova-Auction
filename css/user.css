@@ -1,21 +1,69 @@
 .main{
-    margin-top: 50em;
-    width: 70%;
+    display: flex;
+    width: 76%;
     margin: auto;
+    margin-top: 4em;
+    gap: 8em;
 }
 
 .left{
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+    color: var(--color);
+}
 
+.left > a{
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    width: 12em;
+    height: 1.7em;
+    margin-bottom: 0.5em;
+    color: gray;
+    border-radius: 0.3em;
+    box-shadow: 0 0 1em 0.05em rgba(3, 1, 19, 0.068);
 }
 
 .users-items{
-    align-items: flex-end;
+    margin: auto;
+    margin-top: 2em;
+}
+
+
+.divider {
+    border-top: 0.4em solid var(--color);
+    width: 6em;
+    margin: -1.5em 0 2em 0 ;
 }
 
 .item{
+    width: 65em;
+    height: 5em;
+    margin-bottom: 1em;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 2em;
+    justify-content: space-around;
+    gap: 12em;
+    box-shadow: 0 0 1em 0.05em rgba(3, 1, 19, 0.068);
+    border-radius: 0.7em;
+    transition: transform 0.4s ease;
 }
+
+.item h2{
+    text-align: center;
+    width: 15em;
+    text-transform: capitalize;
+}
+
+.item > img{
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 0.2em;
+}
+
+.item:hover{
+    transform: translateY(-2%) scale(1.05);
+}
+
