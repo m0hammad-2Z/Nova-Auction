@@ -1,0 +1,21 @@
+.main{
+    margin-top: 50em;
+    width: 70%;
+    margin: auto;
+}
+
+.left{
+
+}
+
+.users-items{
+    align-items: flex-end;
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}

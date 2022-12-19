@@ -82,7 +82,7 @@ function printNav()
                         <i class='fas fa-search'></i>
                     </a>
                     <a name='sell' id='sell' class='button' href='/Nova-Auction/pages/sell.php'>Sell</a>
-                    <a href='/Nova-Auction/pages/register.php'>".
+                    <a href='/Nova-Auction/pages/user.php'>".
                         Database("select first_name from user_info where id = '".$_SESSION['user_id']."'",1)[0][0]
                     ."
                         </a>
