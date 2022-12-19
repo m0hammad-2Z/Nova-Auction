@@ -46,21 +46,17 @@
     background-color: white;
     border-radius: 1em;
     display: grid;
-    grid-template-columns: 1fr;
     gap: 2em;
 }
 .item-comment-container .item-comments{
-    height: 15em;
-    overflow-y: scroll;
+    height: fit-content;
+    max-height: 15em;
+    overflow-y: auto;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.25em;
-    overscroll-behavior-y: contain;
-    scroll-snap-type: y mandatory;
 }
-.item-comment-container .item-comments .item-comment:last-child{
-    scroll-snap-align: start;
-} 
+
 .item-comment-container .item-comments .item-comment{
     box-sizing: border-box;
     padding: 0 1em;
@@ -68,7 +64,7 @@
     max-width:50%; 
     background-color: red;
     border-radius: 1em;
-    align-self: center;
+    height: fit-content;
     font-size: 1.25em;
 }
 .item-comment-container .comment-form{
