@@ -30,6 +30,9 @@ if(!checkUserId()){
         
         <div class="left">
             <h1><?php 
+            if(isset($_POST['item-delete-option'])){
+                Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
+            }
             $user_info = Database("select * from user_info where id = '".$_SESSION['user_id']."'",1);
             echo 'Hello, '.$user_info[0]['first_name']." ".$user_info[0]['last_name'];
             ?></h1>
@@ -67,9 +70,7 @@ if(!checkUserId()){
         
         }
 
-        if(isset($_POST['item-delete-option'])){
-            Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
-        }
+        
 
         ?>
 

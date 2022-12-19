@@ -86,7 +86,6 @@ require_once "../lib.php";
     }
     var length = 0;
     async function s(){
-        
         var container = document.getElementsByClassName('item-comments')[0];
         let obj;
         const arr = await fetch("commentsManager.php?choose=1&item_id=<?php echo $_GET["item_id"]; ?>");
@@ -110,7 +109,6 @@ require_once "../lib.php";
             if(obj.length != length){
                 container.scrollTop = container.scrollHeight;
             }
-            
             length = obj.length;
         }
     s();
