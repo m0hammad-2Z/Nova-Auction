@@ -119,7 +119,7 @@ textarea {
     width: 23em;
     height: 29em;
     border-radius: 0.5em;
-    box-shadow: 0 0 0.3em 0.04em rgba(35, 34, 70, 0.233);
+    box-shadow: 0 0 1em 0.05em rgba(3, 1, 19, 0.068);;
     overflow: hidden;
     transition: box-shadow 0.35s ease,transform 0.35s ease;
 }
