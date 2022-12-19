@@ -61,6 +61,7 @@ require "../lib.php";
             <div class='item-comment' style='justify-self:end; background-color:greenyellow'>ok wait for my call at 9pm</div>
             <div class='item-comment' style='justify-self:end; background-color:greenyellow'>ok wait for my call at 9pm</div>
             <div class='item-comment' style='justify-self:end; background-color:greenyellow'>ok wait for my call at 9pm</div>
+            <div class='item-comment' style='justify-self:end; background-color:greenyellow'>أسمع برنلك اليوم المسا عالتسعة إن شاء الله</div>
         </div>
         <form method="POST" class='comment-form'>
             <input type="text" placeholder="Your comment...">
