@@ -31,7 +31,7 @@ if(!checkUserId()){
         <div class="left">
             <h1><?php 
             $user_info = Database("select * from user_info where id = '".$_SESSION['user_id']."'",1);
-            echo $user_info[0]['first_name']." ".$user_info[0]['last_name'];
+            echo 'Hello, '.$user_info[0]['first_name']." ".$user_info[0]['last_name'];
             ?></h1>
             <a href="">Your Commodities</a>
             <a href='/Nova-Auction/pages/register.php'>Logout</a>
