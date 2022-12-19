@@ -9,8 +9,7 @@ function Database($query, $Insert_or_Load,$arrayType = MYSQLI_BOTH)
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-
+    mysqli_query($conn,"set names 'utf8'");
     if ($Insert_or_Load == 0) {
         $res = mysqli_query($conn, $query);
     } else if ($Insert_or_Load == 1) {
