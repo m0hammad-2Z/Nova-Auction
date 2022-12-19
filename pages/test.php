@@ -11,7 +11,9 @@ require "../lib.php";
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="i">
+
+    </div>
     <form method="post" enctype="multipart/form-data">
         <label for="file" >image<input name="img" type="file"></label>
         <button type="submit" name="but">send</button>
@@ -22,11 +24,24 @@ require "../lib.php";
 
 
 <script>
-    const arr = fetch("getComments.php?item_id=4")
-        .then((response) => response.json())
-        .then((user) => {
-        return user;
-    });
-
-    console.log(arr);
+    var x;
+    async function s(){
+    let obj;
+    const arr = await fetch("getComments.php?item_id=4");
+        obj = await arr.json();
+        console.log(obj)
+        for(var i = 0;i<obj.length;++i){
+            var node = document.createElement("div");
+            node.className = 'item-comment';
+            if(obj[i][2] == 0){
+                node.style = 'justify-self:start; background-color:var(--color-hover)';
+            }
+            else {
+                node.style = 'justify-self:end; background-color:greenyellow';
+            }
+            node.innerHTML = obj[i][0];
+            document.getElementById('i').appendChild(node);
+        }
+    }
+        s();
  </script>
