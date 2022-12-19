@@ -38,8 +38,11 @@ if(!checkUserId()){
         </div>
 
         <div class="users-items">
-            <h1>Items</h1>
-            
+            <div class="text-title">
+                <h1>Items</h1>
+                <hr class="divider">
+            </div>
+
             <?php
             $res = Database("SELECT * FROM items WHERE user_id = '".$_SESSION['user_id']."'", 1);  
             for($i = 0; $i < count($res); $i++) {
