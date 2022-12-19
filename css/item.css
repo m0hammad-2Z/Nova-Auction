@@ -55,7 +55,12 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.25em;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
 }
+.item-comment-container .item-comments .item-comment:last-child{
+    scroll-snap-align: start;
+} 
 .item-comment-container .item-comments .item-comment{
     box-sizing: border-box;
     padding: 0 1em;

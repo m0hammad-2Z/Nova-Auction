@@ -1,7 +1,6 @@
 <?php
 // init PHP
 require "../lib.php"; 
-echo $_GET["name"]."<br>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,20 +16,17 @@ echo $_GET["name"]."<br>";
         <label for="file" >image<input name="img" type="file"></label>
         <button type="submit" name="but">send</button>
     </form>
-    <?php 
-        if(isset($_POST['but'])){
-            $filename = $_FILES["img"]["name"];
-            $tempname = $_FILES["img"]["tmp_name"];   
-            $folder = "../user_images/" . $filename;
-            $filetype = explode("/",$_FILES["img"]["type"])[1];
-            echo $filetype;   
-            move_uploaded_file($tempname, $folder);
-        }
-    ?>
+    
 </body>
 </html>
 
 
-<script type="text/javascript">
+<script>
+    const arr = fetch("getComments.php?item_id=4")
+        .then((response) => response.json())
+        .then((user) => {
+        return user;
+    });
 
+    console.log(arr);
  </script>

@@ -44,6 +44,16 @@ makes_name varchar(50),
 model_name varchar(50)
 );
 
+create table comment(
+    id int PRIMARY key AUTO_INCREMENT,
+    comment varchar(500),
+    user_id int,
+    item_id int,
+    date_of_comment datetime,
+FOREIGN KEY (user_id) REFERENCES user_info(id),
+FOREIGN KEY (item_id) REFERENCES items(id)
+);
+
 insert into car_info values
     (default,'Mercedes-Benz','A-Class'),
     (default,'Audi','A3'),

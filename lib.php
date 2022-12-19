@@ -27,8 +27,8 @@ function checkUserId(){
             session_destroy();
             $_SESSION = [];
             return false;
-        }else
-        return true;
+        }else{
+        return true;}
     }
     return false;
 }
