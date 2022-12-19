@@ -1,6 +1,6 @@
 <?php
 // init PHP
-require "../lib.php"; 
+require_once "../lib.php"; 
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -62,32 +62,13 @@ require "../lib.php";
                         Database("INSERT INTO comment VALUES (default,'{$_POST["user_comment"]}',{$_SESSION["user_id"]},{$_GET["item_id"]},(select sysdate()))",0);
                     }
                 }
-                    // if(!empty($comments = Database("select * from comment where item_id = {$_GET["item_id"]} order by date_of_comment asc",1))){
-                    //     for($i = 0 ;$i<count($comments);++$i){
-                    //         if($comments[$i]["user_id"] == Database("select user_id from items where id = {$_GET["item_id"]}",1)[0][0]){
-                    //             print (
-                    //                 "<div class='item-comment' style='justify-self:start; background-color:var(--color-hover)'>{$comments[$i]["comment"]}</div>"
-                    //             );
-                    //         }else{
-                    //             print (
-                    //                 "<div class='item-comment' style='justify-self:end; background-color:greenyellow'>{$comments[$i]["comment"]}</div>"
-                    //             );
-                    //         }
-                    //     }
-                    // }
+                   
                 ?>
-                <!-- <div class='item-comment' style='justify-self:end; background-color:greenyellow'>how much is this item?</div>
-                <div class='item-comment' style='justify-self:start; background-color:var(--color-hover)'>as it is included in the post it is 15000 jod</div>
-                <div class='item-comment' style='justify-self:start; background-color:var(--color-hover)'>if you are intrested you can call me at 0796412364</div>
-                <div class='item-comment' style='justify-self:end; background-color:greenyellow'>ok wait for my call at 9pm</div>
-                <div class='item-comment' style='justify-self:end; background-color:greenyellow'>ok wait for my call at 9pm</div>
-                <div class='item-comment' style='justify-self:end; background-color:greenyellow'>ok wait for my call at 9pm</div>
-                <div class='item-comment' style='justify-self:end; background-color:greenyellow'>أسمع برنلك اليوم المسا عالتسعة إن شاء الله</div> -->
             </div>
-            <form method="POST" class='comment-form'>
-                <input type="text" name="user_comment"placeholder="Your comment...">
-                <button class='button' name='button'>comment</button>
-            </form>
+            <div class='comment-form'>
+                <input type="text" name="user_comment" placeholder="Your comment...">
+                <button class='button' onclick="insert_comment()" name='button'>comment</button>
+            </div>
         </div>
     </div>
     <footer class='footer'>
@@ -95,11 +76,20 @@ require "../lib.php";
     </footer>
 </body>
 <script>
-
+    
+    async function insert_comment(){
+        var item_id = <?php echo $_GET["item_id"]; ?>;
+        var comment = document.getElementsByName("user_comment")[0].value;
+        await fetch("commentsManager.php?choose=0&item_id="+item_id+"&user_comment="+comment);
+        document.getElementsByName("user_comment")[0].value= "";
+        
+    }
+    var length = 0;
     async function s(){
+        
         var container = document.getElementsByClassName('item-comments')[0];
         let obj;
-        const arr = await fetch("getComments.php?item_id=4");
+        const arr = await fetch("commentsManager.php?choose=1&item_id=<?php echo $_GET["item_id"]; ?>");
             obj = await arr.json();
             console.log(obj)
             while (container.lastChild) {
@@ -109,16 +99,22 @@ require "../lib.php";
                 var node = document.createElement("div");
                 node.className = 'item-comment';
                 if(obj[i][2] == 0){
-                    node.style = 'justify-self:start; background-color:var(--color-hover)';
+                    node.style = 'justify-self:flex-start; background-color:var(--color-hover)';
                 }
                 else {
-                    node.style = 'justify-self:end; background-color:greenyellow';
+                    node.style = 'justify-self:flex-end; background-color:greenyellow';
                 }
                 node.innerHTML = obj[i][0];
                 container.appendChild(node);
             }
+            if(obj.length != length){
+                container.scrollTop = container.scrollHeight;
+            }
+            
+            length = obj.length;
         }
     s();
-    setInterval(s,5000);
+    setInterval(s,1000);
+
 </script>
 </html>

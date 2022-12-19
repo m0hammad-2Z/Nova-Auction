@@ -1,6 +1,6 @@
 <?php
 // init PHP
-require "../lib.php"; 
+require_once "../lib.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,34 +14,23 @@ require "../lib.php";
     <div id="i">
 
     </div>
-    <form method="post" enctype="multipart/form-data">
-        <label for="file" >image<input name="img" type="file"></label>
-        <button type="submit" name="but">send</button>
-    </form>
-    
 </body>
 </html>
 
 
 <script>
-    var x;
-    async function s(){
-    let obj;
-    const arr = await fetch("getComments.php?item_id=4");
-        obj = await arr.json();
-        console.log(obj)
-        for(var i = 0;i<obj.length;++i){
-            var node = document.createElement("div");
-            node.className = 'item-comment';
-            if(obj[i][2] == 0){
-                node.style = 'justify-self:start; background-color:var(--color-hover)';
-            }
-            else {
-                node.style = 'justify-self:end; background-color:greenyellow';
-            }
-            node.innerHTML = obj[i][0];
-            document.getElementById('i').appendChild(node);
-        }
+
+    async function x(){
+        var x = await fetch("test2.php",{
+            method:"post",
+            body: JSON.stringify({a:"ACap" , 1:55})
+        });
+        var res = await x.json();
+        console.log(res);
     }
-        s();
+
+
+    x();
+    
+
  </script>

@@ -1,6 +1,6 @@
 <?php
 // init PHP
-require "../lib.php"; 
+require_once "../lib.php"; 
 
 if(!checkUserId()){
     header("Location: /Nova-Auction/pages/register.php");
