@@ -46,7 +46,7 @@
     justify-content: space-around;
     gap: 12em;
     box-shadow: 0 0 1em 0.05em rgba(3, 1, 19, 0.068);
-    border-radius: 0.7em;
+    border-radius: 0.4em;
     transition: transform 0.4s ease;
 }
 
@@ -54,6 +54,10 @@
     text-align: center;
     width: 15em;
     text-transform: capitalize;
+}
+
+.item a{
+    
 }
 
 .item > img{
@@ -64,6 +68,18 @@
 }
 
 .item:hover{
-    transform: translateY(-2%) scale(1.05);
+    transform: translateY(-1%) scale(1.02);
+}
+
+.item-options{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.item-delete-option{
+    background-color: #f34425;
+    color: white;
+    padding: 0.3em 0.6em 0.3em 0.6em;
+    border-radius: 0.2em;
 }
 
