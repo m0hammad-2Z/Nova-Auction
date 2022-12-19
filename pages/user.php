@@ -53,7 +53,7 @@ if(!checkUserId()){
 
             <div class="item">
                 <img src="<?php echo $img_p;?>">
-                <h2><?php echo $name;?></h2>
+                <h3><?php echo $name;?></h3>
                 <div class="item-options">
                 <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>'>Select</a>
                 <form method="post">
