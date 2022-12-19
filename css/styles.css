@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:wdth,wght@94.2,512&display=swap');
 :root{
-    --color:#384a9c;
-    --color-hover:#5597fa;
+    --color:#b99530;
+    --color-hover:#ccb849;
     --color-active:#4bd4de;
     --txt-clr:rgb(255, 255, 255);
 }
@@ -108,7 +108,7 @@ textarea {
 .button:hover{
     background-color: var(--color-hover);
     cursor: pointer;
-    box-shadow: 0 0 1em 0.6em rgba(35, 34, 70, 0.233);
+    
 }
 .button:active{
     background-color: var(--color-active);

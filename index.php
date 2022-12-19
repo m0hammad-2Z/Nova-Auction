@@ -53,7 +53,7 @@ require "./lib.php";
         <?php  }?>
 
         </div>
-        <button class='button'>View more!</button>
+        <a class='button' href='/Nova-Auction/pages/products.php'>View More!</a>
     </div>
     <footer class='footer'>
         <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
