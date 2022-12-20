@@ -19,18 +19,21 @@ require_once "../lib.php";
 
 
 <script>
-
+var last_fetch_comments=0;
     async function x(){
-        var x = await fetch("test2.php",{
+        
+        var getComments = await fetch("commentsManager.php",{
             method:"post",
-            body: JSON.stringify({a:"ACap" , 1:55})
+            body: JSON.stringify({choose:1 , user_comment:"welcomesir",item_id:2 ,last_count:last_fetch_comments})
         });
-        var res = await x.json();
+        var res = await getComments.json();
         console.log(res);
+        if(res != 'noNew'){
+            last_fetch_comments += res.length;
+        }
+        
     }
-
-
-    x();
+    setInterval(x,5000);
     
 
  </script>

@@ -2,31 +2,35 @@
 // init PHP
 require_once "../lib.php"; 
 
-if(isset($_GET["choose"])){
-    if($_GET["choose"]==1){
-        if(!empty($comments = Database("select * from comment where item_id = {$_GET["item_id"]} order by date_of_comment asc",1))){
-            
-            for($i = 0 ;$i<count($comments);++$i){
-                if($comments[$i]["user_id"] == Database("select user_id from items where id = {$_GET["item_id"]}",1)[0][0]){
-                    $commentsArray[] = array($comments[$i]["comment"] , $comments[$i]["date_of_comment"],1);
-                }
-                else{
-                    $commentsArray[] = array($comments[$i]["comment"] , $comments[$i]["date_of_comment"],0);
-                }
-            }
-        }else{
-            $commentsArray[0][0]="empty";
-        }
 
-    echo json_encode($commentsArray);
+    $Not_POST = json_decode(file_get_contents("php://input"),true);
+    if(empty($Not_POST)){
+        die() ;
     }
-    elseif(checkUserId()){
-        if($_GET["user_comment"] == ""){
-            return;
+    if($Not_POST['choose']==0){
+          if(checkUserId() && $Not_POST["user_comment"] != ""){
+            Database("INSERT INTO comment VALUES (default,'{$Not_POST["user_comment"]}',{$_SESSION["user_id"]},{$Not_POST["item_id"]},(select sysdate()))",0);
+            echo json_encode("inserted");
+            die() ;
+        }else{
+            die() ;
         }
-        Database("INSERT INTO comment VALUES (default,'{$_GET["user_comment"]}',{$_SESSION["user_id"]},{$_GET["item_id"]},(select sysdate()))",0);
-                   
-    
-    }
-}
+    }elseif($Not_POST['choose']==1){
+        $comments = Database("select count(id) from comment where item_id = {$Not_POST["item_id"]}",1,MYSQLI_NUM);
+        if($comments[0][0]-$Not_POST['last_count']!=0){
+            if(checkUserId()){
+                echo json_encode(Database("select *,if({$_SESSION["user_id"]} = user_id, 1,0),(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
+        }else{
+                echo json_encode(Database("select *,0 from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
+           
+            }
+                die();
+        }else
+        {
+            echo json_encode("noNew");
+            die();
+        }
+    } 
+
+
 ?>

@@ -60,15 +60,42 @@
 .item-comment-container .item-comments .item-comment{
     box-sizing: border-box;
     padding: 0 1em;
-     /* might remove it */
     max-width:50%; 
-    background-color: red;
     border-radius: 1em;
-    height: fit-content;
     font-size: 1.25em;
+    word-break: break-all;
 }
 .item-comment-container .comment-form{
     display: grid;
     grid-template-columns: 4fr 1fr;
     gap: 2em;
+}
+.item-comment-container .item-comments .item-comment > p{
+    margin: 0;
+    padding: 0;
+
+}
+
+.item-comment-container .item-comments .item-comment > div > a{
+    color: blue;
+    margin: 0;
+    padding: 0;
+    font-size: 0.75em;
+    opacity: 0.75;
+}
+.item-comment-container .item-comments .item-comment > div > a:visited{
+    color: blue;
+opacity: 0.85;
+}
+.item-comment-container .item-comments .item-comment > div > p{
+    margin: 0;
+    padding: 0;
+    font-size: 0.60em;
+    opacity: 0.75;
+}
+input{
+    border-radius: 0.5em;
+}
+input:focus{
+    border: 0.2em solid var(--color);
 }

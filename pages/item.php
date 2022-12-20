@@ -40,7 +40,7 @@ require_once "../lib.php";
                     <p>Location: {$item[0][7]}</p>
 
                     <p>Current price: {$item[0][4]}$</p>
-                    <button class='button'>Buy Now</button>
+                    <button class='button'>Call Now</button>
                 </div>      
             
 
@@ -55,16 +55,7 @@ require_once "../lib.php";
         ?>
         <div class='item-comment-container'>
             <h1>Comment</h1>
-            <div class='item-comments'>
-                <?php
-                if(isset($_POST["button"])){
-                    if(checkUserId()){
-                        Database("INSERT INTO comment VALUES (default,'{$_POST["user_comment"]}',{$_SESSION["user_id"]},{$_GET["item_id"]},(select sysdate()))",0);
-                    }
-                }
-                   
-                ?>
-            </div>
+            <div class='item-comments'></div>
             <div class='comment-form'>
                 <input type="text" name="user_comment" placeholder="Your comment...">
                 <button class='button' onclick="insert_comment()" name='button'>comment</button>
@@ -75,44 +66,74 @@ require_once "../lib.php";
         <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 </body>
+
+<?php
+                if(isset($_POST["button"])){
+                    if(checkUserId()){
+                        Database("INSERT INTO comment VALUES (default,'{$_POST["user_comment"]}',{$_SESSION["user_id"]},{$_GET["item_id"]},(select sysdate()))",0);
+                    }
+                }
+                ?>
 <script>
+    var item_id = <?php echo $_GET["item_id"]; ?>;
+    var comment = document.getElementsByName("user_comment")[0];
+    var last_fetch_comments=0;
+    var container = document.getElementsByClassName('item-comments')[0];
     
     async function insert_comment(){
-        var item_id = <?php echo $_GET["item_id"]; ?>;
-        var comment = document.getElementsByName("user_comment")[0].value;
-        await fetch("commentsManager.php?choose=0&item_id="+item_id+"&user_comment="+comment);
-        document.getElementsByName("user_comment")[0].value= "";
+       
         
+        var insertComment = await fetch("commentsManager.php",{
+            method:"post",
+            body: JSON.stringify({choose:0 , user_comment:comment.value,item_id:item_id})
+        });
+        var res = await insertComment.json();
+    
+        comment.value= "";
+        comment.disabled = true;
     }
-    var length = 0;
-    async function s(){
-        var container = document.getElementsByClassName('item-comments')[0];
-        let obj;
-        const arr = await fetch("commentsManager.php?choose=1&item_id=<?php echo $_GET["item_id"]; ?>");
-            obj = await arr.json();
-            console.log(obj)
-            while (container.lastChild) {
-                container.removeChild(container.lastChild);
-                }
-            for(var i = 0;i<obj.length;++i){
+    
+
+      async function x(){
+        var getComments = await fetch("commentsManager.php",{
+            method:"post",
+            body: JSON.stringify({choose:1 ,item_id:item_id ,last_count:last_fetch_comments})
+        });
+        var res = await getComments.json();
+        if(res != 'noNew'){
+            last_fetch_comments += res.length;
+            for(var i = res.length -1;i>=0;--i){
                 var node = document.createElement("div");
                 node.className = 'item-comment';
-                if(obj[i][2] == 0){
-                    node.style = 'justify-self:flex-start; background-color:var(--color-hover)';
+                if(res[i][5] == 0){
+                    node.style = 'text-align: left; justify-self:flex-start; background-color:var(--color-hover)';
                 }
                 else {
-                    node.style = 'justify-self:flex-end; background-color:greenyellow';
+                    node.style = 'text-align: right; justify-self:flex-end; background-color:greenyellow';
                 }
-                node.innerHTML = obj[i][0];
+                var user_brief = document.createElement("div");
+                user_brief.className = "user-brief";
+                var link_to_user_account = document.createElement("a");
+                link_to_user_account.href = "user.php?user_id="+res[i][2];
+                link_to_user_account.innerHTML = res[i][6];
+                user_brief.appendChild(link_to_user_account);
+                var comment_text = document.createElement("p");
+                comment_text.innerHTML = res[i][1];
+                var date_div = document.createElement("div");
+                var date_text =document.createElement("p");
+                date_text.innerHTML=  res[i][4];
+                date_div.appendChild(date_text);
+                node.appendChild(user_brief);
+                node.appendChild(comment_text);
+                node.appendChild(date_div);
                 container.appendChild(node);
             }
-            if(obj.length != length){
-                container.scrollTop = container.scrollHeight;
-            }
-            length = obj.length;
+            container.scrollTop = container.scrollHeight;
+            comment.disabled = false;
         }
-    s();
-    setInterval(s,1000);
-
+        
+    }
+    x();
+    setInterval(x,5000);
 </script>
 </html>
