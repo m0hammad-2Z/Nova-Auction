@@ -95,6 +95,8 @@ require_once "../lib.php"; ?>
                 and year_of_make BETWEEN {$_GET["year-from"]} and {$_GET["year-to"]})
                 and price BETWEEN {$_GET["price-from"]} and {$_GET["price-to"]} 
                 order by {$_GET["sort"]}" , 1);
+
+
                if(count($res)>0){
                 print(
                     "<div class='search-details'>
