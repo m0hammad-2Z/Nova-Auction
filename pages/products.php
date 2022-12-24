@@ -75,8 +75,11 @@ require_once "../lib.php"; ?>
         //     and lower(model_name) like '%%' 
         //     and year_of_make BETWEEN 0 and 99000099) 
         // and price BETWEEN 0 and 9999999; 
+                
+                /*Number Of Items Per Page*/ $NOIPP = 3;  
 
-
+                if(!isset($_GET["page"]))$_GET["page"]=1;
+                
                 (isset($_GET["city"])) ? null : $_GET["city"]="";
                 (isset($_GET["car_mekes"])) ? null : $_GET["car_mekes"]="";
                 (isset($_GET["car-model"])) ? null : $_GET["car-model"]="";
@@ -100,7 +103,7 @@ require_once "../lib.php"; ?>
                if(count($res)>0){
                 print(
                     "<div class='search-details'>
-                        <p>Showing 1-".count($res)." of ".count($res)." results</p>   
+                        <p>Showing ".$_GET["page"]*$NOIPP-$NOIPP."-".count($res)." of ".count($res)." results</p>   
                     </div>"
                 );
                 }elseif(count($res)==0){
@@ -114,11 +117,13 @@ require_once "../lib.php"; ?>
                     
                 }
                 echo "<div class='cards-grid'>";
-                for($i = 0; $i < count($res); $i++) {
+                for($i = $_GET["page"]*$NOIPP-$NOIPP; $i < count($res); $i++) {
+                    if($i>$_GET["page"]*$NOIPP-1)break;
                     $name = $res[$i][0];
                     $price = $res[$i][1];
                     $img_p = "../".$res[$i][2];
                     $item_id = $res[$i][3];
+
                     print("
                         <div class='card'>
                             <img src='$img_p' alt=''>
@@ -130,15 +135,19 @@ require_once "../lib.php"; ?>
                         </div>
                     ");
 
-        }
+                    }
+                    
+                    
+                    
         echo "</div>";
-        
         echo "<div class='page-counter'>";
-        for($i =1;$i<count($res)/12+1;++$i){
-            print("
-                    <button class='button'>$i</button>
-            ");
-        }
+        for($i =1;$i<count($res)/$NOIPP+1;++$i){
+            ?>
+            
+            <a href='/Nova-Auction/pages/products.php?page=<?php echo $i ?>'><button class='button' ><?php echo $i ?></button></a>
+            
+        <?php }
+
         echo "</div>";
         ?>
     </div>

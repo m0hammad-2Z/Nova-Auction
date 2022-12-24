@@ -66,12 +66,8 @@ if(!checkUserId()){
                 </div>
             </div>
 
-            <?php 
-        
+            <?php     
         }
-
-        
-
         ?>
 
                 
