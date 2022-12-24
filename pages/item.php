@@ -80,13 +80,14 @@ require_once "../lib.php";
     let last_fetch_comments=0;
     let container = document.getElementsByClassName('item-comments')[0];
     let comment_button = document.getElementById('button');
-    comment.disabled = true;
+
 
     function visitPage(){
         window.location='register.php';
     }
 
     if(!logged){
+        comment.disabled = true;
         comment_button.onclick = visitPage;
         comment_button.innerHTML= "Sign in"
         comment.placeholder = "You must sign in to comment";
