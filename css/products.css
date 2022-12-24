@@ -78,7 +78,7 @@ select:focus{
 }
 
 .page-counter{
-
+    display: flex;
     gap: 0.5em;
     margin-top: 3em;
     

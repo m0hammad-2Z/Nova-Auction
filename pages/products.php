@@ -76,9 +76,9 @@ require_once "../lib.php"; ?>
         //     and year_of_make BETWEEN 0 and 99000099) 
         // and price BETWEEN 0 and 9999999; 
                 
-                /*Number Of Items Per Page*/ $NOIPP = 3;  
-
-                if(!isset($_GET["page"]))$_GET["page"]=1;
+                $NOIPP = 6;  /*Number Of Items Per Page*/
+                if(!isset($_GET["page"]))
+                    $_GET["page"]=1;
                 
                 (isset($_GET["city"])) ? null : $_GET["city"]="";
                 (isset($_GET["car_mekes"])) ? null : $_GET["car_mekes"]="";
@@ -99,13 +99,21 @@ require_once "../lib.php"; ?>
                 and price BETWEEN {$_GET["price-from"]} and {$_GET["price-to"]} 
                 order by {$_GET["sort"]}" , 1);
 
-
                if(count($res)>0){
-                print(
-                    "<div class='search-details'>
-                        <p>Showing ".$_GET["page"]*$NOIPP-$NOIPP."-".count($res)." of ".count($res)." results</p>   
-                    </div>"
-                );
+                    if($_GET["page"]*$NOIPP < count($res)){
+                        print(
+                            "<div class='search-details'>
+                                <p>Showing ".(($_GET["page"]*$NOIPP)-($NOIPP)+1)."-".($_GET["page"]*$NOIPP)." of ".count($res)." results</p>   
+                            </div>"
+                        );
+                    }
+                    else{
+                        print(
+                            "<div class='search-details'>
+                                <p>Showing ".(($_GET["page"]*$NOIPP)-($NOIPP)+1)."-".count($res)." of ".count($res)." results</p>   
+                            </div>"
+                        );
+                    }
                 }elseif(count($res)==0){
                     print(
                         "<div class='search-details'>
@@ -113,9 +121,8 @@ require_once "../lib.php"; ?>
                         </div>"
                     );
                 }
-                else{
-                    
-                }
+
+
                 echo "<div class='cards-grid'>";
                 for($i = $_GET["page"]*$NOIPP-$NOIPP; $i < count($res); $i++) {
                     if($i>$_GET["page"]*$NOIPP-1)break;
@@ -142,11 +149,11 @@ require_once "../lib.php"; ?>
         echo "</div>";
         echo "<div class='page-counter'>";
         for($i =1;$i<count($res)/$NOIPP+1;++$i){
-            ?>
+            $_GET["page"]+=1;
             
-            <a href='/Nova-Auction/pages/products.php?page=<?php echo $i ?>'><button class='button' ><?php echo $i ?></button></a>
+            print("<a href='/Nova-Auction/pages/products.php?city={$_GET["city"]}&car_mekes={$_GET["car_mekes"]}&car-model={$_GET["car-model"]}&price-from={$_GET["price-from"]}&price-to={$_GET["price-to"]}&year-from={$_GET["year-from"]}&year-to={$_GET["year-to"]}&sort={$_GET["sort"]}&page=$i'><button class='button' >$i</button></a>");
             
-        <?php }
+        }
 
         echo "</div>";
         ?>

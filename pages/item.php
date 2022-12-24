@@ -57,7 +57,7 @@ require_once "../lib.php";
             <div class='item-comments'></div>
             <div class='comment-form'>
                 <input type="text" name="user_comment" placeholder="Your comment...">
-                <button class='button' onclick="insert_comment()" name='button'>comment</button>
+                <button class='button' id="button" onclick="insert_comment()" name='button'>comment</button>
             </div>
         </div>
     </div>
@@ -74,14 +74,19 @@ require_once "../lib.php";
                 }
                 ?>
 <script defer>
-    var item_id = <?php echo $_GET["item_id"]; ?>;
-    var comment = document.getElementsByName("user_comment")[0];
-    var last_fetch_comments=0;
-    var container = document.getElementsByClassName('item-comments')[0];
-    
+    let item_id = <?php echo $_GET["item_id"]; ?>;
+    let logged = <?php echo (checkUserId())? 1 : 0 ?>;
+    let comment = document.getElementsByName("user_comment")[0];
+    let last_fetch_comments=0;
+    let container = document.getElementsByClassName('item-comments')[0];
+    let comment_button = document.getElementById('button');
+    comment.disabled = true;
+
+    if(!logged){
+        comment_button.href = "www.google.com"
+        comment.placeholder = "You must sign in to comment"
+    }
     async function insert_comment(){
-       
-        
         var insertComment = await fetch("commentsManager.php",{
             method:"post",
             body: JSON.stringify({choose:0 , user_comment:comment.value,item_id:item_id})
@@ -103,6 +108,7 @@ require_once "../lib.php";
 
             if(res != 'noNew'){
             last_fetch_comments += res.length;
+            console.log(res);
             for(var i = res.length -1;i>=0;--i){
                 var node = document.createElement("div");
                 node.className = 'item-comment';
@@ -130,7 +136,9 @@ require_once "../lib.php";
                 container.appendChild(node);
             }
             container.scrollTop = container.scrollHeight;
+            if(logged){
             comment.disabled = false;
+        }
         }
             
         })
@@ -141,7 +149,7 @@ require_once "../lib.php";
         // get_comment();
         
     }
-    // get_comment();
-    setInterval(x,5000);
+    get_comment();
+    setInterval(get_comment,5000);
 </script>
 </html>

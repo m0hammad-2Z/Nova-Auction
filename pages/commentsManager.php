@@ -29,7 +29,7 @@ ignore_user_abort(false);
 //         if(checkUserId()){
 //             echo json_encode(Database("select *,if({$_SESSION["user_id"]} = user_id, 1,0),(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
 //         }else{
-//             echo json_encode(Database("select *,0 from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
+//             echo json_encode(Database("select *,0,(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
 //         }
 //         die();
 //     } 
@@ -53,8 +53,8 @@ ignore_user_abort(false);
         if($comments[0][0]-$Not_POST['last_count']!=0){
             if(checkUserId()){
                 echo json_encode(Database("select *,if({$_SESSION["user_id"]} = user_id, 1,0),(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
-        }else{
-                echo json_encode(Database("select *,0 from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
+            }else{
+                echo json_encode(Database("select *,0,(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".$comments[0][0]-$Not_POST['last_count'],1,MYSQLI_NUM));
            
             }
                 die();
