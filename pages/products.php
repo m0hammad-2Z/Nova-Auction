@@ -19,79 +19,171 @@ require_once "../lib.php"; ?>
 
     <div class='main'>
         <div class='search-options'>
-            <form class='search-form' action='' method='post'>
-                <select name='cities' id='cities'>
-                    <option value='Amman'>City</option>
-                    <option value='Irbid'>Amman</option>
+            <form class='search-form' method='get'>
+                <select  name='city' id='city'>
+                    <option  value="" disabled selected>City</option>
+                    <?php 
+                    $res = Database("select concat(upper(substring(city_name,1,1)),lower(substring(city_name,2))) from city",1);
+                        foreach($res as $row){
+                            print("<option value='$row[0]'>$row[0]</option>");
+                        }
+                    
+                    ?>
                 </select>
 
-                <select name='car-mekes' id='car-mekes'>
-                    <option value='0'>Car makes</option>
-                    <option value='BMW'>BMW</option>
+                <select onchange='getSelected()' name='car_mekes' id='car-mekes'  >
+                        <option value="" disabled selected>Car makes</option>
+                        <?php 
+                        $res = Database("select upper(makes_name) from car_info group by makes_name",1);
+                            foreach($res as $row){
+                                print("<option value='$row[0]'>$row[0]</option>");
+                            }
+                        
+                        ?>
                 </select>
                 
-                <select name='model' id='model'>
-                    <option value='0'>Model</option>
-                    <option value='BMW'>BMW</option>
+                <select name='car-model' id='model' disabled  >
+                        <option value="" disabled selected>Model</option>
                 </select>
-
-                <select name='Year-from' id='year-from'>
-                    <option value='0'>Year from</option>
-                    <option value='BMW'>2000</option>
-                </select>
-
-                <select name='Year-To' id='year-to'>
-                    <option value='0'>Year to</option>
-                    <option value='BMW'>2023</option>
-                </select>
-
-                <button class='button' type='submit'>Search</button>
+                <div class="group-info">
+                <input type="number" min="0" name='price-from' placeholder='Price from' >
+                <input type="number" min="0" name='price-to' placeholder='Price to' >
+                </div>
+                <div class="group-info">
+                <input type="number" min="1900" max="2023" step="1" name='year-from' placeholder='Year from' >
+                <input type="number" min="1900" max="2023" step="1" name='year-to' placeholder='Year to' >
+                </div>
+                <div class="group-info">
+                <select name='sort' id='sort'>
+                            <option value='' disabled selected>Sort by</option>
+                            <option value='name asc'>A-Z</option>
+                            <option value='name desc'>Z-A</option>
+                            <option value='price desc'>High>Low</option>
+                            <option value='price asc'>Low>High</option>
+                        </select>
+                <button class='button' name="search" value="search">Search</button>
+                </div>
             </form>
         </div>
 
-        <div class='search-details'>
-            <p>Showing 1-12 of 24 results</p>
-            <select name='Sort' id='sort'>
-                <option value='0'>Sort by</option>
-                <option value='a-z'>A-Z</option>
-            </select>
-        </div>
+        <?php 
+        // select name, price, img_path ,id from items 
+        // where lower(city_name) LIKE '%%' 
+        // and car_id IN 
+        //     (select id from cars 
+        //     where lower(makes_name) like '%%' 
+        //     and lower(model_name) like '%%' 
+        //     and year_of_make BETWEEN 0 and 99000099) 
+        // and price BETWEEN 0 and 9999999; 
 
-        <div class='cards-grid'>
-        <?php            
-            $res = Database("select name, price, img_path ,id from items limit 24", 1);
-            for($i = 0; $i < count($res); $i++) {
+
+                (isset($_GET["city"])) ? null : $_GET["city"]="";
+                (isset($_GET["car_mekes"])) ? null : $_GET["car_mekes"]="";
+                (isset($_GET["car-model"])) ? null : $_GET["car-model"]="";
+                (isset($_GET["year-from"]))  ? ($_GET["year-from"]=="")? $_GET["year-from"]=Database("select min(year_of_make) from cars",1)[0][0] :null :$_GET["year-from"]=Database("select min(year_of_make) from cars",1)[0][0];
+                (isset($_GET["year-to"])) ? ($_GET["year-to"]=="")? $_GET["year-to"]=Database("select max(year_of_make) from cars",1)[0][0] :null :$_GET["year-to"]=Database("select max(year_of_make) from cars",1)[0][0];
+                (isset($_GET["price-from"])) ? ($_GET["price-from"]=="")? $_GET["price-from"]=Database("select min(price) from items",1)[0][0]:null: $_GET["price-from"]=Database("select min(price) from items",1)[0][0];
+                (isset($_GET["price-to"])) ? ($_GET["price-to"]=="")?  $_GET["price-to"]=Database("select max(price) from items",1)[0][0] :null :$_GET["price-to"]=Database("select max(price) from items",1)[0][0];
+                (isset($_GET["sort"])) ? null:$_GET["sort"]="name asc";
+                
+                $res = Database("select name, price, img_path ,id from items 
+                where lower(city_name) LIKE '%{$_GET["city"]}%'
+                and car_id IN
+                (select id from cars
+                where lower(makes_name) like '%{$_GET["car_mekes"]}%'
+                and lower(model_name) like '%{$_GET["car-model"]}%'
+                and year_of_make BETWEEN {$_GET["year-from"]} and {$_GET["year-to"]})
+                and price BETWEEN {$_GET["price-from"]} and {$_GET["price-to"]} 
+                order by {$_GET["sort"]}" , 1);
+               if(count($res)>12){
+                print(
+                    "<div class='search-details'>
+                        <p>Showing 1-12 of ".count($res)." results</p>   
+                    </div>"
+                );
+                }elseif(count($res)==0){
+                    print(
+                        "<div class='search-details'>
+                            <p>There is no results</p>   
+                        </div>"
+                    );
+                }
+                else{
+                    print(
+                        "<div class='search-details'>
+                            <p>Showing 1-".count($res)." of ".count($res)." results</p>   
+                        </div>"
+                    );
+                }
+                echo "<div class='cards-grid'>";
+                for($i = 0; $i < count($res); $i++) {
                     $name = $res[$i][0];
                     $price = $res[$i][1];
                     $img_p = "../".$res[$i][2];
                     $item_id = $res[$i][3];
-                    // if(isset($_POST['button_b_card'])) {
-                    //     echo "<a href='newpage.php'>New Page</a>";
-                    // }
+                    print("
+                        <div class='card'>
+                            <img src='$img_p' alt=''>
+                            <span style='font-size:25px ;'> $name</span>
+                            <br>
+                            <span>Price: <bold>$price$</bold></span>
+                            <br>
+                            <a href='/Nova-Auction/pages/item.php?item_id=$item_id' ><button class='button b_card' >View</button></a>
+                        </div>
+                    ");
+
+        }
+        echo "</div>";
+        
+        echo "<div class='page-counter'>";
+        for($i =1;$i<count($res)/12+1;++$i){
+            print("
+                    <button class='button'>$i</button>
+            ");
+        }
+        echo "</div>";
         ?>
-                <div class='card'>
-                <img src="<?php echo $img_p; ?>" alt=''>
-                <span style='font-size:25px ;'><?php echo $name; ?></span>
-                <br>
-                <span>Price: <bold><?php echo $price; ?>$</bold>
-                </span>
-                <br>
-                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>' ><button class='button b_card' >Buy</button></a>
-            </div>
-
-        <?php  }?>
-        </div>
-
-        <div class='page-counter'>
-            <button class='button'>1</button>
-            <button class='button'>2</button>
-            <button class='button'>3</button>
-        </div>
-
     </div>
     <footer class='footer'>
         <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 </body>
+<script>
+var CarArr = <?php
+echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info order by model_name asc",1,MYSQLI_NUM));
+?>;
 
+
+function getSelected(){
+    var seleted = document.getElementById('car-mekes').value; 
+    var model = document.getElementById('model');
+    console.log(seleted);
+    if(seleted == '0'){
+        model.disabled = true;
+        return;
+    }
+    
+    
+    while (model.lastChild) {
+        if(model.lastChild.value == 0)
+            break;
+        model.removeChild(model.lastChild);
+    }
+
+    for(var i = 0; i<CarArr.length;++i){
+        if(CarArr[i][0]==seleted)
+        {
+            var node = document.createElement("option");
+            node.value = CarArr[i][1];
+            node.innerHTML = CarArr[i][1];
+            model.appendChild(node);
+        }
+    }
+   model.disabled = false;
+}
+
+
+
+
+</script>
 </html>

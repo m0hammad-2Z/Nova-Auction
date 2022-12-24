@@ -74,7 +74,7 @@ require_once "../lib.php";
                     }
                 }
                 ?>
-<script>
+<script defer>
     var item_id = <?php echo $_GET["item_id"]; ?>;
     var comment = document.getElementsByName("user_comment")[0];
     var last_fetch_comments=0;
@@ -94,13 +94,15 @@ require_once "../lib.php";
     }
     
 
-      async function x(){
+      async function get_comment(){
         var getComments = await fetch("commentsManager.php",{
             method:"post",
             body: JSON.stringify({choose:1 ,item_id:item_id ,last_count:last_fetch_comments})
-        });
-        var res = await getComments.json();
-        if(res != 'noNew'){
+        })
+        .then((reqres) => reqres.json())
+        .then((res)=>{
+
+            if(res != 'noNew'){
             last_fetch_comments += res.length;
             for(var i = res.length -1;i>=0;--i){
                 var node = document.createElement("div");
@@ -131,9 +133,16 @@ require_once "../lib.php";
             container.scrollTop = container.scrollHeight;
             comment.disabled = false;
         }
+            
+        })
+        .catch(error => {
+            
+        });
+        
+        // get_comment();
         
     }
-    x();
+    // get_comment();
     setInterval(x,5000);
 </script>
 </html>

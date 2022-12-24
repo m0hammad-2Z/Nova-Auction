@@ -9,15 +9,19 @@
     padding: 3em;
     border-radius: 1em;
     box-shadow: 0 0 4em 0em rgba(218, 219, 221, 0.479);
+    width: 70vw;
 }
 
 .search-form{
     display: grid;
     grid-template-columns: repeat(7,1fr);
     gap: 1em;
+    width: 100%;
+}
+.search-form > *{
+    width: 100%;
 
 }
-
 @media only screen and (min-width: 0px) {
     .search-form{
         display: grid;
@@ -37,16 +41,16 @@
     }
 }
 
-/* Big screen devices (889px and above) */
-@media only screen and (min-width: 1280px) {
-    .search-form{
-        display: grid;
-        grid-template-columns: repeat(6,1fr);
-        gap: 1em;
-    
-    }
-}
 
+.group-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+.group-info select{
+    padding: 0;
+    text-align: center;
+}
 input{
     padding: 0.5em;
     border: 1px solid #eee;
@@ -69,8 +73,8 @@ select:focus{
     display: flex;
     width: 50vw;
     align-items: center;
+    justify-content: center;
     margin-bottom: 1em;
-    justify-content: space-between;
 }
 
 .page-counter{
