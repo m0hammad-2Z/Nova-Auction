@@ -114,7 +114,6 @@ require_once "../lib.php";
 
             if(res != 'noNew'){
             last_fetch_comments += res.length;
-            console.log(res);
             for(var i = res.length -1;i>=0;--i){
                 var node = document.createElement("div");
                 node.className = 'item-comment';
