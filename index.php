@@ -47,7 +47,7 @@ require_once "./lib.php";
                 <span>Price: <bold><?php echo $price; ?>$</bold>
                 </span>
                 <br>
-                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>' ><button class='button b_card' >Buy</button></a>
+                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>' ><button class='button b_card' >View</button></a>
             </div>
 
         <?php  }?>

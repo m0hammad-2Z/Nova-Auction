@@ -25,7 +25,6 @@ require_once "../lib.php";
             header("Location: /Nova-Auction/pages/products.php"); 
         }
         $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1,MYSQLI_NUM);
-        
         print("
         
                 <div class='item-details'>
@@ -39,7 +38,8 @@ require_once "../lib.php";
                     <p>Location: {$item[0][7]}</p>
 
                     <p>Current price: {$item[0][4]}$</p>
-                    <button class='button'>Call Now</button>
+                    <a href='tel:{$item[0][16]}' class='button'>Call Now</a>
+                    <a href='mailto:{$item[0][15]}' class='button'>Email Now</a>
                 </div>      
             
 
@@ -82,9 +82,14 @@ require_once "../lib.php";
     let comment_button = document.getElementById('button');
     comment.disabled = true;
 
+    function visitPage(){
+        window.location='register.php';
+    }
+
     if(!logged){
-        comment_button.href = "www.google.com"
-        comment.placeholder = "You must sign in to comment"
+        comment_button.onclick = visitPage;
+        comment_button.innerHTML= "Sign in"
+        comment.placeholder = "You must sign in to comment";
     }
     async function insert_comment(){
         var insertComment = await fetch("commentsManager.php",{
