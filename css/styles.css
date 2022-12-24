@@ -96,6 +96,11 @@ textarea {
     padding-top:0.2em;
 }
 
+.main{
+    min-height: 80vh;
+}
+
+
 .button{
     
     background-color: var(--color);
@@ -231,9 +236,6 @@ textarea {
     text-align: center;
     padding: 0;
     margin: 0;
-}
-.main{
-    min-height: 75vh;
 }
 
 select{
