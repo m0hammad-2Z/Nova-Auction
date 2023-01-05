@@ -24,16 +24,16 @@ require_once "./lib.php";
     <div class='main'>
         <img class='home-img' src='img/cars-home.jpg' alt='Home page'>
         <div class='home-img-text'>
-            <span>Welcome To Nova Auction</span>
+            <span>Welcome To Nova</span>
             <h2>Purchase Dream Product & Try.</h2>
-            <p>Nulla facilisi. Maecenas ac tellus ut ligula interdum convallis. <br> Nullam dapibus on erat in dolor posuere, none hendrerit lectus ornare. <br> Suspendisse sit amet turpina sagittis, ultrices dui et, aliquam none hendrerit lectus. </p>
-            <a href='#home-body' class='button'>Start Bidding</a>
+            <p>Access to the largest possible number of cars of different types. <br> The possibility of selling any car, regardless of its specifications. <br> The possibility of selling any car that had a collision or specific problems. </p>
+            <a href='#home-body' class='button'>Explore</a>
         </div>
     </div>
     <div class='home-body' id='home-body'>
         <div class="best-items">
             <h1>Best Items</h1>
-            <p>Explore on the world"s best & largest Bidding marketplace with our beautiful Bidding products. <br> We want to be a part of your smile, success and future growth. </p>
+            <p>Explore on the world"s best & largest marketplace with our beautiful products. <br> We want to be a part of your smile, success and future growth. </p>
         </div>
         <div class='cards-grid'>
         <?php            
@@ -60,7 +60,7 @@ require_once "./lib.php";
         <a class='button' href='/Nova-Auction/pages/products.php'>View More!</a>
     </div>
     <footer class='footer'>
-        <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
+        <p>Copyright © 2022 Nova | Design By Humble Ghost Team</p>
     </footer>
 </body>
 
