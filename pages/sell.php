@@ -19,6 +19,7 @@ if(!checkUserId()){
     <title>Account</title>
     <link rel='stylesheet' href='/Nova-Auction/css/styles.css'>
     <link rel='stylesheet' href='/Nova-Auction/css/sell.css'>
+    <link rel="icon" type="image/png" href="/Nova-Auction/img/fav.png">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
 </head>
 <body>

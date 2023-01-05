@@ -12,6 +12,7 @@ require_once "../lib.php";
     <title>Item name</title>
     <link rel='stylesheet' href='/Nova-Auction/css/styles.css'>
     <link rel='stylesheet' href='/Nova-Auction/css/item.css'>
+    <link rel="icon" type="image/png" href="/Nova-Auction/img/fav.png">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
 </head>
 
