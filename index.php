@@ -31,8 +31,10 @@ require_once "./lib.php";
         </div>
     </div>
     <div class='home-body' id='home-body'>
-        <h1>Best Items</h1>
-        <p>Explore on the world"s best & largest Bidding marketplace with our beautiful Bidding products. <br> We want to be a part of your smile, success and future growth. </p>
+        <div class="best-items">
+            <h1>Best Items</h1>
+            <p>Explore on the world"s best & largest Bidding marketplace with our beautiful Bidding products. <br> We want to be a part of your smile, success and future growth. </p>
+        </div>
         <div class='cards-grid'>
         <?php            
             $res = Database("select name, price, img_path ,id from items order by id DESC limit 6", 1);

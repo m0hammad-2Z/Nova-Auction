@@ -17,9 +17,8 @@
     /* background-image: linear-gradient(to top,rgb(255, 255, 255),transparent 30%,transparent ); */
 
     position: absolute;
-    width: 100%;
+    width: 80%;
     height: 100%;
-    outline: black solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,6 +26,8 @@
     color: white;
     font-size: 1.2em;
     text-align: center;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 
@@ -37,4 +38,10 @@
 }
 .home-body > .button{
     margin-top:4em
+}
+
+.best-items{
+
+    text-align: center;
+    padding: 0 2em;
 }

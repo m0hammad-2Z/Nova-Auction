@@ -9,6 +9,7 @@ require_once "../lib.php"; ?>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Account</title>
+    <link rel="icon" type="image/png" href="/Nova-Auction/img/fav.png">
     <link rel='stylesheet' href='/Nova-Auction/css/styles.css'>
     <link rel='stylesheet' href='/Nova-Auction/css/about.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
@@ -25,9 +26,11 @@ require_once "../lib.php"; ?>
                 But getting your own auction site up and running has always required learning complex coding languages, or hiring an expensive design firm for thousands of dollars and months of work.</p>
 
             <ul>
-                <li>Have enough food for life.</li>
-                <li>Poor children can return to school.</li>
-                <li>Fuga magni veritatis ad temporibus atque adipisci nisi rerum...</li>
+                <li>Abdulrahman alshami</li>
+                <li>Mohammad alzaro</li>
+                <li>Marwan hamdan</li>
+                <li>Mohammad althabteh</li>
+                <li>Ali alenziy</li>
             </ul>
         </div>
     </div>
