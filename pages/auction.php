@@ -19,15 +19,15 @@
                 </div>
                 <div class="nav-links">
                     <a href="/Nova-Auction/">Home</a>
-                    <a href="/Nova-Auction/pages/products.html">Products</a>
-                    <a href="/Nova-Auction/pages/contact.html">Contact</a>
-                    <a href="/Nova-Auction/pages/about.html">About</a>
+                    <a href="/Nova-Auction/pages/products.php">Products</a>
+                    <a href="/Nova-Auction/pages/contact.php">Contact</a>
+                    <a href="/Nova-Auction/pages/about.php">About</a>
                 </div>
                 <div class="nav-icons">
-                    <a href="/Nova-Auction/pages/products.html">
+                    <a href="/Nova-Auction/pages/products.php">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="/Nova-Auction/pages/register.html">
+                    <a href="/Nova-Auction/pages/register.php">
                         <i class="fas fa-user-alt"></i>
                     </a>
                 </div>
