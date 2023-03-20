@@ -3,49 +3,72 @@
 }
 
 
-
-
-
-
 .main{
     padding:2.5em 5em;
     width: 100%;
     height: 100%;
     display: grid;
+    gap: 1em;
     grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(2,1fr);
+}
+.container{
+    padding: 2em 2em;
+    height: fit-content;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 0 0 1em 0em #8389947a;
 }
 
-.item{
+
+
+
+
+
+.left-container{
+    position: relative;
     grid-column-start: 1;
     grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    outline:black solid;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: fit-content;
 }
 
-.item > .main-pic{
+.item-pic{
+    padding: 0;
     position: relative;
     overflow: hidden;
+    /* outline: solid purple; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+.item-pic > .main-pic{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-.item > .main-pic > img:not([id="blurred"]){
+.item-pic > .main-pic > img:not([id="blurred"]){
     position: relative;
-    height: 30em;
+    height:30em;
 }
 
-.item > .main-pic > img[id="blurred"]{
-   position: absolute;
-   width: 100%;
-   transform: scale(1.5);
-   object-position: center;
-   filter: blur(5em) brightness(1);
+.item-pic > .main-pic > img[id="blurred"]{
+    position: absolute;
+    height:30em;
+    transform: scale(1.5);
+    object-fit: cover;
+    width: 100%;
+    object-position: center;
+    filter: blur(5em) brightness(1);
+    opacity: 0.5;
 }
 
-.item > .side-pics{
+.item-pic > .side-pics{
     display: grid;
     grid-auto-flow: column;
     overflow-y: hidden;
@@ -53,22 +76,79 @@
     gap:0.2em;
 }
 
-.bid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    outline:solid;
-}
 
-.bid > .main-bid{
-    outline: solid red;
+.info{
+    /* outline: royalblue solid; */
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-.bid > .last-bid{
-    outline: solid green;
+.info > .user-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.info > .user-info> img{
+    border-radius: 50%;
 }
 
-.live-comment{
-    outline: solid yellow;
+
+
+
+
+
+
+
+
+.right-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: fit-content;
+}
+.right-container *{
+    margin :0;
+}
+.bid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* outline:solid black; */
+}
+
+.bid > .main-bid{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+    /* outline: solid red; */
+}
+
+.bid > .last-bid > .last-bid-info{
+    display: grid;
+    min-height: 5em;
+    max-height: 25em;
+    height: fit-content;
+    overflow-y: auto;
+    /* outline: solid green; */
+}
+.bid > .last-bid > .last-bid-info >*{
+    display: grid;
+    height: fit-content;
+    overflow-y: auto;
+    margin: 0;
+    /* outline: solid green; */
+}
+
+.live-comments>div > input{
+    /* outline: solid yellow; */
+    min-width: min-content;
+    height: 2.5em;
+}
+.live-comments > .live-comment{
+    max-height: 20em;
+    overflow: auto;
 }
