@@ -5,6 +5,7 @@ require_once "../lib.php";
 set_time_limit(10);
 ignore_user_abort(false);
 
+
     $Not_POST = json_decode(file_get_contents("php://input"),true);
     if(empty($Not_POST)){
         die() ;
@@ -24,7 +25,6 @@ ignore_user_abort(false);
                 echo json_encode(Database("select *,if({$_SESSION["user_id"]} = user_id, 1,0),(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".($comments[0][0]-$Not_POST['last_count']),1,MYSQLI_NUM));
             }else{
                 echo json_encode(Database("select *,0,(select first_name from user_info where user_info.id = user_id) from comment where item_id = {$Not_POST["item_id"]} order by date_of_comment desc limit ".($comments[0][0]-$Not_POST['last_count']),1,MYSQLI_NUM));
-           
             }
                 die();
         }else
