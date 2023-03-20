@@ -5,7 +5,7 @@ function Database($query, $Insert_or_Load,$arrayType = MYSQLI_BOTH)
 {
     //0 for insert
     //1 for load
-    $conn = new mysqli("localhost", "root", "12345678", "nova_auction");
+    $conn = new mysqli("localhost", "root", "", "nova_auction");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }

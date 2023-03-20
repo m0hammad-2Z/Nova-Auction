@@ -83,12 +83,30 @@
            
         </div>
         <div class="bid">
-            <div>
+            <div class="main-bid">
             <input type="number">
-            <button>place a bid</button>
+            <button class="button">place a bid</button>
+            </div>
+
+            <div class="last-bid">
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
             </div>
         </div>
-        <div class="live-comment"></div>
+        <div class="live-comment">
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+                <h1>fdsf</h1>
+        </div>
     </div>
 
     <footer class="footer">

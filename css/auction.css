@@ -54,9 +54,21 @@
 }
 
 .bid{
-    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    outline:solid;
+}
+
+.bid > .main-bid{
+    outline: solid red;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.bid > .last-bid{
+    outline: solid green;
 }
 
 .live-comment{
-   
+    outline: solid yellow;
 }
