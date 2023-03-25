@@ -55,7 +55,7 @@ class Chat implements MessageComponentInterface {
             echo "hi for server";
                 // $client->send();
             
-        }
+        }//iji
     }
 }
 
@@ -69,4 +69,6 @@ class Chat implements MessageComponentInterface {
         8080
     );
 
+
     $server->run();
+?>
