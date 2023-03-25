@@ -21,7 +21,7 @@ class Chat implements MessageComponentInterface {
         echo "New connection! ({$conn->resourceId})\n";
         date_default_timezone_set('Asia/Amman');
         $serverDate = date("Y m d H i s");
-        $conn-> send(json_encode(array("exp_date"=>"2023 03 25 15 4 00","ser_date"=>"$serverDate")));
+        $conn-> send(json_encode(array("exp_date"=>"2023 03 25 15 26 00","ser_date"=>"$serverDate")));
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
