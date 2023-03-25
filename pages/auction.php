@@ -97,7 +97,7 @@
                 <div class="main-bid">
                     <h2>Place a Bid</h2>
                     <h3>Last Bid :7500$</h3>
-                    <h3>Timer :2s</h3>
+                    <h3 id="Timer">Time left: Loading...</h3>
                     <input type="number">
                     <button class="button">place a bid</button>
             </div>
@@ -152,6 +152,42 @@
         </div>
     </div>
     </div>
+    <script defer>
+        var data;
+        let expDate;
+        let serDate;
+        let counter = 1;
+        let timer = document.getElementById("Timer");
+        let conn = new WebSocket('ws://localhost:8080');
+        conn.onopen = function(e) {
+            console.log("Connection established!");
+            conn.send('Hello World!');
+
+        };
+
+        conn.onmessage = function(e) {
+            data = JSON.parse(e.data);
+            serDate = data["ser_date"].split(" ");
+            serDate = new Date(serDate[0],serDate[1]-1,serDate[2],serDate[3],serDate[4],serDate[5]);
+            expDate = data["exp_date"].split(" ");
+            expDate = new Date(expDate[0],expDate[1]-1,expDate[2],expDate[3],expDate[4],expDate[5]);
+        };
+        
+        
+
+
+        timeUpdate = setInterval(()=>{
+            let leftTime = (expDate.getTime() - (serDate.getTime() + (++counter)*1000));
+            if(Math.floor(leftTime/1000) <=0){
+                clearInterval(timeUpdate);
+                timer.innerText = "Ended";
+            }
+            else{
+            timer.innerText ="Time left:"+Math.floor(leftTime/1000)+"s";
+            }
+        },1000)
+        
+    </script>
     <footer class="footer">
         <p>Copyright &copy; 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
