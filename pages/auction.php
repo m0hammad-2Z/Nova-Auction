@@ -171,6 +171,9 @@
             serDate = new Date(serDate[0],serDate[1]-1,serDate[2],serDate[3],serDate[4],serDate[5]);
             expDate = data["exp_date"].split(" ");
             expDate = new Date(expDate[0],expDate[1]-1,expDate[2],expDate[3],expDate[4],expDate[5]);
+
+            console.log(serDate)
+            console.log(expDate)
         };
         
         
@@ -192,18 +195,5 @@
         <p>Copyright &copy; 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 
-    <script>
-        var conn = new WebSocket('ws://localhost:8080');
-        conn.onopen = function (e) {
-        console.log("Connection established!");
-        conn.send('Hello World!');
-        };
-
-        conn.onmessage = function (e) {
-        console.log(e.data);
-        };
-
-
-  </script>
 </body>
 </html>
