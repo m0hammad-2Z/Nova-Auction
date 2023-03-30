@@ -108,6 +108,7 @@ if (!checkUserId()) {
 
             <div class="right-side">
                <div class="colors-section">
+                    <h2>What Is Your Car Color?</h2>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="black" id="black">
                         <label for="black" style="--choosen-color:black; --border-color:white"></label>
@@ -141,7 +142,38 @@ if (!checkUserId()) {
                         <label for="cyan" style="--choosen-color:cyan"></label>
                     </div>
                </div>
+               <div class="interior-options">
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="usb">
+                        <label for="usb">USB</label>
+                    </div>
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="aux">
+                        <label for="aux">AUX</label>
+                    </div>
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="alarm">
+                        <label for="alarm">Alarm</label>
+                    </div>
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="cdplayer">
+                        <label for="cdplayer">Cd Player</label>
+                    </div>
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="bluetooth">
+                        <label for="bluetooth">Bluetooth</label>
+                    </div>
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="touch-screen">
+                        <label for="touch-screen">Touch Screen</label>
+                    </div>
+                    <div class="interior-option">
+                        <input type="checkbox" name="interior" id="air-bags">
+                        <label for="air-bags">AirBage</label>
+                    </div>
 
+               </div>
+                
             </div>
         </form>
     </div>
