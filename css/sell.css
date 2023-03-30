@@ -129,3 +129,48 @@ input{
 
 
 
+
+.interior-options{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.5em;
+    row-gap: 2em;
+}
+.interior-option{
+    position: relative;
+    display: inline-block;
+    /* width: 5em; */
+   
+    
+}
+
+
+.interior-option > *{
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+    
+.interior-option > label{
+    cursor: pointer;
+    user-select:none;
+    position: relative;
+    border: 0.10em solid var(--color);
+    border-radius: 50vw;
+    padding:0.5em 1em;
+    font-weight: bold;
+}
+
+.interior-option > input[type="checkbox"]{
+    position: absolute;
+
+opacity: 0;
+}
+
+.interior-option > input[type="checkbox"]:checked + label{
+    border: 0.1em solid #14709e;
+    box-shadow:0 0 0.1em 0.15em #14709e;
+}
