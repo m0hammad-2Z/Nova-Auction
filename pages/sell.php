@@ -111,19 +111,19 @@ if (!checkUserId()) {
                     <h2>What Is Your Car Color?</h2>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="black" id="black">
-                        <label for="black" style="--choosen-color:black; --border-color:white"></label>
+                        <label for="black" style="--choosen-color:rgb(37, 38, 39); --border-color:white"></label>
                     </div>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="red" id="red">
-                        <label for="red" style="--choosen-color:red"></label>
+                        <label for="red" style="--choosen-color:rgb(227, 47, 67)"></label>
                     </div>
                     <div class="color-container">
-                        <input type="radio" class="color-choose" name="color" value="green" id="green">
-                        <label for="green" style="--choosen-color:green"></label>
+                        <input type="radio" class="color-choose" name="color" value="bright-green" id="bright-green">
+                        <label for="bright-green" style="--choosen-color:rgb(13, 156, 105)"></label>
                     </div>
                     <div class="color-container">
-                        <input type="radio" class="color-choose" name="color" value="blue" id="blue">
-                        <label for="blue" style="--choosen-color:blue"></label>
+                        <input type="radio" class="color-choose" name="color" value="dark-blue" id="dark-blue">
+                        <label for="dark-blue" style="--choosen-color:rgb(23, 35, 86)"></label>
                     </div>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="white" id="white">
@@ -131,7 +131,7 @@ if (!checkUserId()) {
                     </div>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="yellow" id="yellow">
-                        <label for="yellow" style="--choosen-color:yellow"></label>
+                        <label for="yellow" style="--choosen-color:rgb(248, 232, 28)"></label>
                     </div>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="pink" id="pink">
@@ -139,10 +139,10 @@ if (!checkUserId()) {
                     </div>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="cyan" id="cyan">
-                        <label for="cyan" style="--choosen-color:cyan"></label>
+                        <label for="cyan" style="--choosen-color:rgb(0, 155, 216)"></label>
                     </div>
                </div>
-               <h2>What Is Your Car Interiors</h2>
+               <h2>What Is Your Car Interiors?</h2>
                <div class="interior-options">
                     
                     <div class="interior-option">
@@ -218,16 +218,6 @@ if (!checkUserId()) {
         }
         model.disabled = false;
     }
-
-
-
-
-
-
-    function hi() {
-        console.log("hi bitch");
-    }
-
 
 </script>
 
