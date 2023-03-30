@@ -86,7 +86,50 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+
+
+
+
+
+
+
+
+
+
+
+
+
+.color-container{
+    display: inline-block;
+    position: relative;
+    width:100px;
+    height: 100px;
+}
+.color-container > * {
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.color-container > .color-choose {
+    padding: 0;
+    border: 0;
+    min-width: unset;
+    opacity: 0;
+    
+}
+.color-container > label {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--choosen-color);
+}
+.color-container > .color-choose:checked + label {
+    border: 0.2em solid var(--color-active,black);
+}
+.color-container > .color-choose:hover + label {
+    border: 0.2em solid gray;
 }

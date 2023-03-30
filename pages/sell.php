@@ -108,14 +108,38 @@ if (!checkUserId()) {
 
             <div class="right-side">
                <div class="colors-section">
-                    <input type="radio" name="color" value="black" id="">
-                    <input type="radio" name="color" value="red" id="">
-                    <input type="radio" name="color" value="green" id="">
-                    <input type="radio" name="color" value="blue" id="">
-                    <input type="radio" name="color" value="white" id="">
-                    <input type="radio" name="color" value="yellow" id="">
-                    <input type="radio" name="color" value="pink" id="">
-                    <input type="radio" name="color" value="cyan" id="">
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="black" id="black">
+                        <label for="black" style="--choosen-color:black; --border-color:white"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="red" id="red">
+                        <label for="red" style="--choosen-color:red"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="green" id="green">
+                        <label for="green" style="--choosen-color:green"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="blue" id="blue">
+                        <label for="blue" style="--choosen-color:blue"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="white" id="white">
+                        <label for="white" style="--choosen-color:white"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="yellow" id="yellow">
+                        <label for="yellow" style="--choosen-color:yellow"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="pink" id="pink">
+                        <label for="pink" style="--choosen-color:pink"></label>
+                    </div>
+                    <div class="color-container">
+                        <input type="radio" class="color-choose" name="color" value="cyan" id="cyan">
+                        <label for="cyan" style="--choosen-color:cyan"></label>
+                    </div>
                </div>
 
             </div>
