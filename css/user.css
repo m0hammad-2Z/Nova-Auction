@@ -89,7 +89,8 @@
         width: 90%;
         margin: auto;
         margin-top: 4em;
-       
+       justify-content: space-around;
+       align-content: space-around;
     }
 
 }
@@ -101,7 +102,8 @@
         width: 90%;
         margin: auto;
         margin-top: 4em;
-        
+        justify-content: space-around;
+        align-content: space-around;
     }
 
 }
