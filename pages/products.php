@@ -79,9 +79,8 @@ require_once "../lib.php"; ?>
         // and price BETWEEN 0 and 9999999; 
                 
                 $NOIPP = 6;  /*Number Of Items Per Page*/
-                if(!isset($_GET["page"]))
-                    $_GET["page"]=1;
                 
+                (isset($_GET['page'])) ? null : $_GET["page"] = 1;
                 (isset($_GET["city"])) ? null : $_GET["city"]="";
                 (isset($_GET["car_mekes"])) ? null : $_GET["car_mekes"]="";
                 (isset($_GET["car-model"])) ? null : $_GET["car-model"]="";

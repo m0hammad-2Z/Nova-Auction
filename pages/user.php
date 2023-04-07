@@ -31,13 +31,16 @@ if(!checkUserId()){
         
         <div class="left">
             <h1><?php 
+
             if(isset($_POST['item-delete-option'])){
+                $id = Database("select id from cars where id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1);
                 Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
+                Database("DELETE FROM cars WHERE id = {$id[0]['id']}", 0);
             }
             $user_info = Database("select * from user_info where id = '".$_SESSION['user_id']."'",1);
             echo 'Hello, '.$user_info[0]['first_name']." ".$user_info[0]['last_name'];
             ?></h1>
-            <a href="">Your Commodities</a>
+            <a class="active-page" href="">Your Cars</a>
             <a href='/Nova-Auction/pages/register.php'>Logout</a>
         </div>
 

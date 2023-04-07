@@ -101,8 +101,8 @@ input::-webkit-inner-spin-button {
 
 input{
     min-width: unset;
-    padding: 0;
-    border: 0;
+    /* padding: 0;
+    border: 0; */
 }
 
 .color-container{
@@ -194,3 +194,59 @@ opacity: 0;
     background-color: var(--color-hover);
     color: white;
 }
+
+
+
+
+
+
+.transmission-section{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.5em;
+    row-gap: 2em;
+}
+
+.transmission-container{
+    position: relative;
+    display: inline-block;
+}
+
+.transmission-container > *{
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.transmission-container > label{
+    cursor: pointer;
+    user-select:none;
+    position: relative;
+    border: 0.10em solid var(--color);
+    border-radius: 50vw;
+    padding:0.5em 1em;
+    font-weight: bold;   
+}
+
+.transmission-container > input[type="radio"]{
+    position: absolute;
+
+opacity: 0;
+}
+
+.transmission-container > input[type="radio"]:checked + label{
+    border: 0.1em solid var(--color-hover);
+    background-color: var(--color);
+    color: white;
+    box-shadow: inset  0 0 0.1em 0 black;
+}
+
+.transmission-container > input[type="radio"]:hover + label{
+    border: 0.1em solid var(--color-hover);
+    background-color: var(--color-hover);
+    color: white;
+}
+

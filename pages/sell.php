@@ -87,8 +87,13 @@ if (!checkUserId()) {
                         if (!checkUserId()) {
                             header("Location: /Nova-Auction/pages/register.php");
                         } else {
+                            if(isset($_POST['interior'])){
+                                $selected_interiores = serialize($_POST['interior']);
+                            }else{
+                                $selected_interiores = serialize(array('No Interiors Added'));
+                            }
 
-                            Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', {$_POST['year']})", 0);
+                            Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}', '{$_POST['color']}', '$selected_interiores', '{$_POST['transmission']}', '{$_POST['car-condition']}', '{$_POST['fuel']}')", 0);
                             $filename = $_FILES["image"]["name"];
                             $tempname = $_FILES["image"]["tmp_name"];
                             $folder = "user_images/" . $_SESSION['user_id'] . (Database("select max(id) from items", 1)[0][0] + 1) . "." . explode("/", $_FILES["image"]["type"])[1];
@@ -110,7 +115,7 @@ if (!checkUserId()) {
                <div class="colors-section">
                     <h2>What Is Your Car Color?</h2>
                     <div class="color-container">
-                        <input type="radio" class="color-choose" name="color" value="black" id="black">
+                        <input type="radio" class="color-choose" name="color" value="black" id="black" required>
                         <label for="black" style="--choosen-color:rgb(37, 38, 39); --border-color:white"></label>
                     </div>
                     <div class="color-container">
@@ -146,35 +151,79 @@ if (!checkUserId()) {
                <div class="interior-options">
                     
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="usb">
+                        <input type="checkbox" name="interior[]" id="usb" value ="usb">
                         <label for="usb">USB</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="aux">
+                        <input type="checkbox" name="interior[]" id="aux" value ="aux">
                         <label for="aux">AUX</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="alarm">
+                        <input type="checkbox" name="interior[]" id="alarm" value ="alarm">
                         <label for="alarm">Alarm</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="cdplayer">
+                        <input type="checkbox" name="interior[]" id="cdplayer" value ="cdplayer">
                         <label for="cdplayer">Cd Player</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="bluetooth">
+                        <input type="checkbox" name="interior[]" id="bluetooth" value ="bluetooth">
                         <label for="bluetooth">Bluetooth</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="touch-screen">
+                        <input type="checkbox" name="interior[]" id="touch-screen" value ="touch-screen">
                         <label for="touch-screen">Touch Screen</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior" id="air-bags">
+                        <input type="checkbox" name="interior[]" id="air-bags" value ="air-bags">
                         <label for="air-bags">AirBage</label>
                     </div>
 
                </div>
+                
+               <h2>What is the Transmission type?</h2>
+               <div class="transmission-section">
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="transmission" value="Automatic" id="Automatic" required>
+                        <label for="Automatic">Automatic</label>
+                    </div>
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="transmission" value="Manual" id="Manual">
+                        <label for="Manual">Manual</label>
+                    </div>
+               </div>
+
+               <h2>What type of fuel?</h2>
+               <div class="transmission-section">
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="fuel" value="Diesel" id="Diesel" required>
+                        <label for="Diesel">Diesel</label>
+                    </div>
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="fuel" value="Electric" id="Electric">
+                        <label for="Electric">Manual</label>
+                    </div>
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="fuel" value="Hybrid" id="Hybrid">
+                        <label for="Hybrid">Hybrid</label>
+                    </div>
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="fuel" value="Gasoline" id="Gasoline">
+                        <label for="Gasoline">Gasoline</label>
+                    </div>
+               </div>
+
+               <h2>Is the car used?</h2>
+               <div class="transmission-section">
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="car-condition" value="New" id="New" required>
+                        <label for="New">New</label>
+                    </div>
+                    <div class="transmission-container">
+                        <input type="radio" class="transmission-choose" name="car-condition" value="Used" id="Used">
+                        <label for="Used">Used</label>
+               </div>
+
                 
             </div>
         </form>

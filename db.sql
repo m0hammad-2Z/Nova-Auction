@@ -10,12 +10,16 @@ pass varchar(50),
 phonenumber varchar(20)
 );
 
-
 create table cars(
 id int PRIMARY key AUTO_INCREMENT,
 makes_name varchar(50),
 model_name varchar(50),
-year_of_make int(4)
+year_of_make int(4),
+color varchar(40),
+Interiors Text(400),
+transmission varchar(40),
+car_condition varchar(40),
+fuel_type varchar(40)
 );
 
 create table items(

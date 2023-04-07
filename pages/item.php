@@ -22,25 +22,37 @@ require_once "../lib.php";
         
 
         <?php 
-        if(!isset($_GET["item_id"])){
+        if(!isset($_GET["item_id"]) ||  count(Database("select id from items where id = {$_GET['item_id']}", 1)) <= 0){
             header("Location: /Nova-Auction/pages/products.php"); 
         }
-        $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1,MYSQLI_NUM);
+        $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
+        
+        $interorsArray = '';
+
+        foreach(unserialize($item[0]['interiors']) as $int){
+            $interorsArray .= ucfirst($int) . ", ";
+        }
+        $interorsArray = substr_replace($interorsArray, "", -2);
+
         print("
         
                 <div class='item-details'>
                     <img src='../{$item[0][3]}' alt=''>
-                    <div>
-                        <h1>{$item[0][1]}</h1>
-                        <p>Car Model: {$item[0][9]} {$item[0][10]} {$item[0][11]}</p>
-                    </div>
+                    
+                    <h1>{$item[0][1]}</h1>
+                    
+                    <p class='item-elements'>Car Model: {$item[0][9]} {$item[0][10]} {$item[0][11]}</p>
+                    <p class='item-elements'>Seller Name: {$item[0]['first_name']} {$item[0]['last_name']}</p>
+                    <p class='item-elements'>Location: {$item[0][7]}</p>
+                    <p class='item-elements'>Car Color: {$item[0]['clrs']}</p>
+                    <p class='item-elements'>Interiors: {$interorsArray}</p>
+                    <p class='item-elements'>Transmission Type: {$item[0]['transmission']}</p>
+                    <p class='item-elements'>Car Condition: {$item[0]['car_condition']}</p>
+                    <p class='item-elements'>Fuel Type: {$item[0]['fuel_type']}</p>
+                    <p class='item-elements'>Current price: {$item[0]['4']}$</p>
 
-                    <p>Seller Name: {$item[0][13]} {$item[0][14]}</p>
-                    <p>Location: {$item[0][7]}</p>
-
-                    <p>Current price: {$item[0][4]}$</p>
-                    <a href='tel:{$item[0][16]}' class='button'>Call Now</a>
-                    <a href='mailto:{$item[0][15]}' class='button'>Email Now</a>
+                    <a href='tel:{$item[0]['phonenumber']}' class='button'>Call Now</a>
+                    <a href='mailto:{$item[0]['email']}' class='button'>Email Now</a>
                 </div>      
             
 
