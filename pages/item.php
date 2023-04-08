@@ -41,15 +41,15 @@ require_once "../lib.php";
                     
                     <h1>{$item[0][1]}</h1>
                     
-                    <p class='item-elements'>Car Model: {$item[0][9]} {$item[0][10]} {$item[0][11]}</p>
-                    <p class='item-elements'>Seller Name: {$item[0]['first_name']} {$item[0]['last_name']}</p>
-                    <p class='item-elements'>Location: {$item[0][7]}</p>
-                    <p class='item-elements'>Car Color: {$item[0]['clrs']}</p>
-                    <p class='item-elements'>Interiors: {$interorsArray}</p>
-                    <p class='item-elements'>Transmission Type: {$item[0]['transmission']}</p>
-                    <p class='item-elements'>Car Condition: {$item[0]['car_condition']}</p>
-                    <p class='item-elements'>Fuel Type: {$item[0]['fuel_type']}</p>
-                    <p class='item-elements'>Current price: {$item[0]['4']}$</p>
+                    <p class='item-elements'><b>Car Model:</b>         {$item[0][9]} {$item[0][10]} {$item[0][11]}</p>
+                    <p class='item-elements'><b>Seller Name:</b>       {$item[0]['first_name']} {$item[0]['last_name']}</p>
+                    <p class='item-elements'><b>Location:</b>          {$item[0][7]}</p>
+                    <p class='item-elements'><b>Car Color:</b>         {$item[0]['clrs']}</p>
+                    <p class='item-elements'><b>Interiors:</b>         {$interorsArray}</p>
+                    <p class='item-elements'><b>Transmission Type:</b> {$item[0]['transmission']}</p>
+                    <p class='item-elements'><b>Car Condition:</b>     {$item[0]['car_condition']}</p>
+                    <p class='item-elements'><b>Fuel Type:</b>         {$item[0]['fuel_type']}</p>
+                    <p class='item-elements'><b>Current price:</b>     {$item[0]['4']}$</p>
 
                     <a href='tel:{$item[0]['phonenumber']}' class='button'>Call Now</a>
                     <a href='mailto:{$item[0]['email']}' class='button'>Email Now</a>
