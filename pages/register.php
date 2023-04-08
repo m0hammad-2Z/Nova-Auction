@@ -74,7 +74,7 @@ require_once "../lib.php"; ?>
                             "select email from user_info where email = '$email'",
                             1
                         )
-                    ) == 0 ||
+                    ) == 0 &&
                     count(
                         Database(
                             "select phonenumber from user_info where phonenumber = '$tele'",
