@@ -92,7 +92,7 @@ require_once "../lib.php"; ?>
                     )[0][0];
                     header("Location: /Nova-Auction/");
                 } else {
-                    echo "<span class='register_error'>you are not welcome</span>";
+                    echo "<span class='register_error'>YOU ARE NOT WELCOME!</span>";
                 }
             }
             ?>
