@@ -45,20 +45,21 @@
 }
 
 .item{
-    width: 60vw;
-    height: 5em;
+    width: 55vw;
+    height: 4em;
     margin-bottom: 1em;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     box-shadow: 0 0 1em 0.05em rgba(3, 1, 19, 0.068);
     border-radius: 0.4em;
     transition: transform 0.4s ease;
+    overflow: hidden;
 }
 
 .item h3{
     text-align: center;
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 .item > img{
@@ -75,15 +76,23 @@
 .item-options{
     display: flex;
     align-items: center;
-    gap: 1em;
 }
 .item-delete-option{
     background-color: tomato;
     color: var(--txt-clr);
     border: 0;
-    border-radius: 0.5em;
     font-size: 1em;
-    padding: 0.5em 1.5em;   
+    font-weight: 500;
+    padding: 25% 1.5em;   
+}
+
+.item a{
+    background-color: var(--color);
+    color: var(--txt-clr);
+    border: 0;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 25% 1.5em;  
 }
 
 

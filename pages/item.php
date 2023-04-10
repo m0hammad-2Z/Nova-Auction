@@ -29,7 +29,7 @@ require_once "../lib.php";
         
         $interorsArray = '';
 
-        foreach(unserialize($item[0]['Interiors']) as $int){
+        foreach(unserialize($item[0]['interiors']) as $int){
             $interorsArray .= ucfirst($int) . ", ";
         }
         $interorsArray = substr_replace($interorsArray, "", -2);
@@ -44,7 +44,7 @@ require_once "../lib.php";
                     <p class='item-elements'><b>Car Model:</b>         {$item[0][9]} {$item[0][10]} {$item[0][11]}</p>
                     <p class='item-elements'><b>Seller Name:</b>       {$item[0]['first_name']} {$item[0]['last_name']}</p>
                     <p class='item-elements'><b>Location:</b>          {$item[0][7]}</p>
-                    <p class='item-elements'><b>Car Color:</b>         {$item[0]['color']}</p>
+                    <p class='item-elements'><b>Car Color:</b>         {$item[0]['clrs']}</p>
                     <p class='item-elements'><b>Interiors:</b>         {$interorsArray}</p>
                     <p class='item-elements'><b>Transmission Type:</b> {$item[0]['transmission']}</p>
                     <p class='item-elements'><b>Car Condition:</b>     {$item[0]['car_condition']}</p>

@@ -77,9 +77,19 @@ textarea {
 }
 
 .nav-links a{
+    text-align: center;
+    text-transform: uppercase;
     padding: 0;
     text-decoration: none;
     color: var(--color);
+    padding: 0.3em 1.1em;
+    border-radius: 3px;
+}
+
+.nav-links a:hover{
+    color: white;
+    background-color: var(--color);
+    font-weight: 500;
 }
 
 .nav-icons{
@@ -106,10 +116,10 @@ textarea {
     background-color: var(--color);
     color: var(--txt-clr);
     border: 0;
-    border-radius: 0.5em;
+    border-radius: 3px;
     font-size: 1em;
     font-weight: 600;
-    padding: 0.5em 1.5em;
+    padding: 0.5em 2em;
 }
 .button:hover{
     background-color: var(--color-hover);
@@ -126,8 +136,9 @@ textarea {
     text-transform: capitalize;
     width: 23em;
     height: 29em;
-    border-radius: 0.5em;
-    box-shadow: 0 0 1em 0.05em rgba(3, 1, 19, 0.068);;
+    font-weight: 600;
+    border-radius: 0.3em;
+    box-shadow: 0 0 0.2em 0.05em rgba(3, 1, 19, 0.068);;
     overflow: hidden;
     transition: box-shadow 0.35s ease,transform 0.35s ease;
 }
@@ -138,7 +149,7 @@ textarea {
 }
 .card:hover{
     transform: translateY(-2%) scale(1.05);
-    box-shadow: 0 1em 5em 0.0em rgba(50, 49, 104, 0.349);
+    box-shadow: 0 0.5em 0.8em 0.0em rgba(50, 49, 104, 0.349);
 }
 .card >:not(img){
     margin-left: 5%;
@@ -146,6 +157,18 @@ textarea {
 
 .card .button{
     margin-top: 1em;
+    width: 90%;
+    border-radius: 3px;
+    background-color: white;
+    border: 3px solid var(--color);
+    color: var(--color);
+    font-weight: bold;
+    
+}
+
+.card .button:hover{
+    background-color: var(--color);
+    color: white;
 }
 
 .cards-grid{
@@ -258,7 +281,7 @@ input ,textarea{
     padding:0.5em 0.5em;
     background-color: #eeeeeeb6;
     border: 1px solid #eeeeeeb6;
-    border-radius: 10px;
+    border-radius: 3px;
     min-width: 100%;
 
 }
