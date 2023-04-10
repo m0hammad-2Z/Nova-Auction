@@ -87,9 +87,9 @@ if (!checkUserId()) {
                         if (!checkUserId()) {
                             header("Location: /Nova-Auction/pages/register.php");
                         } else {
-                            if(isset($_POST['interior'])){
+                            if (isset($_POST['interior'])) {
                                 $selected_interiores = serialize($_POST['interior']);
-                            }else{
+                            } else {
                                 $selected_interiores = serialize(array('No Interiors Added'));
                             }
 
@@ -112,7 +112,7 @@ if (!checkUserId()) {
             </div>
 
             <div class="right-side">
-               <div class="colors-section">
+                <div class="colors-section">
                     <h2>What Is Your Car Color?</h2>
                     <div class="color-container">
                         <input type="radio" class="color-choose" name="color" value="black" id="black" required>
@@ -146,43 +146,43 @@ if (!checkUserId()) {
                         <input type="radio" class="color-choose" name="color" value="cyan" id="cyan">
                         <label for="cyan" style="--choosen-color:rgb(0, 155, 216)"></label>
                     </div>
-               </div>
-               <h2>What Is Your Car Interiors?</h2>
-               <div class="interior-options">
-                    
+                </div>
+                <h2>What Is Your Car Interiors?</h2>
+                <div class="interior-options">
+
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="usb" value ="usb">
+                        <input type="checkbox" name="interior[]" id="usb" value="usb">
                         <label for="usb">USB</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="aux" value ="aux">
+                        <input type="checkbox" name="interior[]" id="aux" value="aux">
                         <label for="aux">AUX</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="alarm" value ="alarm">
+                        <input type="checkbox" name="interior[]" id="alarm" value="alarm">
                         <label for="alarm">Alarm</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="cdplayer" value ="cdplayer">
+                        <input type="checkbox" name="interior[]" id="cdplayer" value="cdplayer">
                         <label for="cdplayer">Cd Player</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="bluetooth" value ="bluetooth">
+                        <input type="checkbox" name="interior[]" id="bluetooth" value="bluetooth">
                         <label for="bluetooth">Bluetooth</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="touch-screen" value ="touch-screen">
+                        <input type="checkbox" name="interior[]" id="touch-screen" value="touch-screen">
                         <label for="touch-screen">Touch Screen</label>
                     </div>
                     <div class="interior-option">
-                        <input type="checkbox" name="interior[]" id="air-bags" value ="air-bags">
+                        <input type="checkbox" name="interior[]" id="air-bags" value="air-bags">
                         <label for="air-bags">AirBage</label>
                     </div>
 
-               </div>
-                
-               <h2>What is the Transmission type?</h2>
-               <div class="transmission-section">
+                </div>
+
+                <h2>What is the Transmission type?</h2>
+                <div class="transmission-section">
                     <div class="transmission-container">
                         <input type="radio" class="transmission-choose" name="transmission" value="Automatic" id="Automatic" required>
                         <label for="Automatic">Automatic</label>
@@ -191,10 +191,10 @@ if (!checkUserId()) {
                         <input type="radio" class="transmission-choose" name="transmission" value="Manual" id="Manual">
                         <label for="Manual">Manual</label>
                     </div>
-               </div>
+                </div>
 
-               <h2>What type of fuel?</h2>
-               <div class="transmission-section">
+                <h2>What type of fuel?</h2>
+                <div class="transmission-section">
                     <div class="transmission-container">
                         <input type="radio" class="transmission-choose" name="fuel" value="Diesel" id="Diesel" required>
                         <label for="Diesel">Diesel</label>
@@ -211,10 +211,10 @@ if (!checkUserId()) {
                         <input type="radio" class="transmission-choose" name="fuel" value="Gasoline" id="Gasoline">
                         <label for="Gasoline">Gasoline</label>
                     </div>
-               </div>
+                </div>
 
-               <h2>Is the car used?</h2>
-               <div class="transmission-section">
+                <h2>Is the car used?</h2>
+                <div class="transmission-section">
                     <div class="transmission-container">
                         <input type="radio" class="transmission-choose" name="car-condition" value="New" id="New" required>
                         <label for="New">New</label>
@@ -222,23 +222,22 @@ if (!checkUserId()) {
                     <div class="transmission-container">
                         <input type="radio" class="transmission-choose" name="car-condition" value="Used" id="Used">
                         <label for="Used">Used</label>
-               </div>
+                    </div>
 
-                
+
+                </div>
             </div>
         </form>
     </div>
-    <?php
 
-    ?>
     <footer class='footer'>
         <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
 </body>
 <script>
     var CarArr = <?php
-    echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info order by model_name asc", 1, MYSQLI_NUM));
-    ?>;
+                    echo json_encode(Database("select upper(makes_name) , upper(model_name) from car_info order by model_name asc", 1, MYSQLI_NUM));
+                    ?>;
 
 
     function getSelected() {
@@ -267,7 +266,6 @@ if (!checkUserId()) {
         }
         model.disabled = false;
     }
-
 </script>
 
 </html>
