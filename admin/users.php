@@ -54,11 +54,22 @@ if (!isset($_SESSION['user_id'])) {
           <?php 
 
                 if(isset($_POST['delete-option'])){
-                  $cars = Database("SELECT car_id FROM items WHERE user_id = {$_POST['delete-option']}", 1);
+                  $cars = Database("SELECT car_id, img_path  FROM items WHERE user_id = {$_POST['delete-option']}", 1);
                   Database("DELETE FROM items WHERE user_id = {$_POST['delete-option']}", 0);
-                  foreach($cars as $car) { Database("DELETE FROM cars WHERE id = {$car[0]}", 0);}
+                  foreach($cars as $car) { 
+                    Database("DELETE FROM cars WHERE id = {$car[0]}", 0);
+
+                    #Delete images
+                    $image ="../". $car[1];
+                    if (file_exists($image)) {
+                      print("exist");
+                        unlink($image);
+                    }else echo ("not exist");
+                  }
                   Database("DELETE FROM user_info WHERE id = {$_POST['delete-option']}", 0);
                 }
+
+                
 
 
                 $res = Database("select * from user_info ORDER BY rule asc",1);

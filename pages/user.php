@@ -33,9 +33,15 @@ if(!checkUserId()){
             <h1><?php 
 
             if(isset($_POST['item-delete-option'])){
-                $id = Database("select id from cars where id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1);
+                $data = Database("select cars.id, items.img_path from cars, items where cars.id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1);
                 Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
-                Database("DELETE FROM cars WHERE id = {$id[0]['id']}", 0);
+                Database("DELETE FROM cars WHERE id = {$data[0]['id']}", 0);
+
+                #delete the image
+                $image ="../". $data[0]['img_path'];
+                if (file_exists($image)) {
+                    unlink($image);
+                }
             }
             $user_info = Database("select * from user_info where id = '".$_SESSION['user_id']."'",1);
             echo 'Hello, '.$user_info[0]['first_name']." ".$user_info[0]['last_name'];
