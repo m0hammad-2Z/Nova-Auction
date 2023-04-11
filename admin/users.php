@@ -1,6 +1,18 @@
 <?php
 // init PHP
 require_once "../lib.php"; 
+
+
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /Nova-Auction/");
+}else{
+  $r = Database("select * from user_info where id = {$_SESSION['user_id']}",1);
+  if($r[0]['rule'] != 'Admin'){
+    header("Location: /Nova-Auction/");
+  }
+}
+
 ?>
 
 
@@ -40,21 +52,40 @@ require_once "../lib.php";
         </thead>
         <tbody>
           <?php 
-                $res = Database("select * from user_info",1);
+
+                if(isset($_POST['delete-option'])){
+                  $cars = Database("SELECT car_id FROM items WHERE user_id = {$_POST['delete-option']}", 1);
+                  Database("DELETE FROM items WHERE user_id = {$_POST['delete-option']}", 0);
+                  foreach($cars as $car) { Database("DELETE FROM cars WHERE id = {$car[0]}", 0);}
+                  Database("DELETE FROM user_info WHERE id = {$_POST['delete-option']}", 0);
+                }
+
+
+                $res = Database("select * from user_info ORDER BY rule asc",1);
 
                 foreach($res as $r){
                   ?>
-
+                  
                     <tr>
-                    <td><?php echo $r['first_name'].$r['last_name']; ?></td>
+                    <td><?php echo $r['first_name']." ".$r['last_name']; ?></td>
                     <td><?php echo $r['email']; ?></td>
-                    <td>Admin</td>
-                    <td><button class="btn">Delete</button></td>
-                    <td><button class="btn">Ban</button></td>
+                    <td><?php echo $r['rule']; ?></td>
+                    <td><form method="post">
+                          <button value=<?php echo $r['id']?> class="btn" name="delete-option">Delete</button>
+                        </form>
+                    </td>
+                    <?php $r['banned'] == false ? print("<td><button class='btn' name='ban-option'>Ban</button></td>") : print("<td><button class='btn' name='un-ban-option'>Ban</button></td>");
+
+                     ?>
                   </tr>
                   <tr>
 
-                <?php } ?>
+                <?php } 
+
+                
+                ?>
+
+                
           
 
           </tbody>

@@ -1,3 +1,19 @@
+<?php
+// init PHP
+require_once "../lib.php"; 
+
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /Nova-Auction/");
+}else{
+  $r = Database("select * from user_info where id = {$_SESSION['user_id']}",1);
+  if($r[0]['rule'] != 'Admin'){
+    header("Location: /Nova-Auction/");
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

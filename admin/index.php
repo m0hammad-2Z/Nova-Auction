@@ -1,3 +1,20 @@
+<?php
+// init PHP
+require_once "../lib.php"; 
+
+
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /Nova-Auction/");
+}else{
+  $r = Database("select * from user_info where id = {$_SESSION['user_id']}",1);
+  if($r[0]['rule'] != 'Admin'){
+    header("Location: /Nova-Auction/");
+  }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +30,7 @@
           <li><a href="././index.php">Dashboard</a></li>
           <li><a href="././users.php">Users</a></li>
           <li><a href="././cars.php">Cars</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href='/Nova-Auction/pages/register.php'>Logout</a></li>
         </ul>
       </nav>
     </header>

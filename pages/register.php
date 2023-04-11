@@ -83,7 +83,7 @@ require_once "../lib.php"; ?>
                     ) == 0
                 ) {
                     Database(
-                        "INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele')",
+                        "INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele','User')",
                         0
                     );
                     $_SESSION['user_id'] = Database(

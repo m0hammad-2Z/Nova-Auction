@@ -7,7 +7,9 @@ first_name varchar(25),
 last_name varchar(25),
 email varchar(50),
 pass varchar(50),
-phonenumber varchar(20)
+phonenumber varchar(20),
+rule varchar(20) default User,
+banned BOOLEAN NOT NULL DEFAULT false;
 );
 
 create table cars(
