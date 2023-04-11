@@ -54,6 +54,10 @@ if (!isset($_SESSION['user_id'])) {
             </tr>
           </thead>
           <tbody>
+            <?php 
+            $res = Database("SELECT * from items, cars",1);
+            
+            ?>
             <tr>
               <td><input type="checkbox"></td>
               <td>Toyota</td>
@@ -63,24 +67,7 @@ if (!isset($_SESSION['user_id'])) {
               <td>John Doe</td>
               <td><button class="btn edit-btn" >Edit</button></td>
             </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Honda</td>
-              <td>Accord</td>
-              <td>2020</td>
-              <td>White</td>
-              <td>Jane Smith</td>
-              <td><button class="btn edit-btn">Edit</button></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Ford</td>
-              <td>Mustang</td>
-              <td>2019</td>
-              <td>Red</td>
-              <td>Bob Johnson</td>
-              <td><button class="btn edit-btn">Edit</button></td>
-            </tr>
+           
           </tbody>
         </table>
       </div>
