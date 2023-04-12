@@ -4,7 +4,7 @@
 
 
 .main{
-    padding:2.5em 5em;
+    padding:2.5em 10em;
     width: 100%;
     height: 100%;
     display: grid;
@@ -64,7 +64,7 @@
     object-fit: cover;
     width: 100%;
     object-position: center;
-    filter: blur(5em) brightness(1);
+    filter: blur(5em) brightness(70%);
     opacity: 0.5;
 }
 
@@ -76,6 +76,24 @@
     gap:0.2em;
 }
 
+.item-pic > .side-pics > img{
+        height: 100px;
+        border-radius: 0;
+        transition: filter 0.3s ease, border-radius 0.3s ease;
+
+}
+
+.item-pic > .side-pics > img:hover{
+    border-radius: 3px;
+    filter:  grayscale(50%) brightness(70%);
+
+}
+
+.item-pic > .side-pics > img:active{
+    border-radius: 3px;
+    filter:  grayscale(50%) brightness(40%);
+
+}
 
 .info{
     /* outline: royalblue solid; */
@@ -111,44 +129,142 @@
 .right-container *{
     margin :0;
 }
-.bid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* outline:solid black; */
-}
+
 
 .bid > .main-bid{
-    grid-column-start: 1;
-    grid-column-end: 3;
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: fit-content;
+    /* width: fit-content; */
     /* outline: solid red; */
 }
 
-.bid > .last-bid > .last-bid-info{
-    display: grid;
-    min-height: 5em;
-    max-height: 25em;
-    height: fit-content;
-    overflow-y: auto;
-    /* outline: solid green; */
-}
-.bid > .last-bid > .last-bid-info >*{
-    display: grid;
-    height: fit-content;
-    overflow-y: auto;
-    margin: 0;
-    /* outline: solid green; */
+
+
+
+h2{
+    padding-bottom: 0.7em;
 }
 
-.live-comments>div > input{
-    /* outline: solid yellow; */
-    min-width: min-content;
-    height: 2.5em;
+table {
+    border-collapse: separate;
+    border-spacing: 10px;
+    border-radius: 30em;
+  }
+
+
+  
+  
+.label{
+    width: 50%;
+    padding:0.5em 0.5em;
+    background-color:#007f5fc7;
+    color: rgb(255, 255, 255);
+    border: 1px solid #eeeeeeb6;
+    border-radius: 10px;
+    text-align: center;
+    
 }
-.live-comments > .live-comment{
-    max-height: 20em;
-    overflow: auto;
+
+.value{
+    padding:0.5em 0.5em;
+    background-color:#eeeeeeb6;
+    color: rgb(90, 89, 89);
+    border: 1px solid #eeeeeeb6;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+
+.btns{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0em;
+    margin-top: 2em;
+}
+.btns > *{
+    margin: 0.2em 0.9em;
+    text-align: center;
+    font-size: medium;
+}
+
+.btns > p{
+    text-align: left;
+    font-size: 35px;
+    font-weight: bold;
+
+}
+
+
+.price{
+    text-align: left;
+    font-size: 35px;
+    font-weight: bold;
+    color: tomato;
+}
+
+
+
+.item-comment-container{
+    width:100%;
+    padding:1em 2em;
+    background-color: white;
+    border-radius: 1em;
+    display: grid;
+    gap: 2em;
+}
+.item-comment-container .item-comments{
+    height: fit-content;
+    max-height: 15em;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25em;
+}
+
+.item-comment-container .item-comments .item-comment{
+    box-sizing: border-box;
+    padding: 0 1em;
+    max-width:50%; 
+    border-radius: 1em;
+    font-size: 1.25em;
+    word-break: break-all;
+}
+.item-comment-container .comment-form{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 2em;
+}
+.item-comment-container .item-comments .item-comment > p{
+    margin: 0;
+    padding: 0;
+
+}
+
+.item-comment-container .item-comments .item-comment > div > a{
+    color: blue;
+    margin: 0;
+    padding: 0;
+    font-size: 0.75em;
+    opacity: 0.75;
+}
+.item-comment-container .item-comments .item-comment > div > a:visited{
+    color: blue;
+opacity: 0.85;
+}
+.item-comment-container .item-comments .item-comment > div > p{
+    margin: 0;
+    padding: 0;
+    font-size: 0.60em;
+    opacity: 0.75;
+}
+input{
+    border-radius: 0.5em;
+}
+input:focus{
+    border: 0.2em solid var(--color);
 }

@@ -132,13 +132,13 @@ textarea {
 
 .card{
     color: rgb(44, 44, 43);
-    background-color: white;
+    background-color: transparent;
     text-transform: capitalize;
     width: 23em;
     height: 29em;
     font-weight: 600;
     border-radius: 0.3em;
-    box-shadow: 0 0 0.2em 0.05em rgba(3, 1, 19, 0.068);;
+    box-shadow: 0 0 0.2em 0.05em rgba(3, 1, 19, 0.068);
     overflow: hidden;
     transition: box-shadow 0.35s ease,transform 0.35s ease;
 }
