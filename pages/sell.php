@@ -30,6 +30,7 @@ if (!checkUserId()) {
 
     <div class='main'>
         <form class='search-form' method='post' enctype="multipart/form-data">
+            <input type="hidden" id="primaryimageindex" name="primaryimageindex" value="0">
             <div class="left-side">
                 <div class='search-options'>
 
@@ -39,7 +40,11 @@ if (!checkUserId()) {
 
                         <label for='product-des'>Product Descreption</label>
                         <textarea rows="5" cols="60" name='product_des' id='product-des' required></textarea>
-                        <div class="image-preview-container"></div>
+                        <div class="image-preview-container">
+                        <!-- <div class="imgContainer primary">
+                            <img id="uploadPreview" src="">
+                        </div> -->
+                        </div>
                         <input id='photo-upload' onchange='uploadPreviewfun()' type='file' name='image' accept="image/*" multiple required>
                         <label for='photo-upload'>Upload Photo</label>
 
@@ -271,9 +276,8 @@ if (!checkUserId()) {
     function uploadPreviewfun(){
         
         let inputs = document.getElementById("photo-upload");
-        console.log(inputs.files);
-        if(inputs.files.length > 5){
-            alert("5 photos is maximum");
+        if(inputs.files.length > 30){
+            alert("30 photos is maximum");
             inputs.value= null;
             return;
         }
@@ -281,15 +285,33 @@ if (!checkUserId()) {
             let fr = new FileReader();
             fr.readAsDataURL(inputs.files[i]);
             fr.onload = function(e){
+                let newPic= document.createElement("div");
+                newPic.classList.add("imgContainer");
+                newPic.setAttribute("onclick", "makePrimary(this)");
                 let newNode = document.createElement("img");
+                if(i==0){
+                    newPic.classList.add("primary");
+                }
                 newNode.id="uploadPreview";
                 newNode.src = e.target.result;
-                preview.appendChild(newNode);
+                newPic.appendChild(newNode);
+                preview.appendChild(newPic);
             }
         }
     }
 
-    
+    function makePrimary(cont){
+        let containers = document.getElementsByClassName("imgContainer");
+        for(var i = 0 ;i<containers.length;++i){
+            if(containers[i].classList.contains("primary")){
+                containers[i].classList.remove("primary");
+                break;
+            }
+        }
+        cont.classList.add("primary");
+       
+        
+    }
 </script>
 
 </html>

@@ -279,5 +279,17 @@ opacity: 0;
 #uploadPreview{
     object-fit: cover;
     object-position: 50%;
-    width: 100px; height: 100px;
+    width: 125px; height: 125px;
+}
+.imgContainer{
+    position: relative;
+}
+.primary::before{
+    position: absolute;
+    content: "Primary ";
+    color: white;
+    padding: 0 0.5em 0.25em 0.25em  ;
+    width: fit-content;
+    border-radius:0 0 0.75em 0em;
+    background-color: var(--color);
 }
