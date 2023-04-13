@@ -251,4 +251,33 @@ opacity: 0;
     background-color: var(--color-hover);
     color: white;
 }
+#photo-upload{
+    position: absolute;
+    visibility: hidden;
+}
+#photo-upload + label{
+    border-radius: 0.5em;
+    background-color: #E9E9ED;
+    padding: 1em 0;
+    text-align: center;
+    cursor: pointer;
+    
+}
+#photo-upload + label:hover{
+    background-color:var(--color-hover);
+    color: white;
+    
+}
 
+.image-preview-container{
+    display: grid;
+    grid-auto-flow: column;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap:0.2em;
+}
+#uploadPreview{
+    object-fit: cover;
+    object-position: 50%;
+    width: 100px; height: 100px;
+}

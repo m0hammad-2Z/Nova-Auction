@@ -37,11 +37,11 @@ if (!checkUserId()) {
                         <label for='product-name'>Product Name</label>
                         <input type='text' name='product_name' id='product-name' maxlength="20" required>
 
-                        <label for='product-name'>Product Descreption</label>
-                        <textarea rows="5" cols="60" name='product_des' id='product-name' required></textarea>
-
+                        <label for='product-des'>Product Descreption</label>
+                        <textarea rows="5" cols="60" name='product_des' id='product-des' required></textarea>
+                        <div class="image-preview-container"></div>
+                        <input id='photo-upload' onchange='uploadPreviewfun()' type='file' name='image' accept="image/*" multiple required>
                         <label for='photo-upload'>Upload Photo</label>
-                        <input id='fileupload' type='file' name='image' required>
 
                     </div>
 
@@ -266,6 +266,30 @@ if (!checkUserId()) {
         }
         model.disabled = false;
     }
+    let preview = document.getElementsByClassName("image-preview-container")[0];
+    
+    function uploadPreviewfun(){
+        
+        let inputs = document.getElementById("photo-upload");
+        console.log(inputs.files);
+        if(inputs.files.length > 5){
+            alert("5 photos is maximum");
+            inputs.value= null;
+            return;
+        }
+        for(let i = 0 ;i<inputs.files.length ;++i){
+            let fr = new FileReader();
+            fr.readAsDataURL(inputs.files[i]);
+            fr.onload = function(e){
+                let newNode = document.createElement("img");
+                newNode.id="uploadPreview";
+                newNode.src = e.target.result;
+                preview.appendChild(newNode);
+            }
+        }
+    }
+
+    
 </script>
 
 </html>
