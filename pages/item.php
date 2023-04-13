@@ -174,45 +174,7 @@ require_once "../lib.php";
         </div>
     </div>
     </div>
-    <script defer>
-        var data;
-        let expDate;
-        let serDate;
-        let counter = 1;
-        let timer = document.getElementById("Timer");
-        let conn = new WebSocket('ws://localhost:8080');
-        conn.onopen = function(e) {
-            console.log("Connection established!");
-            conn.send('Hello World!');
-
-        };
-
-        conn.onmessage = function(e) {
-            data = JSON.parse(e.data);
-            serDate = data["ser_date"].split(" ");
-            serDate = new Date(serDate[0],serDate[1]-1,serDate[2],serDate[3],serDate[4],serDate[5]);
-            expDate = data["exp_date"].split(" ");
-            expDate = new Date(expDate[0],expDate[1]-1,expDate[2],expDate[3],expDate[4],expDate[5]);
-
-            console.log(serDate)
-            console.log(expDate)
-        };
-        
-        
-
-
-        timeUpdate = setInterval(()=>{
-            let leftTime = (expDate.getTime() - (serDate.getTime() + (++counter)*1000));
-            if(Math.floor(leftTime/1000) <=0){
-                clearInterval(timeUpdate);
-                timer.innerText = "Ended";
-            }
-            else{
-            timer.innerText ="Time left:"+Math.floor(leftTime/1000)+"s";
-            }
-        },1000)
-        
-    </script>
+   
     <footer class="footer">
         <p>Copyright &copy; 2022 Nova Auction | Design By Humble Ghost Team</p>
     </footer>
@@ -319,7 +281,7 @@ require_once "../lib.php";
         console.log(imgSrc);
         var mainImg = document.getElementById("main-image");
         mainImg.src=imgSrc;
-        mainImg.style = 
+        // mainImg.style = 
     }
 
     var myImage = document.getElementById('side-pics').children;
