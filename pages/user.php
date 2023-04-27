@@ -35,7 +35,7 @@ if(!checkUserId()){
             if(isset($_POST['item-delete-option'])){
                 $data = Database("select cars.id, items.img_path from cars, items where cars.id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1);
                 Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
-                Database("DELETE FROM cars WHERE id = {$data[0]['id']}", 0);
+                // Database("DELETE FROM cars WHERE id = {$data[0]['id']}", 0); // from cars
 
                 #delete the image
                 $image ="../". $data[0]['img_path'];
