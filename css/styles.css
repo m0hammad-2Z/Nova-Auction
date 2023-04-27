@@ -101,9 +101,9 @@ textarea {
 
 .fas{
     color: var(--color);
-    font-size: 20px;
+    font-size: 1.25em;
     font-weight: 100;
-    padding-top:0.2em;
+    padding-top:0;
 }
 
 .main{
@@ -288,4 +288,39 @@ input ,textarea{
 
 input:focus ,textarea:focus{
     outline: none;
+}
+
+.notifi{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.nav-svg{
+    fill: var(--color);
+    height: 1.25em;
+    width: fit-content;
+    stroke: var(--color);
+
+}
+.nav-svg > line{
+    stroke: var(--color);
+
+}
+
+
+.notifi::before{
+    content: "5";
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:-0.5em;
+    right: -0.5em;
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    background-color: rgb(255, 69, 69);
+    color :black;
+    font-weight: 400;
 }

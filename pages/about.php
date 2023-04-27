@@ -17,7 +17,7 @@ require_once "../lib.php"; ?>
 
 <body>
     <?php printNav(); ?>
-
+    
     <div class='main'>
         <div class='about-section'>
             <h1>Who We Are!</h1>
