@@ -15,29 +15,9 @@ require_once "../lib.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <nav class="main-nav">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="/Nova-Auction/">
-                        <h1>N<span style="color: var(--color);">O</span>VA</h1>
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="/Nova-Auction/">Home</a>
-                    <a href="/Nova-Auction/pages/products.php">Products</a>
-                    <a href="/Nova-Auction/pages/contact.php">Contact</a>
-                    <a href="/Nova-Auction/pages/about.php">About</a>
-                </div>
-                <div class="nav-icons">
-                    <a href="/Nova-Auction/pages/products.php">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="/Nova-Auction/pages/register.php">
-                        <i class="fas fa-user-alt"></i>
-                    </a>
-                </div>
-            </div>
-        </nav>
+    <?php
+    printNav();
+    ?>
 
     
     <div class="main">
