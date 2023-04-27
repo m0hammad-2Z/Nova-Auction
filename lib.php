@@ -79,7 +79,7 @@ function printNav()
                 <div class='nav-icons'>
                     <a class='notifi' href='#' >
                     <svg class='nav-svg' fill='#000000' height='800px' width='800px' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' 
-	                viewBox='0 0 611.999 611.999' xml:space='preserve'>
+	                viewBox='0 0 612 612' xml:space='preserve'>
 		            <g>
                     <path d='M570.107,500.254c-65.037-29.371-67.511-155.441-67.559-158.622v-84.578c0-81.402-49.742-151.399-120.427-181.203
                         C381.969,34,347.883,0,306.001,0c-41.883,0-75.968,34.002-76.121,75.849c-70.682,29.804-120.425,99.801-120.425,181.203v84.578
