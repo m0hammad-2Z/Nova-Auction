@@ -43,6 +43,14 @@ id int PRIMARY key AUTO_INCREMENT,
 city_name varchar(20)
 );
 
+create table view_history(
+id int PRIMARY key AUTO_INCREMENT,
+user_id int,
+car_id int,
+
+foreign key (user_id) references user_info(id),
+foreign key (car_id) references cars(id)
+);
 
 create table car_info(
 id int PRIMARY key AUTO_INCREMENT,
