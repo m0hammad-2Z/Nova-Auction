@@ -324,3 +324,7 @@ input:focus ,textarea:focus{
     color :black;
     font-weight: 400;
 }
+#sell{
+    width: 20px;
+    height: 20px;
+}

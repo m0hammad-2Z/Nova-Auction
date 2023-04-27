@@ -101,13 +101,15 @@ function printNav()
                     <a id='user-icon' href='/Nova-Auction/pages/products.php'>
                         <i class='fas fa-search'></i>
                     </a>
-                    <a name='sell' href='/Nova-Auction/pages/sell.php'><?xml version='1.0' ?>
-                    <svg  class='nav-svg' width='800px' height='800px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' stroke-width='0'><g>
-                    <rect  fill='none' height='20' id='_--Rectangle' rx='2' ry='2' stroke-linecap='round' stroke-linejoin='round' stroke-width='4' width='20' height='20' x='2' y='2'/>
-                    <line   fill='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' x1='15.5' x2='8.5' y1='12' y2='12'/>
-                    <line   fill='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' x1='12' x2='12' y1='15.5' y2='8.5'/>
-                    </g>
-                    </svg></a>
+                    <a id='sell' href='/Nova-Auction/pages/sell.php'>
+                        <svg  class='nav-svg' width='800px' height='800px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' stroke-width='0'>
+                        <g>
+                        <rect   fill='none' height='20' id='_--Rectangle' rx='2' ry='2' stroke-linecap='round' stroke-linejoin='round' stroke-width='4' width='20' height='20' x='2' y='2'/>
+                        <line   fill='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' x1='15.5' x2='8.5' y1='12' y2='12'/>
+                        <line   fill='#000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' x1='12' x2='12' y1='15.5' y2='8.5'/>
+                        </g>
+                        </svg>
+                    </a>
                     <a href='/Nova-Auction/pages/user.php'>".
                         Database("select first_name from user_info where id = '".$_SESSION['user_id']."'",1)[0][0]
                     ."
