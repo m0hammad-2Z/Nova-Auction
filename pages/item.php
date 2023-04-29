@@ -30,7 +30,7 @@ require_once "../lib.php";
                 $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
                 
                 if(count(Database("select user_id,car_id from view_history where user_id = {$_SESSION['user_id']} and car_id = {$item[0]['car_id']}",1,MYSQLI_NUM)) == 0)
-                    Database("insert into view_history values(default,{$_SESSION['user_id']},{$item[0]['car_id']})",0);
+                    Database("insert into view_history values(default,{$_SESSION['user_id']},{$item[0]['car_id']},{$item[0]['price']})",0);
 
                 $interorsArray = '';
 
