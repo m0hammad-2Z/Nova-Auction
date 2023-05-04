@@ -46,7 +46,7 @@ require_once "./lib.php";
         ?>
                 <div class='card'>
                 <img src="<?php echo $img_p; ?>" alt=''>
-                <span style='font-size:25px ;'><?php echo $name; ?></span>
+                <span id='name'><?php echo $name; ?></span>
                 <br>
                 <span>Price: <bold><?php echo $price; ?>$</bold>
                 </span>

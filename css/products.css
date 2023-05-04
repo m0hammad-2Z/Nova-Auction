@@ -97,3 +97,12 @@ select:focus{
     color:white;
     background-color: var(--color-hover);
 }
+
+
+
+#name {
+    margin: 0;
+    font-size: 1.25em;
+    word-break: keep-all;
+    white-space: nowrap;
+}

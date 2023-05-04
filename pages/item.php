@@ -29,15 +29,15 @@ require_once "../lib.php";
 
                 $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
                 
-                if(count(Database("select user_id,car_id from view_history where user_id = {$_SESSION['user_id']} and car_id = {$item[0]['car_id']}",1,MYSQLI_NUM)) == 0)
+                if(isset($_SESSION["user_id"]) && count(Database("select user_id,car_id from view_history where user_id = {$_SESSION['user_id']} and car_id = {$item[0]['car_id']}",1,MYSQLI_NUM)) == 0)
                     Database("insert into view_history values(default,{$_SESSION['user_id']},{$item[0]['car_id']},{$item[0]['price']})",0);
 
-                $interorsArray = '';
+                // $interorsArray = '';
 
-                foreach(unserialize($item[0]['interiors']) as $int){
-                    $interorsArray .= ucfirst($int) . ", ";
-                }
-                $interorsArray = substr_replace($interorsArray, "", -2);
+                // foreach(unserialize($item[0]['interiors']) as $int){
+                //     $interorsArray .= ucfirst($int) . ", ";
+                // }
+                // $interorsArray = substr_replace($interorsArray, "", -2);
 
             ?>
 
@@ -45,12 +45,12 @@ require_once "../lib.php";
             <div class="left-container">
             <div class="item-pic container">
                 <div class="main-pic">
-                    <img id="blurred" src=<?php echo "../".$item[0][3]; ?> alt=''>
-                    <img id="main-image" src=<?php echo "../".$item[0][3]; ?> alt=''>
+                    <img id="blurred" src=<?php echo $item[0][3]; ?> alt=''>
+                    <img id="main-image" src=<?php echo $item[0][3]; ?> alt=''>
                 </div>
 
                 <div class="side-pics", id="side-pics">
-                    <img id="im" src=<?php echo "../".$item[0][3]; ?> onclick="changeImg('<?php echo '../'.$item[0][3]; ?>')" alt=''>
+                    <img id="im" src=<?php echo $item[0][3]; ?> onclick="changeImg('<?php echo $item[0][3]; ?>')" alt=''>
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
@@ -87,7 +87,7 @@ require_once "../lib.php";
                 <div class="main-bid">
                     <?php
                         print("
-                        <p class= 'price'>{$item[0]['4']} $</p>
+                        <p class= 'price'>{$item[0][4]} $</p>
                         
                         
                         <table>
@@ -105,7 +105,7 @@ require_once "../lib.php";
                         </tr>
                         <tr>
                             <td class='label'><b>Interiors:</b></td>
-                            <td class='value'>{$interorsArray}</td>
+                            <td class='value'>{$item[0]['interiors']}</td>
                         </tr>
                         <tr>
                             <td class='label'><b>Transmission Type:</b></td>

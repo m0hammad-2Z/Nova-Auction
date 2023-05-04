@@ -18,7 +18,7 @@ makes_name varchar(50),
 model_name varchar(50),
 year_of_make int(4),
 color varchar(40),
-interiors Text(400),
+interiors Text(1000),
 transmission varchar(40),
 car_condition varchar(40),
 fuel_type varchar(40)
@@ -26,9 +26,9 @@ fuel_type varchar(40)
 
 create table items(
 id int PRIMARY key AUTO_INCREMENT,
-name varchar(50),
+name varchar(1000),
 des varchar(10000),
-img_path varchar(100),
+img_path varchar(2000),
 price int,
 user_id int,
 car_id int,

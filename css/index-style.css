@@ -45,3 +45,11 @@
     text-align: center;
     padding: 0 2em;
 }
+
+
+#name {
+    margin: 0;
+    font-size: 1.25em;
+    word-break: keep-all;
+    white-space: nowrap;
+}

@@ -129,13 +129,13 @@ require_once "../lib.php"; ?>
                     if($i>$_GET["page"]*$NOIPP-1)break;
                     $name = $res[$i][0];
                     $price = $res[$i][1];
-                    $img_p = "../".$res[$i][2];
+                    $img_p = $res[$i][2];
                     $item_id = $res[$i][3];
 
                     print("
                         <div class='card'>
                             <img src='$img_p' alt=''>
-                            <span style='font-size:25px ;'> $name</span>
+                            <span id='name'> $name</span>
                             <br>
                             <span>Price: <bold>$price$</bold></span>
                             <br>
