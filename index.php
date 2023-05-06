@@ -61,7 +61,143 @@ require_once "./lib.php";
     </div>
     <footer class='footer'>
         <p>Copyright © 2022 Nova | Design By Humble Ghost Team</p>
-    </footer>
-</body>
+        
+    <?php
+         $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make from cars, items where items.car_id = cars.id', 1, MYSQLI_NUM);
+         $carsJson = json_encode($carsRes);
+         echo "<script>var carsData = " . $carsJson . ";</script>";
+        
+         $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']}", 1, MYSQLI_NUM);
+         $userJson = json_encode($userRes);
+         echo "<script>var userData = " . $userJson . ";</script>";
 
+    ?>
+    </footer>
+
+</body>
+<script>   
+let cars = carsData;
+let car_history_ids = userData;
+
+
+
+const updatedCars = new Map();
+
+
+/* Convert the data to numbers */
+const nominalFeatureIndex = [1, 2, 3];
+const numaricFeatureIndex = [4, 5];
+
+const uniqueList = unqList(cars, nominalFeatureIndex);
+var numberOfElementsInCars = 0;
+
+for (let l of cars) {
+    const key = l[0];
+    const l1 = minMax(l, numaricFeatureIndex);
+    const l2 = OneShotEncoding(l, uniqueList);
+    const fl = l1.concat(l2);
+
+    numberOfElementsInCars = fl.length;
+
+    updatedCars.set(key, fl);
+}
+
+const userVector = new Array(numberOfElementsInCars).fill(0);
+for (let i of car_history_ids) {
+    let l = updatedCars.get(i);
+    for (var z = 0; z < numberOfElementsInCars; z++) {
+        userVector[z] += l[z];
+    }
+}
+
+for (var k = 0; k < numberOfElementsInCars; k++) {
+    userVector[k] /= car_history_ids.length;
+}
+
+//Calculate similarity
+const finalList = new Map();
+updatedCars.forEach((v, k) => {
+    const similarity = EuclideanSimilarity(userVector, v);
+    finalList.set(similarity, k);
+});
+
+//Sort
+const sortedByKey = new Map(
+    Array.from(finalList).sort((a, b) => a[0] > b[0] ? 1 : -1)
+);
+
+
+console.log(sortedByKey);
+
+function EuclideanSimilarity(vector1, vector2) {
+    let res = 0.0;
+    let sum = 0;
+    for (let i = 0; i < vector1.length; i++) {
+        const diff = vector1[i] - parseFloat(vector2[i]);
+        sum += diff ** 2;
+    }
+
+    res = Math.sqrt(sum);
+    return res;
+}
+
+function unqList(daList, nominalIndexes) {
+    const map = new Map();
+    const res = [];
+    for (let i of nominalIndexes) {
+        for (let l of daList) {
+            map.set(l[i], i);
+        }
+    }
+
+    map.forEach((value, key) => {
+        res.push(key);
+    });
+    return res;
+}
+
+function OneShotEncoding(list, uniqueList) {
+    const res = [];
+    for (let l of uniqueList) {
+        if (list.includes(l)) {
+            res.push(1.0);
+        } else {
+            res.push(0.0);
+        }
+    }
+
+    return res;
+}
+
+function minMax(list, numaricIndexes) {
+    const res = [];
+
+    for (const i of numaricIndexes) {
+        let min = Number.MAX_VALUE;
+        let max = Number.MIN_VALUE;
+
+        // find the min and the max
+        for (const row of cars) {
+            const num = parseFloat(row[i]);
+            if (num < min) {
+                min = num;
+            }
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        // Calculation
+        for (let j = 0; j < list.length; j++) {
+            if (i === j) {
+                res.push((parseFloat(list[i]) - min) / (max - min));
+            }
+        }
+    }
+
+    return res;
+}
+
+
+</script>
 </html>
