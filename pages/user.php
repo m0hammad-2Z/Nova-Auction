@@ -60,7 +60,10 @@ if(!checkUserId()){
             $res = Database("SELECT * FROM items WHERE user_id = '".$_SESSION['user_id']."'", 1);  
             for($i = 0; $i < count($res); $i++) {
                  $name = $res[$i]['name'];
-                 $img_p = "../".$res[$i]['img_path'];
+                 $img_p = $res[$i]['img_path'];
+                 if(explode("/",$img_p)[0] == "user_images"){
+                    $img_p = "/Nova-Auction/".$img_p;
+                }
                  $item_id = $res[$i]['id'];
             ?>
 
