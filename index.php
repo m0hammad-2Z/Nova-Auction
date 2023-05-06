@@ -53,7 +53,7 @@ require_once "./lib.php";
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }else{
-            $userRes = Database("Select car_id from view_history order by id DESC limit 10", 1, MYSQLI_NUM);
+            $userRes = Database("Select car_id from view_history order by id DESC limit 1", 1, MYSQLI_NUM);
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }
@@ -66,7 +66,7 @@ require_once "./lib.php";
 const cars = carsData;
 const car_history_ids = userData;
 
-if(car_history_ids.length == 0) car_history_ids(55)
+if(car_history_ids.length == 0) car_history_ids.push(["10"])
 const updatedCars = new Map();
 // console.log(carsData)
 // console.log(car_history_ids)
@@ -217,6 +217,7 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
     const link = document.createElement('a');
     const button = document.createElement('button');
     button.classList.add('button', 'b_card');
+    button.innerText = "View";
     link.setAttribute('href', '/Nova-Auction/pages/item.php?item_id=' + itemId);
     link.appendChild(button);
     
