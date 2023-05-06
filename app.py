@@ -59,7 +59,6 @@ for x in f:
         
 
         mycursor.execute(sql_user)
-        
         mydb.commit()
 
         mycursor.execute(sql_cars,sql_cars_vals)
