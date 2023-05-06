@@ -64,12 +64,16 @@ require_once "./lib.php";
 </body>
 <script>   
 const cars = carsData;
-const car_history_ids = userData;
+let car_history_ids = userData;
 
-if(car_history_ids.length == 0) car_history_ids.push(["10"])
+//In case no car history data
+const randomNumber = [];
+for(let i = 0; i < 10; i++){
+    randomNumber.push([(Math.floor((Math.random() * 200) + 10)).toString()]);
+}
+if(car_history_ids.length == 0) car_history_ids = randomNumber;
 const updatedCars = new Map();
-// console.log(carsData)
-// console.log(car_history_ids)
+
 
 
 const nominalFeatureIndex = [1, 2, 3];
