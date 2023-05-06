@@ -49,11 +49,11 @@ require_once "./lib.php";
          echo "<script>var carsData = " . $carsJson . ";</script>";
         
         if(checkUserId()){
-            $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']} order by id DESC limit 4", 1, MYSQLI_NUM);
+            $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']} order by id DESC limit 10", 1, MYSQLI_NUM);
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }else{
-            $userRes = Database("Select car_id from view_history order by id DESC limit 1", 1, MYSQLI_NUM);
+            $userRes = Database("Select car_id from view_history order by id DESC limit 10", 1, MYSQLI_NUM);
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }
