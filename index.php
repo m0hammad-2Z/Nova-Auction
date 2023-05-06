@@ -35,44 +35,25 @@ require_once "./lib.php";
             <h1>Best Items</h1>
             <p>Explore on the world"s best & largest marketplace with our beautiful products. <br> We want to be a part of your smile, success and future growth. </p>
         </div>
-        <div class='cards-grid'>
-        <?php            
-            $res = Database("select name, price, img_path ,id from items order by id DESC limit 6", 1);
-            for($i = 0; $i < count($res); $i++) {
-                    $name = $res[$i][0];
-                    $price = $res[$i][1];
-                    $img_p = $res[$i][2];
-                    $item_id = $res[$i][3];
-        ?>
-                <div class='card'>
-                <img src="<?php echo $img_p; ?>" alt=''>
-                <span id='name'><?php echo $name; ?></span>
-                <br>
-                <span>Price: <bold><?php echo $price; ?>$</bold>
-                </span>
-                <br>
-                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>' ><button class='button b_card' >View</button></a>
-            </div>
-
-        <?php  }?>
-
-        </div>
-        <a class='button' href='/Nova-Auction/pages/products.php'>View More!</a>
+        <div class='cards-grid' id='cards-grid'>
+               
+        
     </div>
+    <a class='button' href='/Nova-Auction/pages/products.php'>View More!</a>
     <footer class='footer'>
         <p>Copyright © 2022 Nova | Design By Humble Ghost Team</p>
         
     <?php
-         $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path from cars, items where items.car_id = cars.id', 1, MYSQLI_NUM);
+         $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path, items.id from cars, items where items.car_id = cars.id', 1, MYSQLI_NUM);
          $carsJson = json_encode($carsRes);
          echo "<script>var carsData = " . $carsJson . ";</script>";
         
         if(checkUserId()){
-            $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']}", 1, MYSQLI_NUM);
+            $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']} order by id DESC limit 4", 1, MYSQLI_NUM);
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }else{
-            $userRes = Database("Select car_id from view_history", 1, MYSQLI_NUM);
+            $userRes = Database("Select car_id from view_history order by id DESC limit 10", 1, MYSQLI_NUM);
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }
@@ -82,43 +63,13 @@ require_once "./lib.php";
 
 </body>
 <script>   
-const cars = [];
-const car_history_ids = [8, 4, 4, 4, 4];
-const updatedCars = new Map();
+const cars = carsData;
+const car_history_ids = userData;
 
-cars.push([1, "BMW", "SUV", "Black", "38677", "2014"]);
-cars.push([2, "Chevrolet", "SUV", "Yellow", "40649", "2016"]);
-cars.push([3, "BMW", "SUV", "Black", "38677", "2015"]);
-cars.push([4, "Subaru", "Hatchback", "Orange", "25650", "2015"]);
-cars.push([1, "BMW", "SUV", "Black", "38677", "2014"]);
-cars.push([2, "Chevrolet", "SUV", "Yellow", "40649", "2016"]);
-cars.push([3, "BMW", "SUV", "Black", "38677", "2015"]);
-cars.push([4, "Subaru", "Hatchback", "Orange", "25650", "2015"]);
-cars.push([5, "Toyota", "Sedan", "Gray", "39285", "2016"]);
-cars.push([6, "Ford", "Truck", "Silver", "42092", "2011"]);
-cars.push([7, "Chevrolet", "SUV", "Gray", "49168", "2012"]);
-cars.push([8, "Subaru", "SUV", "Blur", "49168", "2012"]);
-cars.push([9, "BMW", "SUV", "Gray", "38677", "2012"]);
-cars.push([10, "BMW", "Sedan", "Red", "42092", "2016"]);
-cars.push([11, "Mercedes-Benz", "Pickup Truck", "Red", "37038", "2015"]);
-cars.push([12, "Mercedes-Benz", "Pickup Truck", "Orange", "37038", "2015"]);
-cars.push([13, "Volvo", "Sports Car", "Brown", "29614", "2012"]);
-cars.push([14, "Nissan", "Coupe", "Yellow", "49168", "2016"]);
-cars.push([15, "Chevrolet", "Hatchback", "Gray", "47867", "2015"]);
-cars.push([16, "Toyota", "Hatchback", "Gray", "47867", "2015"]);
-cars.push([17, "Subaru", "SUV", "Black", "45633", "2016"]);
-cars.push([18, "Audi", "Sedan", "Brown", "22925", "2016"]);
-cars.push([19, "BMW", "Sports Car", "Orange", "34386", "2011"]);
-cars.push([20, "Toyota", "Sedan", "Gray", "38567", "2013"]);
-cars.push([21, "Ford", "Pickup Truck", "Blue", "14745", "2017"]);
-cars.push([22, "BMW", "SUV", "Yellow", "43561", "2011"]);
-cars.push([23, "Honda", "Hatchback", "Brown", "39071", "2013"]);
-cars.push([24, "Nissan", "Crossover", "Silver", "33277", "2012"]);
-cars.push([25, "Toyota", "Sedan", "White", "29370", "2014"]);
-cars.push([26, "Mercedes-Benz", "Coupe", "Gray", "32604", "2016"]);
-cars.push([27, "Chevrolet", "Pickup Truck", "Black", "36717", "2016"]);
-cars.push([28, "BMW", "Hatchback", "Silver", "23448", "2016"]);
-cars.push([29, "Subaru", "SUV", "Red", "41421", "2015"]);
+if(car_history_ids.length == 0) car_history_ids(55)
+const updatedCars = new Map();
+// console.log(carsData)
+// console.log(car_history_ids)
 
 
 const nominalFeatureIndex = [1, 2, 3];
@@ -137,11 +88,9 @@ for (let l of cars) {
 }
 
 
-
 const userVector = new Array(numberOfElementsInCars).fill(0);
-console.log(updatedCars)
 for (let i of car_history_ids) {
-    const l = updatedCars.get(i.toString());
+    const l = updatedCars.get(i[0]);
     for (let d = 0; d < numberOfElementsInCars; d++) {
         userVector[d] += l[d];
     }
@@ -162,6 +111,18 @@ updatedCars.forEach((v, k) => {
 const sortedByKey = new Map(
     Array.from(finalList).sort((a, b) => a[0] > b[0] ? 1 : -1)
 );
+
+let index = 0;
+sortedByKey.forEach((k, v) => {
+    if(index < 30){
+        for(let car of cars){
+        if(car[0] == k){
+            CreateSuggestionCard(car[6], car[4], car[7], car[8]);
+            index++;
+        }
+    }
+    }
+});
 
 
 function EuclideanSimilarity(vector1, vector2) {
@@ -236,6 +197,9 @@ function minMax(list, numaricIndexes) {
 
 
 function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
+    const cardsGrid = document.getElementById("cards-grid");
+
+
     const card = document.createElement('div');
     card.classList.add('card');
     
@@ -253,7 +217,7 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
     const link = document.createElement('a');
     const button = document.createElement('button');
     button.classList.add('button', 'b_card');
-    link.setAttribute('href', '/Nova-Auction/pages/item.php?' + itemId);
+    link.setAttribute('href', '/Nova-Auction/pages/item.php?item_id=' + itemId);
     link.appendChild(button);
     
     card.appendChild(image);
@@ -261,7 +225,7 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
     card.appendChild(price);
     card.appendChild(link);
 
-    document.body.appendChild(card);
+    cardsGrid.appendChild(card);
     
 }
 
