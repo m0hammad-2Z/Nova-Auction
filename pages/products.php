@@ -78,7 +78,7 @@ require_once "../lib.php"; ?>
         //     and year_of_make BETWEEN 0 and 99000099) 
         // and price BETWEEN 0 and 9999999; 
                 
-                $NOIPP = 6;  /*Number Of Items Per Page*/
+                $NOIPP = 30;  /*Number Of Items Per Page*/
                 
                 (isset($_GET['page'])) ? null : $_GET["page"] = 1;
                 (isset($_GET["city"])) ? null : $_GET["city"]="";

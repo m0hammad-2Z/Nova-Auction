@@ -17,8 +17,7 @@ try:
 except:
     exit(-1)
 print(mydb)
-maxUsedId = 6
-maxCarsId = 6
+
 path = "C:\\Users\\ABNNI\\Desktop\\chromedriver_win32\\chromedriver.exe"
 driver = webdriver.Chrome(path, chrome_options=chrome_options)
 f = open("links.txt", "r")
@@ -55,20 +54,18 @@ for x in f:
         sql_cars = "insert into cars values(default ,%s,%s,%s,%s,%s,%s,%s,%s)"
         sql_item = "insert into items values(default,%s,%s,%s,%s,%s,%s,%s)"
         sql_cars_vals = (make,model,yearOfMake,color,inter,trans,condition,fuel)
-        sql_item_vals = (title,desc,img,price,maxUsedId,maxCarsId,city)
+        
+        mycursor.execute(sql_user)
+        user_id = mycursor.lastrowid
         
 
-        mycursor.execute(sql_user)
-        mydb.commit()
-
         mycursor.execute(sql_cars,sql_cars_vals)
-        mydb.commit()
+        car_id = mycursor.lastrowid
 
+        sql_item_vals = (title,desc,img,price,user_id,car_id,city)
 
         mycursor.execute(sql_item,sql_item_vals)
         mydb.commit()
-        maxCarsId+=1
-        maxUsedId+=1
         print(title + " Done")
     except:
         continue
