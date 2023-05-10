@@ -23,7 +23,7 @@ require_once "../lib.php"; ?>
         <div class='search-options'>
             <form class='search-form' method='get'>
                 <select  name='city' id='city'>
-                    <option  value="" disabled selected>City</option>
+                    <option  value=""  selected>ِAll cities</option>
                     <?php 
                     $res = Database("select concat(upper(substring(city_name,1,1)),lower(substring(city_name,2))) from city",1);
                         foreach($res as $row){
@@ -34,7 +34,7 @@ require_once "../lib.php"; ?>
                 </select>
 
                 <select onchange='getSelected()' name='car_mekes' id='car-mekes'  >
-                        <option value="" disabled selected>Car makes</option>
+                        <option value="" selected>All Car makers</option>
                         <?php 
                         $res = Database("select upper(makes_name) from car_info group by makes_name",1);
                             foreach($res as $row){
@@ -45,7 +45,7 @@ require_once "../lib.php"; ?>
                 </select>
                 
                 <select name='car-model' id='model' disabled  >
-                        <option value="" disabled selected>Model</option>
+                        <option value="" selected>All Models</option>
                 </select>
                 <div class="group-info">
                 <input type="number" min="0" name='price-from' placeholder='Price from' >
@@ -57,11 +57,10 @@ require_once "../lib.php"; ?>
                 </div>
                 <div class="group-info">
                 <select name='sort' id='sort'>
-                            <option value='' disabled selected>Sort by</option>
-                            <option value='name asc'>A-Z</option>
-                            <option value='name desc'>Z-A</option>
-                            <option value='price desc'>High>Low</option>
-                            <option value='price asc'>Low>High</option>
+                            <option value='id desc' selected>Newer to Older</option>
+                            <option value='id asc'>Older to Newer</option>
+                            <option value='price desc'>Price High to Low</option>
+                            <option value='price asc'>Price Low to High</option>
                         </select>
                 <button class='button' name="search" value="search">Search</button>
                 </div>
@@ -88,7 +87,7 @@ require_once "../lib.php"; ?>
                 (isset($_GET["year-to"])) ? ($_GET["year-to"]=="")? $_GET["year-to"]=Database("select max(year_of_make) from cars",1)[0][0] :null :$_GET["year-to"]=Database("select max(year_of_make) from cars",1)[0][0];
                 (isset($_GET["price-from"])) ? ($_GET["price-from"]=="")? $_GET["price-from"]=Database("select min(price) from items",1)[0][0]:null: $_GET["price-from"]=Database("select min(price) from items",1)[0][0];
                 (isset($_GET["price-to"])) ? ($_GET["price-to"]=="")?  $_GET["price-to"]=Database("select max(price) from items",1)[0][0] :null :$_GET["price-to"]=Database("select max(price) from items",1)[0][0];
-                (isset($_GET["sort"])) ? null:$_GET["sort"]="name asc";
+                (isset($_GET["sort"])) ? null:$_GET["sort"]="id desc";
                 
                 $res = Database("select name, price, img_path ,id from items 
                 where lower(city_name) LIKE '%{$_GET["city"]}%'
@@ -131,7 +130,9 @@ require_once "../lib.php"; ?>
                     $price = $res[$i][1];
                     $img_p = $res[$i][2];
                     $item_id = $res[$i][3];
-
+                    if(explode("/",$img_p)[0] == "user_images"){
+                        $img_p = "/Nova-Auction/".$img_p;
+                    }
                     print("
                         <div class='card'>
                             <img src='$img_p' alt=''>

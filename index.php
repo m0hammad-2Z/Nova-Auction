@@ -234,13 +234,15 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
     text.innerText = "Recommended";
     card.appendChild(text);
     
+    const br = document.createElement("br");
+
     const name = document.createElement('span');
     name.setAttribute('id', 'name');
     name.innerText = nameText;
 
     
     const price = document.createElement('span');
-    price.innerText = priceText;
+    price.innerText = "Price: "+priceText+"$";
     
     const link = document.createElement('a');
     const button = document.createElement('button');
@@ -251,6 +253,7 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
     
     card.appendChild(image);
     card.appendChild(name);
+    card.appendChild(br);
     card.appendChild(price);
     card.appendChild(link);
 
