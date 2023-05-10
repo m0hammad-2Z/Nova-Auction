@@ -131,7 +131,9 @@ require_once "../lib.php"; ?>
                     $price = $res[$i][1];
                     $img_p = $res[$i][2];
                     $item_id = $res[$i][3];
-
+                    if(explode("/",$img_p)[0] == "user_images"){
+                        $img_p = "/Nova-Auction/".$img_p;
+                    }
                     print("
                         <div class='card'>
                             <img src='$img_p' alt=''>
