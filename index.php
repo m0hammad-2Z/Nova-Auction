@@ -133,7 +133,7 @@ sortedByKey.forEach((k, v) => {
                 }
 
                 if(car[0] == k && !matchFound){
-                    CreateSuggestionCard(car[6], car[4], car[7], car[8]);4
+                    CreateSuggestionCard(car[6], car[4], car[7], car[8]);
                     index++;
                     break;
                 } 
