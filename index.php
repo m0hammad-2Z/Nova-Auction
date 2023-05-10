@@ -49,7 +49,7 @@ require_once "./lib.php";
          echo "<script>var carsData = " . $carsJson . ";</script>";
         
         if(checkUserId()){
-            $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']} order by id DESC limit 10", 1, MYSQLI_NUM);
+            $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']} order by id DESC limit 5", 1, MYSQLI_NUM);
             $userJson = json_encode($userRes);
             echo "<script>var userData = " . $userJson . ";</script>";
         }else{
@@ -69,9 +69,10 @@ let car_history_ids = userData;
 //In case no car history data
 const randomNumber = [];
 for(let i = 0; i < 10; i++){
-    randomNumber.push([(Math.floor((Math.random() * 200) + 10)).toString()]);
+    randomNumber.push([(Math.floor((Math.random() * 90) + 10)).toString()]);
 }
 if(car_history_ids.length == 0) car_history_ids = randomNumber;
+
 const updatedCars = new Map();
 
 
@@ -116,17 +117,34 @@ const sortedByKey = new Map(
     Array.from(finalList).sort((a, b) => a[0] > b[0] ? 1 : -1)
 );
 
+
+
 let index = 0;
 sortedByKey.forEach((k, v) => {
-    if(index < 30){
-        for(let car of cars){
-        if(car[0] == k){
-            CreateSuggestionCard(car[6], car[4], car[7], car[8]);
-            index++;
+        if(index < 6){
+            for(let car of cars){
+                let matchFound = false;
+                for(let i = 0; i < car_history_ids.length; i++)
+                {             
+                    if(car_history_ids[i] == car[0]){
+                        matchFound = true;
+                        break; 
+                    }
+                }
+
+                if(car[0] == k && !matchFound){
+                    CreateSuggestionCard(car[6], car[4], car[7], car[8]);4
+                    index++;
+                    break;
+                } 
+            }
+        
         }
-    }
-    }
+    
+    
+    
 });
+
 
 
 function EuclideanSimilarity(vector1, vector2) {
@@ -209,6 +227,12 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
     
     const image = document.createElement('img');
     image.setAttribute('src', imgPath);
+
+
+    const text = document.createElement('span');
+    text.classList.add('recommended-tag');
+    text.innerText = "Recommended";
+    card.appendChild(text);
     
     const name = document.createElement('span');
     name.setAttribute('id', 'name');
