@@ -26,8 +26,6 @@ if (isset($_POST['submit_button'])) {
         $car_id = Database("select max(id) from cars", 1)[0][0];
         $item_id = (Database("select max(id) from items", 1)[0][0] + 1);
         $folder="";
-        echo  $_POST["primaryimageindex"] ."<br>";
-        print_r($_FILES["image"]["name"]);
         for($i = 0,$counter = 1;$i<count($_FILES["image"]["name"]);++$i){
         if($i == $_POST["primaryimageindex"]){
             
@@ -58,7 +56,7 @@ if (isset($_POST['submit_button'])) {
     }
         // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
         Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id,'{$_POST['city']}')", 0);
-        // header("Location: /Nova-Auction/pages/item.php?item_id=".$item_id);
+        header("Location: /Nova-Auction/pages/item.php?item_id=".$item_id);
     }
 }
 
