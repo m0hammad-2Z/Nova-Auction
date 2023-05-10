@@ -59,10 +59,8 @@ require_once "../lib.php"; ?>
                 <select name='sort' id='sort'>
                             <option value='id desc' selected>Newer to Older</option>
                             <option value='id asc'>Older to Newer</option>
-                            <option value='name asc'>A-Z</option>
-                            <option value='name desc'>Z-A</option>
-                            <option value='price desc'>High>Low</option>
-                            <option value='price asc'>Low>High</option>
+                            <option value='price desc'>Price High to Low</option>
+                            <option value='price asc'>Price Low to High</option>
                         </select>
                 <button class='button' name="search" value="search">Search</button>
                 </div>
@@ -89,7 +87,7 @@ require_once "../lib.php"; ?>
                 (isset($_GET["year-to"])) ? ($_GET["year-to"]=="")? $_GET["year-to"]=Database("select max(year_of_make) from cars",1)[0][0] :null :$_GET["year-to"]=Database("select max(year_of_make) from cars",1)[0][0];
                 (isset($_GET["price-from"])) ? ($_GET["price-from"]=="")? $_GET["price-from"]=Database("select min(price) from items",1)[0][0]:null: $_GET["price-from"]=Database("select min(price) from items",1)[0][0];
                 (isset($_GET["price-to"])) ? ($_GET["price-to"]=="")?  $_GET["price-to"]=Database("select max(price) from items",1)[0][0] :null :$_GET["price-to"]=Database("select max(price) from items",1)[0][0];
-                (isset($_GET["sort"])) ? null:$_GET["sort"]="name asc";
+                (isset($_GET["sort"])) ? null:$_GET["sort"]="id desc";
                 
                 $res = Database("select name, price, img_path ,id from items 
                 where lower(city_name) LIKE '%{$_GET["city"]}%'
