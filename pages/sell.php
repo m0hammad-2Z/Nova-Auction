@@ -5,7 +5,62 @@ require_once "../lib.php";
 if (!checkUserId()) {
     header("Location: /Nova-Auction/pages/register.php");
 }
+if (isset($_POST['submit_button'])) {
 
+    if (!checkUserId()) {
+        header("Location: /Nova-Auction/pages/register.php");
+    } else {
+        if (isset($_POST['interior'])) {
+            $selected_interiores ="";
+            foreach( $_POST['interior'] as $key => $interior ){
+                if($key == count($_POST['interior']) - 1)
+                    $selected_interiores .= $interior;
+                else
+                    $selected_interiores .= $interior.", ";
+            }
+        } else {
+            $selected_interiores = 'No Interiors Added';
+        }
+
+        Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}', '{$_POST['color']}', '$selected_interiores', '{$_POST['transmission']}', '{$_POST['car-condition']}', '{$_POST['fuel']}')", 0);
+        $car_id = Database("select max(id) from cars", 1)[0][0];
+        $item_id = (Database("select max(id) from items", 1)[0][0] + 1);
+        $folder="";
+        echo  $_POST["primaryimageindex"] ."<br>";
+        print_r($_FILES["image"]["name"]);
+        for($i = 0,$counter = 1;$i<count($_FILES["image"]["name"]);++$i){
+        if($i == $_POST["primaryimageindex"]){
+            
+            $filename = $_FILES["image"]["name"][$i]."_"."0";
+            $tempname = $_FILES["image"]["tmp_name"][$i];
+            if($i == count($_FILES["image"]["name"])-1){
+                $folder = "user_images/" ."0"."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1] . $folder;
+
+            }else{
+                $folder = "user_images/" ."0"."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1].",". $folder;
+            }
+            move_uploaded_file($tempname, ("../" . "user_images/" ."0"."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1]));
+
+        }
+        else{
+            $filename = $_FILES["image"]["name"][$i]."_".($counter);
+            $tempname = $_FILES["image"]["tmp_name"][$i];
+            if($i == count($_FILES["image"]["name"])-1){
+                $folder .= "user_images/" .$counter."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1];
+
+            }else{
+                $folder .= "user_images/" .$counter."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1].",";
+            }
+            move_uploaded_file($tempname, ("../" . "user_images/" .$counter."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1]));
+            $counter++;
+        }
+        // echo $car_id . "<br>";
+    }
+        // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
+        Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id,'{$_POST['city']}')", 0);
+        // header("Location: /Nova-Auction/pages/item.php?item_id=".$item_id);
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -87,36 +142,7 @@ if (!checkUserId()) {
 
                     <?php
 
-                    if (isset($_POST['submit_button'])) {
-
-                        if (!checkUserId()) {
-                            header("Location: /Nova-Auction/pages/register.php");
-                        } else {
-                            if (isset($_POST['interior'])) {
-                                $selected_interiores ="";
-                                foreach( $_POST['interior'] as $key => $interior ){
-                                    if($key == count($_POST['interior']) - 1)
-                                        $selected_interiores .= $interior;
-                                    else
-                                        $selected_interiores .= $interior.", ";
-                                }
-                            } else {
-                                $selected_interiores = 'No Interiors Added';
-                            }
-
-                            Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}', '{$_POST['color']}', '$selected_interiores', '{$_POST['transmission']}', '{$_POST['car-condition']}', '{$_POST['fuel']}')", 0);
-                            $filename = $_FILES["image"]["name"];
-                            $tempname = $_FILES["image"]["tmp_name"];
-                            print_r($_FILES);
-                            $folder = "user_images/" . $_SESSION['user_id'] . (Database("select max(id) from items", 1)[0][0] + 1) . "." . explode("/", $_FILES["image"]["type"])[1];
-                            $car_id = Database("select max(id) from cars", 1)[0][0];
-                            // echo $car_id . "<br>";
-                            move_uploaded_file($tempname, "../" . $folder);
-                            // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
-                            Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id,'{$_POST['city']}')", 0);
-                            echo "<span class='register_error'>Item added</span>";
-                        }
-                    }
+                   
 
                     ?>
 
@@ -291,7 +317,7 @@ if (!checkUserId()) {
         for(let i = 0 ;i<inputs.files.length ;++i){
             let fr = new FileReader();
             fr.readAsDataURL(inputs.files[i]);
-            fr.onload = function(e){
+            fr.onloadstart = function(e){
                 let newPic= document.createElement("div");
                 newPic.classList.add("imgContainer");
                 newPic.setAttribute("onclick", "makePrimary(this)");
@@ -300,10 +326,15 @@ if (!checkUserId()) {
                     newPic.classList.add("primary");
                 }
                 newNode.id="uploadPreview";
-                newNode.src = e.target.result;
                 newPic.appendChild(newNode);
                 preview.appendChild(newPic);
+                fr.onloadend = (e) =>{
+
+                    newNode.src = e.target.result;
+                }
+                
             }
+            
         }
     }
 
@@ -316,7 +347,12 @@ if (!checkUserId()) {
             }
         }
         cont.classList.add("primary");
-       
+        for(var i = 0 ;i<containers.length;++i){
+            if(containers[i].classList.contains("primary")){
+                document.getElementById("primaryimageindex").value = i;
+                break;
+            }
+        }
         
     }
 </script>

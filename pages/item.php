@@ -28,7 +28,10 @@ require_once "../lib.php";
                 }
 
                 $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
-                
+                $imgArr = explode(",",$item[0][3]);
+                if(explode("/",$imgArr[0])[0] == "user_images"){
+                    $imgArr[0] = "/Nova-Auction/".$imgArr[0];
+                }
                 if(isset($_SESSION["user_id"]) && count(Database("select user_id,car_id from view_history where user_id = {$_SESSION['user_id']} and car_id = {$item[0]['car_id']}",1,MYSQLI_NUM)) == 0)
                     Database("insert into view_history values(default,{$_SESSION['user_id']},{$item[0]['car_id']},{$item[0]['price']})",0);
 
@@ -45,11 +48,25 @@ require_once "../lib.php";
             <div class="left-container">
             <div class="item-pic container">
                 <div class="main-pic">
-                    <img id="blurred" src=<?php echo $item[0][3]; ?> alt=''>
-                    <img id="main-image" src=<?php echo $item[0][3]; ?> alt=''>
+                    <img id="blurred" src=<?php echo $imgArr[0] ?> alt=''>
+                    <img id="main-image" src=<?php echo $imgArr[0] ?> alt=''>
                 </div>
 
-                <div class="side-pics", id="side-pics">
+                <?php 
+
+                    if(count($imgArr)>1){
+                        echo "<div class='side-pics', id='side-pics'>";
+                        foreach($imgArr as $key => $value){
+                            if(explode("/",$value)[0] == "user_images"){
+                                $value= "/Nova-Auction/".$value;
+                            }
+                            print("<img id='im' src='$value' onclick='changeImg(\"$value\")' alt=''>");
+                        }
+                        echo "</div>";
+                    }
+                ?>
+                
+<!--                     
                     <img id="im" src=<?php echo $item[0][3]; ?> onclick="changeImg('<?php echo $item[0][3]; ?>')" alt=''>
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
@@ -62,8 +79,7 @@ require_once "../lib.php";
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
                     <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                </div>
+                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt=""> -->
 
             </div>
                     <div class="info container">

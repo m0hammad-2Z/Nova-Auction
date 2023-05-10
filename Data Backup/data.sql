@@ -18,7 +18,8 @@
 --
 -- Table structure for table `car_info`
 --
-
+create schema nova_auction;
+use nova_auction;
 DROP TABLE IF EXISTS `car_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -135,8 +136,8 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(1000) DEFAULT NULL,
-  `des` varchar(10000) DEFAULT NULL,
-  `img_path` varchar(2000) DEFAULT NULL,
+  `des` text DEFAULT NULL,
+  `img_path` text DEFAULT NULL,
   `price` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `car_id` int DEFAULT NULL,

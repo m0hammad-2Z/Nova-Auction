@@ -129,6 +129,9 @@ require_once "../lib.php"; ?>
                     $name = $res[$i][0];
                     $price = $res[$i][1];
                     $img_p = $res[$i][2];
+                    if(count(explode(",",$img_p))>1){
+                        $img_p = explode(",",$img_p)[0];
+                    }
                     $item_id = $res[$i][3];
                     if(explode("/",$img_p)[0] == "user_images"){
                         $img_p = "/Nova-Auction/".$img_p;

@@ -73,6 +73,7 @@
     grid-auto-flow: column;
     overflow-y: hidden;
     overflow-x: auto;
+    width: fit-content;
     gap:0.2em;
 }
 

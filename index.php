@@ -44,9 +44,13 @@ require_once "./lib.php";
         <p>Copyright © 2022 Nova | Design By Humble Ghost Team</p>
         
     <?php
-         $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path, items.id from cars, items where items.car_id = cars.id', 1, MYSQLI_NUM);
-         $carsJson = json_encode($carsRes);
-         echo "<script>var carsData = " . $carsJson . ";</script>";
+        $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path, items.id from cars, items where items.car_id = cars.id', 1, MYSQLI_NUM);
+        foreach($carsRes as $key => $value)
+        if(count(explode(",",$carsRes[$key][7]))>1){
+            $carsRes[$key][7] = explode(",",$carsRes[$key][7])[0];
+        }
+        $carsJson = json_encode($carsRes);
+        echo "<script>var carsData = " . $carsJson . ";</script>";
         
         if(checkUserId()){
             $userRes = Database("Select car_id from view_history where user_id = {$_SESSION['user_id']} order by id DESC limit 5", 1, MYSQLI_NUM);

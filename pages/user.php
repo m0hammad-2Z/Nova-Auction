@@ -61,6 +61,9 @@ if(!checkUserId()){
             for($i = 0; $i < count($res); $i++) {
                  $name = $res[$i]['name'];
                  $img_p = $res[$i]['img_path'];
+                 if(count(explode(",",$img_p))>1){
+                    $img_p = explode(",",$img_p)[0];
+                }
                  if(explode("/",$img_p)[0] == "user_images"){
                     $img_p = "/Nova-Auction/".$img_p;
                 }
