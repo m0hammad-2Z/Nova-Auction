@@ -147,6 +147,8 @@ textarea {
     height: 70%;
     object-fit: cover;
 }
+
+
 .card:hover{
     transform: translateY(-2%) scale(1.05);
     box-shadow: 0 0.5em 0.8em 0.0em rgba(50, 49, 104, 0.349);
@@ -178,6 +180,16 @@ textarea {
     grid-template-columns: 1fr 1fr;
     gap: 3em;
 }
+
+.card > .recommended-tag{
+    position: absolute;
+    color: white;
+    background-color: #007F5F;
+    border-radius: 0px 0px 5px 0;
+    padding: 5px;
+    font-size: 14px;
+    margin: 0;  
+}
 	
 /* Small screen devices (600px and above) */
 @media only screen and (min-width: 0px) {
@@ -194,6 +206,7 @@ textarea {
     justify-content: center;
     }
     .cards-grid{
+        margin: 1em;
         padding-top: 1.45em;
         /* border:0.5em blue solid; */
         display: grid;
