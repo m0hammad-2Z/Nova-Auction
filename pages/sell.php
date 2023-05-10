@@ -45,7 +45,7 @@ if (!checkUserId()) {
                             <img id="uploadPreview" src="">
                         </div> -->
                         </div>
-                        <input id='photo-upload' onchange='uploadPreviewfun()' type='file' name='image' accept="image/*" multiple required>
+                        <input id='photo-upload' onchange='uploadPreviewfun()' type='file' name='image[]' accept="image/*" multiple required>
                         <label for='photo-upload'>Upload Photo</label>
 
                     </div>
@@ -93,14 +93,21 @@ if (!checkUserId()) {
                             header("Location: /Nova-Auction/pages/register.php");
                         } else {
                             if (isset($_POST['interior'])) {
-                                $selected_interiores = serialize($_POST['interior']);
+                                $selected_interiores ="";
+                                foreach( $_POST['interior'] as $key => $interior ){
+                                    if($key == count($_POST['interior']) - 1)
+                                        $selected_interiores .= $interior;
+                                    else
+                                        $selected_interiores .= $interior.", ";
+                                }
                             } else {
-                                $selected_interiores = serialize(array('No Interiors Added'));
+                                $selected_interiores = 'No Interiors Added';
                             }
 
                             Database("insert into cars values(default,'{$_POST['car_mekes']}','{$_POST['model']}', '{$_POST['year']}', '{$_POST['color']}', '$selected_interiores', '{$_POST['transmission']}', '{$_POST['car-condition']}', '{$_POST['fuel']}')", 0);
                             $filename = $_FILES["image"]["name"];
                             $tempname = $_FILES["image"]["tmp_name"];
+                            print_r($_FILES);
                             $folder = "user_images/" . $_SESSION['user_id'] . (Database("select max(id) from items", 1)[0][0] + 1) . "." . explode("/", $_FILES["image"]["type"])[1];
                             $car_id = Database("select max(id) from cars", 1)[0][0];
                             // echo $car_id . "<br>";
