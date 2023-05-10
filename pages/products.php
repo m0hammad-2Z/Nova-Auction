@@ -23,7 +23,7 @@ require_once "../lib.php"; ?>
         <div class='search-options'>
             <form class='search-form' method='get'>
                 <select  name='city' id='city'>
-                    <option  value="" disabled selected>City</option>
+                    <option  value=""  selected>ِAll cities</option>
                     <?php 
                     $res = Database("select concat(upper(substring(city_name,1,1)),lower(substring(city_name,2))) from city",1);
                         foreach($res as $row){
@@ -34,7 +34,7 @@ require_once "../lib.php"; ?>
                 </select>
 
                 <select onchange='getSelected()' name='car_mekes' id='car-mekes'  >
-                        <option value="" disabled selected>Car makes</option>
+                        <option value="" selected>All Car makers</option>
                         <?php 
                         $res = Database("select upper(makes_name) from car_info group by makes_name",1);
                             foreach($res as $row){
@@ -45,7 +45,7 @@ require_once "../lib.php"; ?>
                 </select>
                 
                 <select name='car-model' id='model' disabled  >
-                        <option value="" disabled selected>Model</option>
+                        <option value="" selected>All Models</option>
                 </select>
                 <div class="group-info">
                 <input type="number" min="0" name='price-from' placeholder='Price from' >
@@ -57,7 +57,8 @@ require_once "../lib.php"; ?>
                 </div>
                 <div class="group-info">
                 <select name='sort' id='sort'>
-                            <option value='' disabled selected>Sort by</option>
+                            <option value='id desc' selected>Newer to Older</option>
+                            <option value='id asc'>Older to Newer</option>
                             <option value='name asc'>A-Z</option>
                             <option value='name desc'>Z-A</option>
                             <option value='price desc'>High>Low</option>
