@@ -100,6 +100,7 @@ for (let l of cars) {
 const userVector = new Array(numberOfElementsInCars).fill(0);
 for (let i of car_history_ids) {
     const l = updatedCars.get(i[0]);
+    console.log(l)
     for (let d = 0; d < numberOfElementsInCars; d++) {
         userVector[d] += l[d];
     }
