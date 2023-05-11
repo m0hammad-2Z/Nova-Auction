@@ -225,7 +225,7 @@ function minMax(list, numaricIndexes) {
 }
 
 
-function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isNew){
+function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isRecommended){
     const cardsGrid = document.getElementById("cards-grid");
 
 
@@ -237,7 +237,7 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isNew){
 
 
     const text = document.createElement('span');
-    if(isNew){
+    if(isRecommended){
         text.classList.add('recommended-tag');
         text.innerText = "Recommended";
     }else{
@@ -257,19 +257,25 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isNew){
     price.innerText = "Price: "+priceText+"$";
     
     const link = document.createElement('a');
-    const button = document.createElement('button');
-    button.classList.add('button', 'b_card');
-    button.innerText = "View";
+    // const button = document.createElement('button');
+    // button.classList.add('button', 'b_card');
+    // if(!isRecommended){
+    //     button.style.color = "#00377f";
+    //     button.style.border = "3px solid #00377f";
+    // }else{
+    //     button.style.color = "var(--color)";
+    // }
+    
     link.setAttribute('href', '/Nova-Auction/pages/item.php?item_id=' + itemId);
-    link.appendChild(button);
+    // link.appendChild(button);
     
     card.appendChild(image);
     card.appendChild(name);
     card.appendChild(br);
     card.appendChild(price);
-    card.appendChild(link);
+    link.appendChild(card);
 
-    cardsGrid.appendChild(card);
+    cardsGrid.appendChild(link);
     
 }
 

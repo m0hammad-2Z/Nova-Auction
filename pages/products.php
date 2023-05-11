@@ -137,16 +137,18 @@ require_once "../lib.php"; ?>
                         $img_p = "/Nova-Auction/".$img_p;
                     }
                     print("
+                    <a href='/Nova-Auction/pages/item.php?item_id=$item_id' >
+
                         <div class='card'>
                             <img src='$img_p' alt=''>
                             <span id='name'> $name</span>
                             <br>
                             <span>Price: <bold>$price$</bold></span>
                             <br>
-                            <a href='/Nova-Auction/pages/item.php?item_id=$item_id' ><button class='button b_card' >View</button></a>
                         </div>
+                    </a>
                     ");
-
+                    //<button class='button b_card' >View</button>
                     }
                     
                     
