@@ -190,6 +190,15 @@ textarea {
     font-size: 14px;
     margin: 0;  
 }
+.card > .new-tag{
+    position: absolute;
+    color: white;
+    background-color: #00377f;
+    border-radius: 0px 0px 5px 0;
+    padding: 5px;
+    font-size: 14px;
+    margin: 0;  
+}
 	
 /* Small screen devices (600px and above) */
 @media only screen and (min-width: 0px) {

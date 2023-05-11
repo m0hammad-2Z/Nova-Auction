@@ -70,6 +70,10 @@ require_once "./lib.php";
 const cars = carsData;
 let car_history_ids = userData;
 
+for(let k = 0; k < 6; k++){
+    CreateSuggestionCard(cars[k][6], cars[k][4], cars[k][7], cars[k][8], true);
+}
+
 //In case no car history data
 const randomNumber = [];
 for(let i = 0; i < 10; i++){
@@ -136,7 +140,7 @@ sortedByKey.forEach((k, v) => {
                 }
 
                 if(car[0] == k && !matchFound){
-                    CreateSuggestionCard(car[6], car[4], car[7], car[8]);
+                    CreateSuggestionCard(car[6], car[4], car[7], car[8], false);
                     index++;
                     break;
                 } 
@@ -221,7 +225,7 @@ function minMax(list, numaricIndexes) {
 }
 
 
-function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
+function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isNew){
     const cardsGrid = document.getElementById("cards-grid");
 
 
@@ -233,8 +237,13 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId){
 
 
     const text = document.createElement('span');
-    text.classList.add('recommended-tag');
-    text.innerText = "Recommended";
+    if(isNew){
+        text.classList.add('recommended-tag');
+        text.innerText = "Recommended";
+    }else{
+        text.classList.add('new-tag');
+        text.innerText = "Newly Added";
+    }
     card.appendChild(text);
     
     const br = document.createElement("br");
