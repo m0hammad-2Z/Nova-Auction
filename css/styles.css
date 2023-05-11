@@ -218,7 +218,7 @@ textarea {
     padding: 0.2em;
     display: flex;
     flex-direction: row;
-    gap: 0.5em;
+    gap: 1em;
     align-items: center;
 }
 
