@@ -139,11 +139,9 @@ require_once "../lib.php"; ?>
                     <a href='/Nova-Auction/pages/item.php?item_id=$item_id' >
 
                         <div class='card'>
+                            <span class='pcice'>Price: <bold>$price$</bold></span>
                             <img src='$img_p' alt=''>
                             <span id='name'> $name</span>
-                            <br>
-                            <span>Price: <bold>$price$</bold></span>
-                            <br>
                         </div>
                     </a>
                     ");
