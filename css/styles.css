@@ -187,10 +187,23 @@ textarea {
     font-weight: bold;
     
 } */
-
+/* 
 .card .button:hover{
     background-color: var(--color);
     color: white;
+} */
+
+.card > .pcice{
+    position: absolute;
+    color: white;
+    background-color: #007f5fcc;
+    border-radius: 0;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    right: 0;  
+    
 }
 
 .cards-grid{
