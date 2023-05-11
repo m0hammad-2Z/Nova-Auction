@@ -255,7 +255,7 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isRecommende
     
     const price = document.createElement('span');
     price.innerText = "Price: "+priceText+"$";
-    
+    price.id="price";
     const link = document.createElement('a');
     // const button = document.createElement('button');
     // button.classList.add('button', 'b_card');
