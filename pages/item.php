@@ -144,7 +144,7 @@ $item = Database("select * from items,cars,user_info where items.id = {$_GET["it
         </div>
         
     
-        <div class='item-comment-container'>
+        <div class='item-comment-container container'>
             <h1>Comment</h1>
             <div class='item-comments'></div>
             <div class='comment-form'>
