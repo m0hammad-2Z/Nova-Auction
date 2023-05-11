@@ -1,6 +1,12 @@
 <?php
 // init PHP
 require_once "../lib.php"; 
+if(!isset($_GET["item_id"]) ||  count(Database("select id from items where id = {$_GET['item_id']}", 1)) <= 0){
+    header("Location: /Nova-Auction/pages/products.php"); 
+}
+
+$item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
+
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +15,8 @@ require_once "../lib.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
+    <title><?php echo $item[0]['name']; ?></title>
+    <link rel="icon" type="image/png" href="/Nova-Auction/img/fav.png">
     <link rel="stylesheet" href="/Nova-Auction/css/styles.css">
     <link rel="stylesheet" href="/Nova-Auction/css/auction.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -23,12 +30,7 @@ require_once "../lib.php";
     <div class="main">
 
             <?php 
-                if(!isset($_GET["item_id"]) ||  count(Database("select id from items where id = {$_GET['item_id']}", 1)) <= 0){
-                    header("Location: /Nova-Auction/pages/products.php"); 
-                }
-
-                $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
-                $imgArr = explode(",",$item[0][3]);
+                 $imgArr = explode(",",$item[0][3]);
                 if(explode("/",$imgArr[0])[0] == "user_images"){
                     $imgArr[0] = "/Nova-Auction/".$imgArr[0];
                 }

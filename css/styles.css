@@ -131,6 +131,7 @@ textarea {
 }
 
 .card{
+    position: relative;
     color: rgb(44, 44, 43);
     background-color: transparent;
     text-transform: capitalize;
@@ -141,6 +142,18 @@ textarea {
     /* box-shadow: 0 0 0.2em 0.05em rgba(3, 1, 19, 0.068); */
     overflow: hidden;
     transition: box-shadow 0.35s ease,transform 0.35s ease;
+    background-image: linear-gradient(180deg ,white , transparent);
+}
+.card::after{
+    content: "";
+    width: 0%;
+    height: 0.25em;
+    position: absolute;
+    background-color: var(--color);
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    transition: width 0.2s ease-out;
 }
 .card > img{
     width:100%;
@@ -153,7 +166,13 @@ textarea {
 .card:hover{
     transform: translateY(-2%) scale(1.05);
     box-shadow: 0 0.5em 0.8em 0.0em rgba(50, 49, 104, 0.349);
+    /* border-radius:0 0 2em 2em; */
 }
+
+.card:hover::after{
+    width: 100%;
+}
+
 .card >:not(img){
     margin-left: 5%;
 }
