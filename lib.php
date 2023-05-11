@@ -5,7 +5,7 @@ function Database($query, $Insert_or_Load, $arrayType = MYSQLI_BOTH)
 {
     //0 for insert
     //1 for load
-    $conn = new mysqli("localhost", "root", "12345678", "nova_auction");
+    $conn = new mysqli("localhost", "root", "", "nova_auction");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -19,7 +19,6 @@ function Database($query, $Insert_or_Load, $arrayType = MYSQLI_BOTH)
     mysqli_close($conn);
     return $res;
 }
-
 
 function checkUserId(){
     if (isset($_SESSION['user_id'])) {
@@ -62,7 +61,10 @@ function printNav()
             </div>
         </nav>");
     } else {
-        
+        if (basename($_SERVER['PHP_SELF']) == 'index.php')
+            $img_path = Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
+        else
+            $img_path = "../" . Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
         print("
         <nav class='main-nav'>
             <div class='navbar'>
@@ -110,9 +112,9 @@ function printNav()
                         </g>
                         </svg>
                     </a>
-                    <a href='/Nova-Auction/pages/user.php'>".
-                        Database("select first_name from user_info where id = '".$_SESSION['user_id']."'",1)[0][0]
-                    ."
+                    <a href='/Nova-Auction/pages/user.php'><img class='user-image' id='user-image' src=".
+                    $img_path
+                    .">
                         </a>
                 </div>
             </div>

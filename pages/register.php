@@ -95,7 +95,7 @@ require_once "../lib.php"; ?>
                         1
                     )[0][0];
 
-                    $des = "../" . "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
+                    $des = "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
                         echo $des;
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $des)) {
                         Database("UPDATE user_info SET img_path = '{$des}' WHERE id = '{$_SESSION['user_id']}'" , 0);

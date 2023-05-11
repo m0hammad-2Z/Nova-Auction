@@ -278,8 +278,5 @@ function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isRecommende
     cardsGrid.appendChild(link);
     
 }
-
-
-
 </script>
 </html>
