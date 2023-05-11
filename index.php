@@ -66,7 +66,7 @@ require_once "./lib.php";
     </footer>
 
 </body>
-<script>   
+<script defer>   
 const cars = carsData;
 let car_history_ids = userData;
 

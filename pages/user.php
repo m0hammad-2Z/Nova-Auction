@@ -35,8 +35,9 @@ if(!checkUserId()){
             if(isset($_POST['item-delete-option'])){
                 $data = Database("select cars.id, items.img_path from cars, items where items.id = {$_POST['item-delete-option']} and cars.id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1,MYSQLI_ASSOC);
                 Database("DELETE FROM comment WHERE item_id = {$_POST['item-delete-option']}", 0);
+                Database("DELETE FROM cars WHERE id = {$data[0]['id']}", 0); // from cars
+                Database("DELETE FROM view_history WHERE car_id = {$data[0]['id']}", 0); // from cars
                 Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
-                // Database("DELETE FROM cars WHERE id = {$data[0]['id']}", 0); // from cars
 
                 #delete the image
                 $imgArr =explode(",", $data[0]['img_path']);
