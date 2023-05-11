@@ -32,7 +32,7 @@ if (isset($_POST['submit_button'])) {
             $filename = $_FILES["image"]["name"][$i]."_"."0";
             $tempname = $_FILES["image"]["tmp_name"][$i];
             if($i == count($_FILES["image"]["name"])-1){
-                $folder = "user_images/" ."0"."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1] . $folder;
+                $folder = "user_images/" ."0"."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1] .",". $folder;
 
             }else{
                 $folder = "user_images/" ."0"."_". $_SESSION['user_id'] . $item_id . "." . explode("/", $_FILES["image"]["type"][$i])[1].",". $folder;
@@ -56,6 +56,7 @@ if (isset($_POST['submit_button'])) {
     }
         // echo "insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', 2005000,{$_SESSION['user_id']},$car_id)" . "<br>";
         Database("insert into items values(default,'{$_POST['product_name']}','{$_POST['product_des']}', '$folder', {$_POST['price']},{$_SESSION['user_id']},$car_id,'{$_POST['city']}')", 0);
+        $item_id = (Database("select max(id) from items", 1)[0][0]);
         header("Location: /Nova-Auction/pages/item.php?item_id=".$item_id);
     }
 }

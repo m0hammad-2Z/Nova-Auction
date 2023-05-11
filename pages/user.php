@@ -33,15 +33,24 @@ if(!checkUserId()){
             <h1><?php 
 
             if(isset($_POST['item-delete-option'])){
-                $data = Database("select cars.id, items.img_path from cars, items where cars.id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1);
+                $data = Database("select cars.id, items.img_path from cars, items where items.id = {$_POST['item-delete-option']} and cars.id = (select car_id from items where id = '{$_POST['item-delete-option']}')",1,MYSQLI_ASSOC);
+                Database("DELETE FROM comment WHERE item_id = {$_POST['item-delete-option']}", 0);
                 Database("DELETE FROM items WHERE id = {$_POST['item-delete-option']}", 0);
                 // Database("DELETE FROM cars WHERE id = {$data[0]['id']}", 0); // from cars
 
                 #delete the image
-                $image ="../". $data[0]['img_path'];
-                if (file_exists($image)) {
-                    unlink($image);
+                $imgArr =explode(",", $data[0]['img_path']);
+        
+                
+                foreach($imgArr as $key => $value){
+                    if(explode("/",$value)[0] == "user_images"){
+                        $value=  $_SERVER['DOCUMENT_ROOT']."/Nova-Auction/".$value;
+                    }
+                    if (file_exists($value)) {
+                        unlink($value);
+                    }
                 }
+               
             }
             $user_info = Database("select * from user_info where id = '".$_SESSION['user_id']."'",1);
             echo 'Hello, '.$user_info[0]['first_name']." ".$user_info[0]['last_name'];

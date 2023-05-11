@@ -32,16 +32,9 @@ require_once "../lib.php";
                 if(explode("/",$imgArr[0])[0] == "user_images"){
                     $imgArr[0] = "/Nova-Auction/".$imgArr[0];
                 }
-                if(isset($_SESSION["user_id"]) && count(Database("select user_id,car_id from view_history where user_id = {$_SESSION['user_id']} and car_id = {$item[0]['car_id']}",1,MYSQLI_NUM)) == 0)
+                if(isset($_SESSION["user_id"]) && count(Database("select user_id,car_id from view_history where user_id = {$_SESSION['user_id']} and car_id = {$item[0]['car_id']}",1,MYSQLI_NUM)) == 0){
                     Database("insert into view_history values(default,{$_SESSION['user_id']},{$item[0]['car_id']},{$item[0]['price']})",0);
-
-                // $interorsArray = '';
-
-                // foreach(unserialize($item[0]['interiors']) as $int){
-                //     $interorsArray .= ucfirst($int) . ", ";
-                // }
-                // $interorsArray = substr_replace($interorsArray, "", -2);
-
+                }
             ?>
 
         
@@ -65,21 +58,6 @@ require_once "../lib.php";
                         echo "</div>";
                     }
                 ?>
-                
-<!--                     
-                    <img id="im" src=<?php echo $item[0][3]; ?> onclick="changeImg('<?php echo $item[0][3]; ?>')" alt=''>
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt="">
-                    <img id='im' src="https://picsum.photos/100" onclick="changeImg('https://picsum.photos/100')" alt=""> -->
 
             </div>
                     <div class="info container">
