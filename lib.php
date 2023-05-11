@@ -42,7 +42,7 @@ function printNav()
             <div class='navbar'>
                 <div class='logo'>
                     <a href='/Nova-Auction/'>
-                        <h1>كر<span style='color: var(--color);'>ا</span>ج</h1>
+                        <h1>NO<span style='color: var(--color);'>V</span>A</h1>
                     </a>
                 </div>
                 <div class='nav-links'>
@@ -70,7 +70,7 @@ function printNav()
             <div class='navbar'>
                 <div class='logo'>
                     <a href='/Nova-Auction/'>
-                        <h1>كر<span style='color: var(--color);'>ا</span>ج</h1>
+                        <h1>NO<span style='color: var(--color);'>V</span>A</h1>
                     </a>
                 </div>
                 <div class='nav-links'>
