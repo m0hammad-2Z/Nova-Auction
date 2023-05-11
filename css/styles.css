@@ -136,9 +136,9 @@ textarea {
     background-color: transparent;
     text-transform: capitalize;
     width: 20em; /*29*/
-    height: 20em; /*23*/
+    height: 17em; /*23*/
     font-weight: 600;
-    /* border-radius: 0.3em; */
+    border-radius: 0.3em;
     /* box-shadow: 0 0 0.2em 0.05em rgba(3, 1, 19, 0.068); */
     overflow: hidden;
     transition: box-shadow 0.35s ease,transform 0.35s ease;
