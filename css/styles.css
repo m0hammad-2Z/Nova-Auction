@@ -173,9 +173,9 @@ textarea {
     width: 100%;
 }
 
-.card >:not(img){
+/* .card >:not(img){
     margin-left: 5%;
-}
+} */
 
 /* .card .button{
     margin-top: 1em;
@@ -193,7 +193,7 @@ textarea {
     color: white;
 } */
 
-.card > .pcice{
+/* .card > .price{
     position: absolute;
     color: white;
     background-color: #007f5fcc;
@@ -203,8 +203,7 @@ textarea {
     font-weight: bold;
     margin: 0;
     right: 0;  
-    
-}
+} */
 
 .cards-grid{
     padding-top: 1.45em;
@@ -212,6 +211,31 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3em;
+}
+
+.card > .name_img{
+    height: 25%;
+    padding: 0.2em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.user-image{
+    width: 38px;
+    height: 35px;
+     object-fit: cover;
+     border-radius: 50%;
+     border: 1px solid rgb(65, 63, 63);
+}
+.card > .name_img > .text {
+    display: flex;
+    flex-direction: column;
+}
+.card > .name_img > .text >span:nth-child(2){
+    font-size: 0.94m;
+    color: rgba(56, 55, 55, 0.726);
 }
 
 .card > .recommended-tag{
@@ -233,7 +257,13 @@ textarea {
     font-size: 14px;
     font-weight: bold;
     margin: 0;  
-    
+}
+
+#name {
+    margin: 0;
+    font-size: 1.1em;
+    word-break: keep-all;
+    white-space: nowrap;
 }
 	
 /* Small screen devices (600px and above) */

@@ -9,7 +9,8 @@ email varchar(50),
 pass varchar(50),
 phonenumber varchar(20),
 rule varchar(20) default 'User',
-banned BOOLEAN NOT NULL DEFAULT false
+banned BOOLEAN NOT NULL DEFAULT false,
+img_path Text
 );
 
 create table cars(

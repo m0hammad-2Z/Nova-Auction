@@ -76,7 +76,7 @@ require_once "../lib.php"; ?>
         //     and year_of_make BETWEEN 0 and 99000099) 
         // and price BETWEEN 0 and 9999999; 
                 
-                $NOIPP = 30;  /*Number Of Items Per Page*/
+                $NOIPP = 24;  /*Number Of Items Per Page*/
                 
                 (isset($_GET['page'])) ? null : $_GET["page"] = 1;
                 (isset($_GET["city"])) ? null : $_GET["city"]="";
@@ -88,7 +88,7 @@ require_once "../lib.php"; ?>
                 (isset($_GET["price-to"])) ? ($_GET["price-to"]=="")?  $_GET["price-to"]=Database("select max(price) from items",1)[0][0] :null :$_GET["price-to"]=Database("select max(price) from items",1)[0][0];
                 (isset($_GET["sort"])) ? null:$_GET["sort"]="id desc";
                 
-                $res = Database("select name, price, img_path ,id from items 
+                $res = Database("select name, price, img_path ,id, user_id from items 
                 where lower(city_name) LIKE '%{$_GET["city"]}%'
                 and car_id IN
                 (select id from cars
@@ -97,6 +97,8 @@ require_once "../lib.php"; ?>
                 and year_of_make BETWEEN {$_GET["year-from"]} and {$_GET["year-to"]})
                 and price BETWEEN {$_GET["price-from"]} and {$_GET["price-to"]} 
                 order by {$_GET["sort"]}" , 1);
+
+                
 
                if(count($res)>0){
                     if($_GET["page"]*$NOIPP < count($res)){
@@ -120,11 +122,14 @@ require_once "../lib.php"; ?>
                         </div>"
                     );
                 }
-
+                
 
                 echo "<div class='cards-grid'>";
                 for($i = $_GET["page"]*$NOIPP-$NOIPP; $i < count($res); $i++) {
                     if($i>$_GET["page"]*$NOIPP-1)break;
+
+                    $user_img =  Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
+
                     $name = $res[$i][0];
                     $price = $res[$i][1];
                     $img_p = $res[$i][2];
@@ -135,13 +140,18 @@ require_once "../lib.php"; ?>
                     if(explode("/",$img_p)[0] == "user_images"){
                         $img_p = "/Nova-Auction/".$img_p;
                     }
+                    
                     print("
                     <a href='/Nova-Auction/pages/item.php?item_id=$item_id' >
-
                         <div class='card'>
-                            <span class='pcice'><bold>$price$</bold></span>
                             <img src='$img_p' alt=''>
-                            <span id='name'> $name</span>
+                            <div class='name_img'>
+                                <img class='user-image' src='$user_img' alt=''>
+                                <div class ='text'>
+                                    <span id='name'> $name </span>
+                                    <span class='price'>$price$</span>
+                                </div>
+                            </div>    
                         </div>
                     </a>
                     ");

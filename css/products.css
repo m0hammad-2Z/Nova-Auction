@@ -100,9 +100,4 @@ select:focus{
 
 
 
-#name {
-    margin: 0;
-    font-size: 1.25em;
-    word-break: keep-all;
-    white-space: nowrap;
-}
+
