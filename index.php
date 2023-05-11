@@ -98,14 +98,12 @@ for (let l of cars) {
 
 
 const userVector = new Array(numberOfElementsInCars).fill(0);
-for (let i of car_history_ids) {
-    const l = updatedCars.get(i[0]);
-    console.log(l)
-    for (let d = 0; d < numberOfElementsInCars; d++) {
-        userVector[d] += l[d];
+for (let carId of car_history_ids) {
+    const updatedCar = updatedCars.get(carId[0]);
+    for (let elementIndex = 0; elementIndex < numberOfElementsInCars; elementIndex++) {
+        userVector[elementIndex] += updatedCar[elementIndex];
     }
 }
-
 for (let k = 0; k < numberOfElementsInCars; k++) {
     userVector[k] /= car_history_ids.length;
 }
