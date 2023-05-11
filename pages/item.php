@@ -18,7 +18,7 @@ $item = Database("select * from items,cars,user_info where items.id = {$_GET["it
     <title><?php echo $item[0]['name']; ?></title>
     <link rel="icon" type="image/png" href="/Nova-Auction/img/fav.png">
     <link rel="stylesheet" href="/Nova-Auction/css/styles.css">
-    <link rel="stylesheet" href="/Nova-Auction/css/auction.css">
+    <link rel="stylesheet" href="/Nova-Auction/css/item.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
