@@ -44,7 +44,7 @@ require_once "./lib.php";
         <p>Copyright © 2022 Nova | Design By Humble Ghost Team</p>
         
     <?php
-        $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path, items.id from cars, items where items.car_id = cars.id', 1, MYSQLI_NUM);
+        $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path, items.id from cars, items where items.car_id = cars.id order by cars.id DESC', 1, MYSQLI_NUM);
         foreach($carsRes as $key => $value)
         if(count(explode(",",$carsRes[$key][7]))>1){
             $carsRes[$key][7] = explode(",",$carsRes[$key][7])[0];
