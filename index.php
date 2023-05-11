@@ -71,7 +71,7 @@ const cars = carsData;
 let car_history_ids = userData;
 
 for(let k = 0; k < 6; k++){
-    CreateSuggestionCard(cars[k][6], cars[k][4], cars[k][7], cars[k][8], true);
+    CreateSuggestionCard(cars[k][6], cars[k][4], cars[k][7], cars[k][8], false);
 }
 
 //In case no car history data
@@ -140,7 +140,7 @@ sortedByKey.forEach((k, v) => {
                 }
 
                 if(car[0] == k && !matchFound){
-                    CreateSuggestionCard(car[6], car[4], car[7], car[8], false);
+                    CreateSuggestionCard(car[6], car[4], car[7], car[8], true);
                     index++;
                     break;
                 } 
