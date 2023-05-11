@@ -164,8 +164,8 @@ textarea {
 
 
 .card:hover{
-    transform: translateY(-2%) scale(1.05);
-    box-shadow: 0 0.5em 0.8em 0.0em rgba(50, 49, 104, 0.349);
+    /* transform: translateY(-2%) scale(1.05); */
+    /* box-shadow: 0 0.5em 0.8em 0.0em rgba(50, 49, 104, 0.349); */
     /* border-radius:0 0 2em 2em; */
 }
 
