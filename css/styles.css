@@ -135,7 +135,7 @@ textarea {
     color: rgb(44, 44, 43);
     background-color: transparent;
     text-transform: capitalize;
-    width: 20em; /*29*/
+    width: 22em; /*29*/
     height: 17em; /*23*/
     font-weight: 600;
     border-radius: 0.3em;
@@ -271,7 +271,7 @@ textarea {
 }
 
 /* Medium screen devices (768px and above) */
-@media only screen and (min-width: 1050px) {
+@media only screen and (min-width: 1200px) {
     .nav-links{
         display: flex;
         gap: 1.5em;
@@ -295,7 +295,7 @@ textarea {
 
 
 /* Big screen devices (889px and above) */
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1560px) {
     .nav-links{
         display: flex;
         gap: 2.5em;
