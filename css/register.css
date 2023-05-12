@@ -27,6 +27,33 @@ form{
     gap: 0.5em;
 }
 
+#image{
+    position: absolute;
+    visibility: hidden;
+    right: 0;
+}
+#image + label{
+    border-radius: 0.5em;
+    background-color: #E9E9ED;
+    padding: 1em 0;
+    text-align: center;
+    cursor: pointer;
+    
+}
+#image + label:hover{
+    background-color:var(--color-hover);
+    color: white;  
+}
+
+#preview{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
 @media only screen and (min-width: 0px) {
     .main{
         display: grid;
