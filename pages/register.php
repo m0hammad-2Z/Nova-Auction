@@ -49,7 +49,7 @@ require_once "../lib.php"; ?>
             } 
             else {
                 session_destroy();
-                header("Location: /Nova-Auction/");
+                // header("Location: /Nova-Auction/");
             }
             ?>
 
@@ -63,7 +63,7 @@ require_once "../lib.php"; ?>
                 <label for='Email'>Email</label><input name='email' type='email' placeholder='example@example.exa' required>
                 <label for='password'>Password</label><input name='pass' type='password' required>
                 <label for='tel'>Phone number</label><input name='tele' type='tel' placeholder='0712345678' required>
-                <label for='image'>Upload an image</label><input id='image' type='file' name='image'  required>
+                <input onchange='readURL(this)' id='image' type='file' name='image'  required><label for='image'>Upload an image</label><img for='image' id='preview'>
                 <button class='button' name='register_button' type='submit'>Sign up</button>
             </form>
             <?php
@@ -119,4 +119,25 @@ require_once "../lib.php"; ?>
     </footer>
 </body>
 
+<script>
+   function readURL(input) {
+        
+                let preview = document.getElementById("preview");
+
+                var reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+
+                reader.onload = function (e) {
+                    const source = e.target.result;
+                    let previewImage = document.createElement("img");
+                    previewImage.classList.add("img-preview");
+                    preview.src = e.target.result;
+                    preview.setAttribute("width", "120px");
+                    preview.setAttribute("height", "120px");
+
+                    
+
+            }
+        }
+</script>
 </html>
