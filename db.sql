@@ -10,7 +10,7 @@ pass varchar(50),
 phonenumber varchar(20),
 rule varchar(20) default 'User',
 banned BOOLEAN NOT NULL DEFAULT false,
-img_path Text default 'https://opensooq-images.os-cdn.com/previews/0x720/78/ea/78eacfb8ca16ed225fc2a8e779436184b8bdff12bbb79b3ee93c2c785de2caaa.jpg.webp'
+img_path Text default '../av.jpg'
 );
 
 create table cars(
