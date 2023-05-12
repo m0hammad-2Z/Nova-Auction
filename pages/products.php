@@ -128,7 +128,7 @@ require_once "../lib.php"; ?>
                 for($i = $_GET["page"]*$NOIPP-$NOIPP; $i < count($res); $i++) {
                     if($i>$_GET["page"]*$NOIPP-1)break;
 
-                    $user_img =  Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
+                    $user_img = "../" . Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
 
                     $name = $res[$i][0];
                     $price = $res[$i][1];

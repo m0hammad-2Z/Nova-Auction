@@ -223,11 +223,11 @@ textarea {
 }
 
 .user-image{
-    width: 38px;
-    height: 35px;
-     object-fit: cover;
-     border-radius: 50%;
-     border: 1px solid rgb(65, 63, 63);
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgb(65, 63, 63);
 }
 .card > .name_img > .text {
     display: flex;
@@ -260,6 +260,7 @@ textarea {
 }
 
 #name {
+    max-width: 150px;
     margin: 0;
     font-size: 1.1em;
     word-break: keep-all;
