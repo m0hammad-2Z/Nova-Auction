@@ -65,7 +65,7 @@ $item = Database("select * from items,cars,user_info where items.id = {$_GET["it
                     <div class="info container">
 
                         <div class="user-info">
-                        <img src="https://picsum.photos/100?b" alt="">
+                        <img src='<?php echo '../' . $item[0]['img_path'];?>'alt="" width = 70px height =70px>
                         <span><a href=<?php echo "user.php?user_id=".$item[0]['id']?>> <?php echo $item[0]['first_name']." ".$item[0]['last_name'];?></a></span>
                         </div>
                         <h1>Description</h1>
