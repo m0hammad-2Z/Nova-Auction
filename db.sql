@@ -10,7 +10,7 @@ pass varchar(50),
 phonenumber varchar(20),
 rule varchar(20) default 'User',
 banned BOOLEAN NOT NULL DEFAULT false,
-img_path Text --default 'users_account_images/av.jpg'
+img_path Text default null --'/Nova-Auction/users_account_images/av.jpg'
 );
 
 create table cars(
@@ -19,7 +19,7 @@ makes_name varchar(50),
 model_name varchar(50),
 year_of_make int(4),
 color varchar(40),
-interiors text, #Text(1000),
+interiors text,
 transmission varchar(40),
 car_condition varchar(40),
 fuel_type varchar(40)
@@ -28,8 +28,8 @@ fuel_type varchar(40)
 create table items(
 id int PRIMARY key AUTO_INCREMENT,
 name varchar(1000),
-des Text,#edit
-img_path Text ,#edit
+des Text,
+img_path Text ,
 price int,
 user_id int,
 car_id int,
