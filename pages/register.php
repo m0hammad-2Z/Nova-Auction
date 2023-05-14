@@ -78,8 +78,9 @@ require_once "../lib.php"; ?>
             </form>
             <?php
             extract($_POST);
-
-            if (isset($_POST["register_button"])) {
+            $emailPattern = "/^\w+[-\.\+\w]*@\w+\.\w+$/i";
+            $phonePattern = "/^07[0-9]{8}$/i";
+            if (isset($_POST["register_button"]) && preg_match($emailPattern,$email) &&  preg_match($phonePattern,$tele)) {
                 if (
                     count(
                         Database(
