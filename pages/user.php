@@ -102,7 +102,7 @@ if(!checkUserId()){
     </div>
 
     <footer class="footer">
-        <p>Copyright &copy; 2022 Nova Auction | Design By Humble Ghost Team</p>
+        <p>Copyright &copy; 2022 Nova Auction | Design By <a href='/Nova-Auction/pages/about.php'>Humble Ghost Team</a></p>
     </footer>
 </body>
 </html>

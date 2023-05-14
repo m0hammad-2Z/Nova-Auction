@@ -1,6 +1,12 @@
 <?php
 // init PHP
-require_once "../lib.php"; ?>
+require_once "../lib.php";
+if (isset($_SESSION['user_id'])) {
+    $_SESSION = [];
+    session_destroy();
+}
+
+?>
 <!DOCTYPE html>
 <html lang='en'>
   <head>
@@ -27,7 +33,7 @@ require_once "../lib.php"; ?>
             <?php
             extract($_POST);
 
-            if (!isset($_SESSION['user_id'])) {
+                
                 if (isset($_POST["login_button"])) {
                     if (
                         count(
@@ -46,11 +52,7 @@ require_once "../lib.php"; ?>
                         echo '<span class="register_error">Error in email or password</span>';
                     }
                 }
-            } 
-            else {
-                session_destroy();
-                // header("Location: /Nova-Auction/");
-            }
+           
             ?>
 
         </div>
@@ -71,7 +73,7 @@ require_once "../lib.php"; ?>
                 <input name='pass' type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" title="Your password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric character, and one special character.">
                 
                 <label for='tel'>Phone number</label>
-                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0791234567)')" oninput="setCustomValidity('');" pattern="^07[7-9]\d{7}$" type='tel' placeholder='0791234567' required>
+                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0791234567)')" oninput="setCustomValidity('');" pattern="^07[7-9]{1}[0-9]{7}$" type='tel' placeholder='0791234567' required>
                 <input onchange='readURL(this)' id='image' type='file' name='image'><label for='image'>Upload an image</label><img for='image' id='preview'>
 
                 <button class='button' name='register_button' type='submit'>Sign up</button>
@@ -79,7 +81,14 @@ require_once "../lib.php"; ?>
             <?php
             extract($_POST);
 
-            if (isset($_POST["register_button"])) {
+            $email  = trim($email);
+            $tele = trim($tele);
+            $emailPattern = "/^\w+[-\.\+\w]*@\w+\.\w+$/i";
+            $phonePattern = "/^07[7-9]{1}[0-9]{7}$/i";
+            echo $email." ".preg_match($emailPattern,$email) ."<br>" . $tele . " ".preg_match($phonePattern,$tele);
+        
+            if (isset($_POST["register_button"]) && preg_match($emailPattern,$email) &&  preg_match($phonePattern,$tele)) {
+
                 if (
                     count(
                         Database(
@@ -105,7 +114,7 @@ require_once "../lib.php"; ?>
                         1
                     )[0][0];
 
-                    $des = "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
+                    $des = "/Nova-Auction/users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
                         echo $des;
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $des)) {
                         Database("UPDATE user_info SET img_path = '{$des}' WHERE id = '{$_SESSION['user_id']}'" , 0);
@@ -125,7 +134,7 @@ require_once "../lib.php"; ?>
 
 
     <footer class='footer'>
-        <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
+        <p>Copyright © 2022 Nova Auction | Design By <a href='/Nova-Auction/pages/about.php'>Humble Ghost Team</a></p>
     </footer>
 </body>
 

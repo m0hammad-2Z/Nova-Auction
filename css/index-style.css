@@ -47,17 +47,3 @@
 }
 
 
-#name {
-    font-size: 1.25em;
-    overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 2; /* number of lines to show */
-           line-clamp: 2;
-   -webkit-box-orient: vertical;
-}
-#price {
-    position: absolute;
-    left: 0;
-    bottom:0.25em;
-}
