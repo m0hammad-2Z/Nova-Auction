@@ -63,11 +63,7 @@ require_once "../lib.php"; ?>
                 <label for='Email'>Email</label><input name='email' type='email' placeholder='example@example.exa' required>
                 <label for='password'>Password</label><input name='pass' type='password' required>
                 <label for='tel'>Phone number</label><input name='tele' type='tel' placeholder='0712345678' required>
-<<<<<<< HEAD
-                <label for='image'>Upload an image</label><input id='image' type='file' name='image'>
-=======
-                <input onchange='readURL(this)' id='image' type='file' name='image'  required><label for='image'>Upload an image</label><img for='image' id='preview'>
->>>>>>> d6db7fa9398d1052042f63049400011153d60809
+                <input onchange='readURL(this)' id='image' type='file' name='image'><label for='image'>Upload an image</label><img for='image' id='preview'>
                 <button class='button' name='register_button' type='submit'>Sign up</button>
             </form>
             <?php
@@ -99,16 +95,12 @@ require_once "../lib.php"; ?>
                         1
                     )[0][0];
 
-                    if(isset($_FILES['image']['name'])){
-
-                        $des = "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
-                            echo $des;
-                        if (move_uploaded_file($_FILES["image"]["tmp_name"], $des)) {
-                            Database("UPDATE user_info SET img_path = '{$des}' WHERE id = '{$_SESSION['user_id']}'" , 0);
-                        } else {
-                            echo "Sorry, there was an error uploading your file.";
-                        }
-
+                    $des = "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
+                        echo $des;
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], $des)) {
+                        Database("UPDATE user_info SET img_path = '{$des}' WHERE id = '{$_SESSION['user_id']}'" , 0);
+                    } else {
+                        echo "Sorry, there was an error uploading your file.";
                     }
 
                     header("Location: /Nova-Auction/");
