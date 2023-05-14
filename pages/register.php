@@ -58,12 +58,20 @@ require_once "../lib.php"; ?>
         <div class='right'>
             <h1>Register</h1>
             <form method='post' enctype="multipart/form-data">
-                <label for='Email'>Full Name</label><input type='text' name='fn' placeholder='First Name' required>
+                
+            <label for='name'>Full Name</label>
+                <input type='text'  name='fn' placeholder='First Name' required>
                 <input type='text' name='ln' placeholder='Last Name' required>
-                <label for='Email'>Email</label><input name='email' type='email' placeholder='example@example.exa' required>
-                <label for='password'>Password</label><input name='pass' type='password' required>
-                <label for='tel'>Phone number</label><input name='tele' type='tel' placeholder='0712345678' required>
-                <input onchange='readURL(this)' id='image' type='file' name='image'  required><label for='image'>Upload an image</label><img for='image' id='preview'>
+                
+                <label for='Email'>Email</label>
+                <input name='email' oninvalid="this.setCustomValidity('Please follow this pattern (example@example.exa)')" pattern="^\w+[-\.\+\w]*@\w+\.\w+$" type='email' placeholder='example@example.exa' required>
+                
+                <label for='password'>Password</label>
+                <input name='pass' type='password' required>
+                
+                <label for='tel'>Phone number</label>
+                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0712345678)')" pattern="^07[0-9]{8}$" type='tel' placeholder='0712345678' required>
+                
                 <button class='button' name='register_button' type='submit'>Sign up</button>
             </form>
             <?php
