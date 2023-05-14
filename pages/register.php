@@ -61,8 +61,8 @@ require_once "../lib.php"; ?>
                 <label for='Email'>Full Name</label><input type='text' name='fn' placeholder='First Name' required>
                 <input type='text' name='ln' placeholder='Last Name' required>
                 <label for='Email'>Email</label><input name='email' type='email' placeholder='example@example.exa' required>
-                <label for='password'>Password</label><input name='pass' type='password' required>
-                <label for='tel'>Phone number</label><input name='tele' type='tel' placeholder='0712345678' required>
+                <label for='password'>Password</label><input name='pass' type='password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" title="Your password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric character, and one special character." required>
+                <label for='tel'>Phone number</label><input name='tele' type='tel' placeholder='+962791234567' pattern="^\+9627[789]\d{7}$" title="Please enter a valid Jordanian mobile phone number, starting with +962, followed by an area code (9, 8 or 7), and then 7 digits." required>
                 <input onchange='readURL(this)' id='image' type='file' name='image'><label for='image'>Upload an image</label><img for='image' id='preview'>
                 <button class='button' name='register_button' type='submit'>Sign up</button>
             </form>
