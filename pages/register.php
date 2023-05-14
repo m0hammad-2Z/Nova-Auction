@@ -29,7 +29,7 @@ if (isset($_SESSION['user_id'])) {
           <input type='password' name='pass' required>
           <button class='button' name='login_button' type='submit'>Log in</button>
         </form>
-        <a href=''>Lost your password?</a>
+        <!-- <a href=''>Lost your password?</a> -->
             <?php
             extract($_POST);
 
