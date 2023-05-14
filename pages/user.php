@@ -24,6 +24,7 @@ if(!checkUserId()){
 <body>
 <?php 
         printNav();
+        
     ?>
 
     
