@@ -64,13 +64,13 @@ require_once "../lib.php"; ?>
                 <input type='text' name='ln' placeholder='Last Name' required>
                 
                 <label for='Email'>Email</label>
-                <input name='email' oninvalid="this.setCustomValidity('Please follow this pattern (example@example.exa)')" pattern="^\w+[-\.\+\w]*@\w+\.\w+$" type='email' placeholder='example@example.exa' required>
+                <input name='email' oninvalid="this.setCustomValidity('Please follow this pattern (example@example.exa)')" oninput="setCustomValidity('');" pattern="^\w+[-\.\+\w]*@\w+\.\w+$" type='email' placeholder='example@example.exa' required>
                 
                 <label for='password'>Password</label>
                 <input name='pass' type='password' required>
                 
                 <label for='tel'>Phone number</label>
-                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0712345678)')" pattern="^07[0-9]{8}$" type='tel' placeholder='0712345678' required>
+                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0712345678)')" oninput="setCustomValidity('');" pattern="^07[0-9]{8}$" type='tel' placeholder='0712345678' required>
                 
                 <button class='button' name='register_button' type='submit'>Sign up</button>
             </form>
