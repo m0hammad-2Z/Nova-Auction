@@ -68,11 +68,11 @@ require_once "../lib.php"; ?>
                 <input name='email' oninvalid="this.setCustomValidity('Please follow this pattern (example@example.exa)')" oninput="setCustomValidity('');" pattern="^\w+[-\.\+\w]*@\w+\.\w+$" type='email' placeholder='example@example.exa' required>
                 
                 <label for='password'>Password</label>
-                <input name='pass' type='password' required>
+                <input name='pass' type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" title="Your password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric character, and one special character.">
                 
                 <label for='tel'>Phone number</label>
-                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0712345678)')" oninput="setCustomValidity('');" pattern="^07[0-9]{8}$" type='tel' placeholder='0712345678' required>
-                
+                <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0791234567)')" oninput="setCustomValidity('');" pattern="^07[7-9]\d{7}$" type='tel' placeholder='0791234567' required>
+                <input onchange='readURL(this)' id='image' type='file' name='image'><label for='image'>Upload an image</label><img for='image' id='preview'>
 
                 <button class='button' name='register_button' type='submit'>Sign up</button>
             </form>
