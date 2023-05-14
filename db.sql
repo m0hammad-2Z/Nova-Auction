@@ -10,7 +10,7 @@ pass varchar(50),
 phonenumber varchar(20),
 rule varchar(20) default 'User',
 banned BOOLEAN NOT NULL DEFAULT false,
-img_path Text default '/Nova-Auction/users_account_images/av.jpg'
+img_path Text default null
 );
 
 create table cars(
