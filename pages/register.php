@@ -85,7 +85,7 @@ if (isset($_SESSION['user_id'])) {
             $tele = trim($tele);
             $emailPattern = "/^\w+[-\.\+\w]*@\w+\.\w+$/i";
             $phonePattern = "/^07[7-9]{1}[0-9]{7}$/i";
-            echo $email." ".preg_match($emailPattern,$email) ."<br>" . $tele . " ".preg_match($phonePattern,$tele);
+            // echo $email." ".preg_match($emailPattern,$email) ."<br>" . $tele . " ".preg_match($phonePattern,$tele);
         
             if (isset($_POST["register_button"]) && preg_match($emailPattern,$email) &&  preg_match($phonePattern,$tele)) {
 
@@ -114,9 +114,8 @@ if (isset($_SESSION['user_id'])) {
                         1
                     )[0][0];
 
-                    $des = 'Nova-Auction/' . "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
-                        echo $des;
-                    if (move_uploaded_file($_FILES["image"]["tmp_name"], $des)) {
+                    $des =  "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], '../' . $des)) {
                         Database("UPDATE user_info SET img_path = '{$des}' WHERE id = '{$_SESSION['user_id']}'" , 0);
                     } else {
                         echo "Sorry, there was an error uploading your file.";
