@@ -130,6 +130,10 @@ require_once "../lib.php"; ?>
 
                     $user_img = "../" . Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
 
+                    if($user_img == '../'){
+                        $user_img .= "users_account_images/av.jpg";
+                    }
+
                     $name = $res[$i][0];
                     $price = $res[$i][1];
                     $img_p = $res[$i][2];

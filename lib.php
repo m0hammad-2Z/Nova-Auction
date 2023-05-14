@@ -65,6 +65,12 @@ function printNav()
             $img_path = Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
         else
             $img_path = "../" . Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
+            
+            
+            if($img_path == '../' || $img_path == ''){
+                $img_path .= "users_account_images/av.jpg";
+            }
+        
         print("
         <nav class='main-nav'>
             <div class='navbar'>
