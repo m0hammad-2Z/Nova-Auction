@@ -145,9 +145,6 @@ require_once "../lib.php"; ?>
                     preview.src = e.target.result;
                     preview.setAttribute("width", "120px");
                     preview.setAttribute("height", "120px");
-
-                    
-
             }
         }
 </script>
