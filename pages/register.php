@@ -78,9 +78,8 @@ require_once "../lib.php"; ?>
             </form>
             <?php
             extract($_POST);
-            $emailPattern = "/^\w+[-\.\+\w]*@\w+\.\w+$/i";
-            $phonePattern = "/^07[0-9]{8}$/i";
-            if (isset($_POST["register_button"]) && preg_match($emailPattern,$email) &&  preg_match($phonePattern,$tele)) {
+
+            if (isset($_POST["register_button"])) {
                 if (
                     count(
                         Database(
@@ -145,6 +144,9 @@ require_once "../lib.php"; ?>
                     preview.src = e.target.result;
                     preview.setAttribute("width", "120px");
                     preview.setAttribute("height", "120px");
+
+                    
+
             }
         }
 </script>
