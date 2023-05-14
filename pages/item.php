@@ -64,8 +64,17 @@ $item = Database("select * from items,cars,user_info where items.id = {$_GET["it
             </div>
                     <div class="info container">
 
+                        <?php
+                            $user_img =$item[0]['img_path'];
+                            if($user_img == '../'){
+                                // $user_img .= "users_account_images/av.jpg";
+                                $user_img = 'https://picsum.photos/200';
+                            }
+                        
+                        ?>
+
                         <div class="user-info">
-                        <img src='<?php echo '../' . $item[0]['img_path'];?>'alt="" width = 70px height =70px>
+                        <img src='<?php echo '../' . $user_img;?>'alt="" width = 70px height =70px>
                         <span><a href=<?php echo "user.php?user_id=".$item[0]['id']?>> <?php echo $item[0]['first_name']." ".$item[0]['last_name'];?></a></span>
                         </div>
                         <h1>Description</h1>

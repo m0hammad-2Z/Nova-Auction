@@ -70,7 +70,7 @@ if (isset($_SESSION['user_id'])) {
                 <input name='email' oninvalid="this.setCustomValidity('Please follow this pattern (example@example.exa)')" oninput="setCustomValidity('');" pattern="^\w+[-\.\+\w]*@\w+\.\w+$" type='email' placeholder='example@example.exa' required>
                 
                 <label for='password'>Password</label>
-                <input name='pass' type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" title="Your password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one numeric character, and one special character.">
+                <input name='pass' type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z]).{8,16}" title="Your password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter.">
                 
                 <label for='tel'>Phone number</label>
                 <input name='tele' oninvalid="this.setCustomValidity('Please follow this pattern (0791234567)')" oninput="setCustomValidity('');" pattern="^07[7-9]{1}[0-9]{7}$" type='tel' placeholder='0791234567' required>

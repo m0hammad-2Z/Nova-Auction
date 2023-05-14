@@ -131,7 +131,8 @@ require_once "../lib.php"; ?>
                     $user_img = "../" . Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
 
                     if($user_img == '../'){
-                        $user_img .= "users_account_images/av.jpg";
+                        // $user_img .= "users_account_images/av.jpg";
+                        $user_img = 'https://picsum.photos/200';
                     }
 
                     $name = $res[$i][0];
