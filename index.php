@@ -41,7 +41,7 @@ require_once "./lib.php";
     </div>
     <a class='button' href='/Nova-Auction/pages/products.php'>View More!</a>
     <footer class='footer'>
-        <p>Copyright © 2022 Nova | Design By Humble Ghost Team</p>
+        <p>Copyright © 2022 Nova | Design By <a href='/Nova-Auction/pages/about.php'>Humble Ghost Team</a></p>
         
     <?php
         $carsRes =  Database('Select cars.id, cars.makes_name, cars.model_name, cars.color, items.price, cars.year_of_make, items.name, items.img_path, items.id from cars, items where items.car_id = cars.id order by cars.id DESC', 1, MYSQLI_NUM);

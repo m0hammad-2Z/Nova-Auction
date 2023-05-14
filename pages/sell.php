@@ -268,7 +268,7 @@ if (isset($_POST['submit_button'])) {
     </div>
 
     <footer class='footer'>
-        <p>Copyright © 2022 Nova Auction | Design By Humble Ghost Team</p>
+        <p>Copyright © 2022 Nova Auction | Design By <a href='/Nova-Auction/pages/about.php'>Humble Ghost Team</a></p>
     </footer>
 </body>
 <script>
