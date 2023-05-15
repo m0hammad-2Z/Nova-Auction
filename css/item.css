@@ -87,6 +87,8 @@
 }
 .info > .user-info> img{
     border-radius: 50%;
+    border: 1px solid #007f5f;
+
 }
 
 

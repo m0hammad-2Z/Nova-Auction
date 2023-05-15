@@ -81,8 +81,6 @@ if (isset($_SESSION['user_id'])) {
             <?php
             extract($_POST);
 
-            $email  = trim($email);
-            $tele = trim($tele);
             $emailPattern = "/^\w+[-\.\+\w]*@\w+\.\w+$/i";
             $phonePattern = "/^07[7-9]{1}[0-9]{7}$/i";
             // echo $email." ".preg_match($emailPattern,$email) ."<br>" . $tele . " ".preg_match($phonePattern,$tele);
@@ -103,6 +101,8 @@ if (isset($_SESSION['user_id'])) {
                         )
                     ) == 0
                 ) {
+                    $email  = trim($email);
+                    $tele = trim($tele);
 
                     Database(
                         "INSERT INTO user_info VALUES(default,'$fn','$ln','$email','$pass','$tele','User', default, Null)",
@@ -113,14 +113,19 @@ if (isset($_SESSION['user_id'])) {
                         "select id from user_info where email='$email' and pass='$pass'",
                         1
                     )[0][0];
+                    $finalDes = "";
+                    $rn = rand(1, 50000);
+                    $finalDes = 'https://api.dicebear.com/6.x/initials/png?seed=' . $fn . $rn;
 
                     $des =  "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
-                    if (move_uploaded_file($_FILES["image"]["tmp_name"], '../' . $des)) {
-                        Database("UPDATE user_info SET img_path = '{$des}' WHERE id = '{$_SESSION['user_id']}'" , 0);
-                    } else {
-                        echo "Sorry, there was an error uploading your file.";
-                    }
+                        if (move_uploaded_file($_FILES["image"]["tmp_name"], '../' . $des)) {
+                            $finalDes = "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
+                        } else {
+                            echo "Sorry, there was an error uploading your file.";
+                        }                    
+                    Database("UPDATE user_info SET img_path = '{$finalDes}' WHERE id = '{$_SESSION['user_id']}'" , 0);
 
+                    
                     header("Location: /Nova-Auction/");
                 } else {
                     echo "<span class='register_error'>YOU ARE NOT WELCOME!</span>";

@@ -128,11 +128,15 @@ require_once "../lib.php"; ?>
                 for($i = $_GET["page"]*$NOIPP-$NOIPP; $i < count($res); $i++) {
                     if($i>$_GET["page"]*$NOIPP-1)break;
 
-                    $user_img = "../" . Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
-
-                    if($user_img == '../'){
-                        // $user_img .= "users_account_images/av.jpg";
-                        $user_img = 'https://picsum.photos/200';
+                    $user_img = Database("SELECT img_path FROM user_info WHERE id = '{$res[$i]['user_id']}'", 1)[0]['img_path'];
+                    
+                    $isLink = substr($user_img, 0, 5) === 'http:' || substr($user_img, 0, 5) === 'https' ? True : False;
+                    if($isLink){
+                        $user_img = $user_img;
+                    }else if ($user_img == NULL){
+                        $user_img = 'https://api.dicebear.com/6.x/initials/png?seed=' . rand(1, 5000);
+                    }else{
+                        $user_img = '../' . $user_img;
                     }
 
                     $name = $res[$i][0];

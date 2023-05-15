@@ -60,15 +60,23 @@ function printNav()
             </div>
         </nav>");
     } else {
-        if (basename($_SERVER['PHP_SELF']) == 'index.php')
-            $img_path = Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
-        else
-            $img_path = "../" . Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
-            
-            
-            if($img_path == '../' || $img_path == ''){
-                // $img_path .= "users_account_images/av.jpg";
-                $img_path = 'https://picsum.photos/200';
+            $isHome = FALSE;
+            if (basename($_SERVER['PHP_SELF']) == 'index.php')
+                $isHome = TRUE;
+                
+            $user_img = Database("select img_path from user_info where id = '".$_SESSION['user_id']."'",1)[0][0];
+                 
+            $isLink = substr($user_img, 0, 5) === 'http:' || substr($user_img, 0, 5) === 'https' ? True : False;
+
+            if($isLink){
+                $user_img = $user_img;
+            }else if ($user_img == NULL){
+                $user_img = 'https://api.dicebear.com/6.x/initials/png?seed=' . rand(1, 5000);
+            }else{
+                if($isHome)
+                    $user_img = $user_img;
+                else
+                    $user_img = '../' . $user_img;
             }
         
         print("
@@ -96,7 +104,7 @@ function printNav()
                         </svg>
                     </a>
                     <a href='/Nova-Auction/pages/user.php'><img class='user-image' id='user-image' src=".
-                    $img_path
+                    $user_img
                     .">
                         </a>
                 </div>

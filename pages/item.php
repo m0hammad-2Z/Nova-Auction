@@ -65,13 +65,16 @@ $item = Database("select * from items,cars,user_info where items.id = {$_GET["it
                     <div class="info container">
 
                         <?php
-                           $user_img =$item[0]['img_path'];
-                            if($user_img == null){
-                                // $user_img .= "users_account_images/av.jpg";
-                                $user_img = 'https://picsum.photos/200';
-                            }else{
-                                $user_img = '../' . $user_img;
-                            }
+                           $user_img = $item[0]['img_path'];
+                           $isLink = substr($user_img, 0, 5) === 'http:' || substr($user_img, 0, 5) === 'https' ? True : False;
+
+                           if($isLink){
+                               $user_img = $user_img;
+                           }else if ($user_img == NULL){
+                               $user_img = 'https://api.dicebear.com/6.x/initials/png?seed=' . rand(1, 5000);
+                           }else{
+                               $user_img = '../' . $user_img;
+                           }
                         
                         ?>
 

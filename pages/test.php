@@ -2,6 +2,15 @@
 // init PHP
 require_once "../lib.php"; 
 
+$users = Database('Select first_name, id from user_info', 1);
+
+foreach($users as $i){
+    $res = 'https://api.dicebear.com/6.x/initials/png?seed=' . $i[0] . rand(1, 5000);
+    echo $res;
+Database("UPDATE user_info SET img_path = '$res' where id = $i[1]", 0);
+
+}
+
 
 
 ?>
