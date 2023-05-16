@@ -125,6 +125,10 @@ function printNav()
                             <div id='notificationContainer'></div>
                             <div id='notificationContainer'></div>
                             <div id='notificationContainer'></div>
+                            <div id='notificationContainer'></div>
+                            <div id='notificationContainer'></div>
+                            <div id = 'seperatorLine' style='margin-top:0.5em;'></div>
+                            <a href='#'  style='display:block; position:relative; text-align:center;'>View All</a>
                             </div>
                         </div>
                     </div>
