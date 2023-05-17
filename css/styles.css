@@ -230,6 +230,7 @@ textarea {
     border: 1px solid #007f5f;
 }
 .card > .name_img > .text {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -262,8 +263,11 @@ textarea {
 #name {
     margin: 0;
     font-size: 1.1em;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
     word-break: keep-all;
-    white-space: nowrap;
+    white-space: nowrap; 
 }
 	
 /* Small screen devices (600px and above) */
