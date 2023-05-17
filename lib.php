@@ -120,15 +120,51 @@ function printNav()
                         <div id='notificationPanelContainer'>
                             <div id='notificationPanel'>
                             <h3>Notification</h3>
-                            <div id = 'seperatorLine'></div>
-                            <div id='notificationContainer'></div>
-                            <div id='notificationContainer'></div>
-                            <div id='notificationContainer'></div>
-                            <div id='notificationContainer'></div>
-                            <div id='notificationContainer'></div>
-                            <div id='notificationContainer'></div>
-                            <div id = 'seperatorLine' style='margin-top:0.5em;'></div>
-                            <a href='#' target='_blank' style='display:block; position:relative; text-align:center;'>View All</a>
+                            <div id='seperatorLine'></div>
+                            <a href='#' target='_blank' id='notificationContainer'>
+                                <div id='notificationInfo'>
+                                    <img src='https://unsplash.it/50/50'>
+                                    <h4>New comment on your post</h4>
+                                </div>
+                            </a>
+                            <a href='#' target='_blank' id='notificationContainer'>
+                                <div id='notificationInfo'>
+                                    <img src='https://unsplash.it/50/50'>
+                                    <h4>New comment on your post</h4>
+                                </div>
+                            </a><a href='#' target='_blank' id='notificationContainer'>
+                            <div id='notificationInfo'>
+                                <img src='https://unsplash.it/50/50'>
+                                <h4>New comment on your post</h4>
+                            </div>
+                        </a>
+                        <a href='#' target='_blank' id='notificationContainer'>
+                                <div id='notificationInfo'>
+                                    <img src='https://unsplash.it/50/50'>
+                                    <h4>New comment on your post</h4>
+                                </div>
+                            </a><a href='#' target='_blank' id='notificationContainer'>
+                            <div id='notificationInfo'>
+                                <img src='https://unsplash.it/50/50'>
+                                <h4>New comment on your post</h4>
+                            </div>
+                        </a><a href='#' target='_blank' id='notificationContainer'>
+                        <div id='notificationInfo'>
+                            <img src='https://unsplash.it/50/50'>
+                            <h4>New comment on your post</h4>
+                        </div>
+                    </a><a href='#' target='_blank' id='notificationContainer'>
+                    <div id='notificationInfo'>
+                        <img src='https://unsplash.it/50/50'>
+                        <h4>New comment on your post</h4>
+                    </div>
+                </a><a href='#' target='_blank' id='notificationContainer'>
+                <div id='notificationInfo'>
+                    <img src='https://unsplash.it/50/50'>
+                    <h4>New comment on your post</h4>
+                </div>
+            </a>
+                            <div id = 'seperatorLine' style='margin-block:0.5em;'></div>
                             </div>
                         </div>
                     </div>
