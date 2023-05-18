@@ -275,6 +275,7 @@ if($_SESSION['user_id'] == $item[0]['user_id']){
     setInterval(get_comment,5000);
 
 
+    
 
 </script>
 
