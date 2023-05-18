@@ -71,9 +71,11 @@ FOREIGN KEY (item_id) REFERENCES items(id)
 
 create table notifications(
 id int PRIMARY key AUTO_INCREMENT,
+user_id int,
 item_id int,    
 type varchar(40),    
 readed BOOLEAN NOT NULL DEFAULT false,
+FOREIGN key (user_id) REFERENCES user_info(id),
 FOREIGN key (item_id) REFERENCES items(id)
 );
 

@@ -14,8 +14,17 @@ ignore_user_abort(false);
           if(checkUserId() && $Not_POST["user_comment"] != ""){
             Database("INSERT INTO comment VALUES (default,'{$Not_POST["user_comment"]}',{$_SESSION["user_id"]},{$Not_POST["item_id"]},(select sysdate()))",0);
             
-            if(count(Database("select id from items where user_id = {$_SESSION["user_id"]}  and id = {$Not_POST["item_id"]}", 1)) <= 0)
-                Database("INSERT INTO notifications VALUES (default,'{$Not_POST["item_id"]}','commment',default)",0);
+                $res = Database("SELECT Distinct user_id from notifications where item_id = {$Not_POST["item_id"]} and user_id <> {$Not_POST["user_id"]} and user_id <> {$_SESSION["user_id"]}", 1);  
+                foreach($res as $r){
+                    Database("INSERT INTO notifications VALUES (default, {$r['user_id']},'{$Not_POST["item_id"]}','commment',default)",0);
+                }
+                if(count(Database("select user_id from notifications where user_id = {$_SESSION["user_id"]}", 1)) == 0){
+                    Database("INSERT INTO notifications VALUES (default, {$_SESSION["user_id"]},'{$Not_POST["item_id"]}','commment', 1)",0);
+                }
+                if($Not_POST["user_id"] != $_SESSION["user_id"]){
+                    Database("INSERT INTO notifications VALUES (default, {$Not_POST["user_id"]},'{$Not_POST["item_id"]}','commment', default)",0);
+                }
+
             
             echo json_encode("inserted");
             die() ;

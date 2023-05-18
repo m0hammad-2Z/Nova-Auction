@@ -80,12 +80,13 @@ function printNav()
             }
         
 
-            $notifications = Database("SELECT *
-            FROM notifications, items
-            WHERE items.id = notifications.item_id
-              AND items.user_id = '{$_SESSION['user_id']}'
-              AND notifications.readed = 0", 1);
-            $notificationsNumber = count($notifications);
+
+            $notifications = Database("SELECT * FROM notifications, items
+             Where items.id = notifications.item_id
+             and notifications.user_id = '{$_SESSION['user_id']}'
+             and notifications.readed = 0", 1);
+             $notificationsNumber = count($notifications);
+
 
         print("
         <style>.notification-container > #notificationLabel::before {content: '$notificationsNumber'; }</style>
@@ -133,20 +134,25 @@ function printNav()
                             <div id='seperatorLine'></div>
                             ");
                                 foreach($notifications as $n){
+                                    $item_id = $n['item_id'];
+                                    $message = "";
+                                    $isYours = count(Database("SELECT id from items where id = '{$n['item_id']}' and user_id = '{$_SESSION['user_id']}'", 1)) > 0 ? TRUE : FALSE;
+                                    if($isYours && $n['type'] == 'commment'){
+                                        $message = "New comment on your post: " . $n['name'];
+                                    }else if(!$isYours && $n['type'] == 'commment'){
+                                        $message = "An car you're following has new comments: " . $n['name'];
+                                    }      
+
+
+                                    print("
+                                    <a href='/Nova-Auction/pages/item.php?item_id=$item_id' target='_blank' id='notificationContainer'>
+                                        <div id='notificationInfo'>
+                                            <img src='https://cdn-icons-png.flaticon.com/512/1381/1381635.png' width = 35; height = 35>
+                                            <h4>$message</h4>
+                                        </div>
+                                    </a>"
+                                    );  
                                     
-                                        
-                                    
-                                    $id = $n['id'];
-                                    if($n['type'] == 'commment'){
-                                        print("
-                                        <a href='/Nova-Auction/pages/item.php?item_id=$id' target='_blank' id='notificationContainer'>
-                                            <div id='notificationInfo'>
-                                                <img src='https://cdn-icons-png.flaticon.com/512/1381/1381635.png' width = 35; height = 35>
-                                                <h4>New comment on your post: ".$n['name']."</h4>
-                                            </div>
-                                        </a>"
-                                        );  
-                                    }
                                 }
 
                             print("<div id = 'seperatorLine' style='margin-block:0.5em;'></div>

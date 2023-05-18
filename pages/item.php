@@ -7,13 +7,12 @@ if(!isset($_GET["item_id"]) ||  count(Database("select id from items where id = 
 
 $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
 
-$notifications = Database("select * from notifications where item_id = {$_GET["item_id"]} and readed = 0", 1);
+$notifications = Database("select * from notifications where item_id = {$_GET["item_id"]} and user_id = {$_SESSION["user_id"]} and readed = 0", 1);
 
-if($_SESSION['user_id'] == $item[0]['user_id']){
     foreach($notifications as $n){
         Database("UPDATE notifications SET readed = 1 where id = $n[id]", 0);
     }
-}
+
 
 ?>
 
@@ -191,6 +190,7 @@ if($_SESSION['user_id'] == $item[0]['user_id']){
                 }
                 ?>
 <script defer>
+    let user_id = <?php echo $item[0]["user_id"]; ?>;
     let item_id = <?php echo $_GET["item_id"]; ?>;
     let logged = <?php echo (checkUserId())? 1 : 0 ?>;
     let comment = document.getElementsByName("user_comment")[0];
@@ -212,7 +212,7 @@ if($_SESSION['user_id'] == $item[0]['user_id']){
     async function insert_comment(){
         var insertComment = await fetch("commentsManager.php",{
             method:"post",
-            body: JSON.stringify({choose:0 , user_comment:comment.value,item_id:item_id})
+            body: JSON.stringify({choose:0 , user_comment:comment.value,item_id:item_id, user_id:user_id})
         });
         var res = await insertComment.json();
     
