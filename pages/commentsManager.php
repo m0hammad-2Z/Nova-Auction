@@ -13,6 +13,8 @@ ignore_user_abort(false);
     if($Not_POST['choose']==0){
           if(checkUserId() && $Not_POST["user_comment"] != ""){
             Database("INSERT INTO comment VALUES (default,'{$Not_POST["user_comment"]}',{$_SESSION["user_id"]},{$Not_POST["item_id"]},(select sysdate()))",0);
+            if(count(Database("select id from items where user_id = {$_SESSION["user_id"]}  and id = {$Not_POST["item_id"]}", 1)) <= 0)
+                Database("INSERT INTO notifications VALUES (default,'{$Not_POST["item_id"]}','commment',default)",0);
             echo json_encode("inserted");
             die() ;
         }else{

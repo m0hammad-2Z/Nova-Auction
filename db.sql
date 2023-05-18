@@ -69,6 +69,14 @@ FOREIGN KEY (user_id) REFERENCES user_info(id),
 FOREIGN KEY (item_id) REFERENCES items(id)
 );
 
+create table notifications(
+id int PRIMARY key AUTO_INCREMENT,
+item_id int,    
+type varchar(40),    
+readed BOOLEAN NOT NULL DEFAULT false,
+FOREIGN key (item_id) REFERENCES items(id)
+);
+
 insert into car_info values
     (default,'Mercedes-Benz','A-Class'),
     (default,'Audi','A3'),

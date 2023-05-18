@@ -5,7 +5,7 @@ function Database($query, $Insert_or_Load, $arrayType = MYSQLI_BOTH)
 {
     //0 for insert
     //1 for load
-    $conn = new mysqli("localhost", "root", "12345678", "nova_auction");
+    $conn = new mysqli("localhost", "root", "", "nova_auction");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -79,7 +79,17 @@ function printNav()
                     $user_img = '../' . $user_img;
             }
         
+
+            $notifications = Database("SELECT *
+            FROM notifications, items
+            WHERE items.id = notifications.item_id
+              AND items.user_id = '{$_SESSION['user_id']}'
+              AND notifications.readed = 0", 1);
+            $notificationsNumber = count($notifications);
+
         print("
+        <style>.notification-container > #notificationLabel::before {content: '$notificationsNumber'; }</style>
+
         <nav class='main-nav'>
             <div class='navbar'>
                 <div class='logo'>
@@ -93,7 +103,7 @@ function printNav()
                 <div class='nav-icons'>
                     <div class='notification-container'>
                         <input type='checkbox' id='notificationButton'>
-                        <label for='notificationButton' id='notificationLabel'>
+                        <label for='notificationButton' id='notificationLabel'style = 'before{color:red}'>
 
                 
                         <svg class='nav-svg' fill='#000000' height='800px' width='800px' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' 
@@ -121,50 +131,25 @@ function printNav()
                             <div id='notificationPanel'>
                             <h3>Notification</h3>
                             <div id='seperatorLine'></div>
-                            <a href='#' target='_blank' id='notificationContainer'>
-                                <div id='notificationInfo'>
-                                    <img src='https://unsplash.it/50/50'>
-                                    <h4>New comment on your post</h4>
-                                </div>
-                            </a>
-                            <a href='#' target='_blank' id='notificationContainer'>
-                                <div id='notificationInfo'>
-                                    <img src='https://unsplash.it/50/50'>
-                                    <h4>New comment on your post</h4>
-                                </div>
-                            </a><a href='#' target='_blank' id='notificationContainer'>
-                            <div id='notificationInfo'>
-                                <img src='https://unsplash.it/50/50'>
-                                <h4>New comment on your post</h4>
-                            </div>
-                        </a>
-                        <a href='#' target='_blank' id='notificationContainer'>
-                                <div id='notificationInfo'>
-                                    <img src='https://unsplash.it/50/50'>
-                                    <h4>New comment on your post</h4>
-                                </div>
-                            </a><a href='#' target='_blank' id='notificationContainer'>
-                            <div id='notificationInfo'>
-                                <img src='https://unsplash.it/50/50'>
-                                <h4>New comment on your post</h4>
-                            </div>
-                        </a><a href='#' target='_blank' id='notificationContainer'>
-                        <div id='notificationInfo'>
-                            <img src='https://unsplash.it/50/50'>
-                            <h4>New comment on your post</h4>
-                        </div>
-                    </a><a href='#' target='_blank' id='notificationContainer'>
-                    <div id='notificationInfo'>
-                        <img src='https://unsplash.it/50/50'>
-                        <h4>New comment on your post</h4>
-                    </div>
-                </a><a href='#' target='_blank' id='notificationContainer'>
-                <div id='notificationInfo'>
-                    <img src='https://unsplash.it/50/50'>
-                    <h4>New comment on your post</h4>
-                </div>
-            </a>
-                            <div id = 'seperatorLine' style='margin-block:0.5em;'></div>
+                            ");
+                                foreach($notifications as $n){
+                                    
+                                        
+                                    
+                                    $id = $n['id'];
+                                    if($n['type'] == 'commment'){
+                                        print("
+                                        <a href='/Nova-Auction/pages/item.php?item_id=$id' target='_blank' id='notificationContainer'>
+                                            <div id='notificationInfo'>
+                                                <img src='https://cdn-icons-png.flaticon.com/512/1381/1381635.png' width = 35; height = 35>
+                                                <h4>New comment on your post: ".$n['name']."</h4>
+                                            </div>
+                                        </a>"
+                                        );  
+                                    }
+                                }
+
+                            print("<div id = 'seperatorLine' style='margin-block:0.5em;'></div>
                             </div>
                         </div>
                     </div>
