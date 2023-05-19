@@ -396,7 +396,7 @@ const sortedByKey = new Map(
 
 let index = 0;
 sortedByKey.forEach((k, v) => {
-        if(index < 6){
+        if(index < 8){
             for(let car of cars){
                 let matchFound = false;
                 for(let i = 0; i < car_history_ids.length; i++)
