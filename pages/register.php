@@ -115,7 +115,7 @@ if (isset($_SESSION['user_id'])) {
                     )[0][0];
                     $finalDes = "";
                     $rn = rand(1, 50000);
-                    $finalDes = 'https://api.dicebear.com/6.x/initials/png?seed=' . $fn . $rn;
+                    $finalDes = 'https://api.dicebear.com/6.x/adventurer/png?seed=' . $fn . $rn . "&backgroundRotation=0,360,-310,-320,-330&backgroundColor=ffdfbf,ffd5dc,d1d4f9,c0aede,b6e3f4";
 
                     $des =  "users_account_images/" . $_SESSION['user_id'] . '.' . basename($_FILES["image"]["type"]);
                         if (move_uploaded_file($_FILES["image"]["tmp_name"], '../' . $des)) {
