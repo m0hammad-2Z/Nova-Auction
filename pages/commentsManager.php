@@ -28,7 +28,7 @@ ignore_user_abort(false);
 
             
             echo json_encode("inserted");
-            die() ;
+            die();
         }else{
             die() ;
         }

@@ -30,24 +30,21 @@ textarea {
   }
 
 
-/* Scrolbar */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 8px;
     background-color: white;
   }
 
-   
-  /* Handle */
+
   ::-webkit-scrollbar-thumb {
     background: var(--color); 
-    border-radius: 8px;
+    border-radius: 5px;
   }
   
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-hover); 
-  }
-/* End Scrolbar */
+  } */
+
 
 
 

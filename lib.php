@@ -141,6 +141,8 @@ function printNav()
                                         $message = "New comment on your post: " . $n['name'];
                                     }else if(!$isYours && $n['type'] == 'commment'){
                                         $message = "An car you're following has new comments: " . $n['name'];
+                                    }else if($isYours && $n['type'] == 'call'){
+                                        $message = "Someone has tried to call you. Post: " . $n['name'];
                                     }      
 
 

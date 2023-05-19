@@ -19,6 +19,7 @@ if(!checkUserId()){
     <link rel="icon" type="image/png" href="/Nova-Auction/img/fav.png">
     <link rel="stylesheet" href="/Nova-Auction/css/styles.css">
     <link rel="stylesheet" href="/Nova-Auction/css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -61,6 +62,10 @@ if(!checkUserId()){
             <a href='/Nova-Auction/pages/register.php'>Logout</a>
         </div>
 
+        <?php
+            $res = Database("SELECT * FROM items WHERE user_id = '".$_SESSION['user_id']."'", 1);  
+            if(count($res) > 0){        
+        ?>
         <div class="users-items">
             <div class="text-title">
                 <h1>Items</h1>
@@ -68,34 +73,41 @@ if(!checkUserId()){
             </div>
 
             <?php
-            $res = Database("SELECT * FROM items WHERE user_id = '".$_SESSION['user_id']."'", 1);  
-            for($i = 0; $i < count($res); $i++) {
-                 $name = $res[$i]['name'];
-                 $img_p = $res[$i]['img_path'];
-                 if(count(explode(",",$img_p))>1){
-                    $img_p = explode(",",$img_p)[0];
-                }
-                 if(explode("/",$img_p)[0] == "user_images"){
-                    $img_p = "/Nova-Auction/".$img_p;
-                }
-                 $item_id = $res[$i]['id'];
-            ?>
+                for($i = 0; $i < count($res); $i++) {
+                    $name = $res[$i]['name'];
+                    $img_p = $res[$i]['img_path'];
+                    if(count(explode(",",$img_p))>1){
+                        $img_p = explode(",",$img_p)[0];
+                    }
+                    if(explode("/",$img_p)[0] == "user_images"){
+                        $img_p = "/Nova-Auction/".$img_p;
+                    }
+                    $item_id = $res[$i]['id'];
+                ?>
 
-            <div class="item">
-                <img src="<?php echo $img_p;?>">
-                <h3><?php echo $name;?></h3>
-                <div class="item-options">
-                <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>'>Select</a>
-                <form method="post">
-                    <button value="<?php echo $item_id?>" class="item-delete-option" name="item-delete-option">Delete</button>
-                </form>
-                
+                <div class="item">
+                    <img src="<?php echo $img_p;?>">
+                    <h3><?php echo $name;?></h3>
+                    <div class="item-options">
+                        <a href='/Nova-Auction/pages/item.php?item_id=<?php echo $item_id?>'>Select</a>
+                        <form method="post">
+                            <button value="<?php echo $item_id?>" class="item-delete-option" name="item-delete-option">Delete</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <?php     
-        }
-        ?>
+                <?php     
+                    }
+                    
+                }else{
+                    print("<div class='users-items-no-items'>
+                            <i class='fa fa-gears fa-beat-fade'></i>
+                            <h3>You Have Not Post Any Car Yet!</h3>
+                            <a class = 'button' href='/Nova-Auction/pages/sell.php'>Post A Car Now</a>
+                        </div>    
+                    ");
+                }
+                ?>
 
                 
         </div>

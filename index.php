@@ -14,6 +14,7 @@ require_once "./lib.php";
     <link rel='stylesheet' href='css/index-style.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
     <link rel="icon" type="image/png" href="img/fav.png" />
+    <script src="Recommendation.js"></script>
 
 </head>
 
@@ -148,136 +149,61 @@ sortedByKey.forEach((k, v) => {
             }
         
         }
-    
-    
-    
 });
 
-
-
-function EuclideanSimilarity(vector1, vector2) {
-    let res = 0.0;
-    let sum = 0;
-    for (let i = 0; i < vector1.length; i++) {
-        const diff = vector1[i] - parseFloat(vector2[i]);
-        sum += diff ** 2;
-    }
-
-    res = Math.sqrt(sum);
-    return res;
-}
-
-function unqList(daList, nominalIndexes) {
-    const map = new Map();
-    const res = [];
-    for (let i of nominalIndexes) {
-        for (let l of daList) {
-            map.set(l[i], i);
-        }
-    }
-
-    map.forEach((value, key) => {
-        res.push(key);
-    });
-
-    return res;
-}
-
-function OneShotEncoding(list, uniqueList) {
-    const res = [];
-    for (let l of uniqueList) {
-        if (list.includes(l)) {
-            res.push(1.0);
-        } else {
-            res.push(0.0);
-        }
-    }
-
-    return res;
-}
-
-function minMax(list, numaricIndexes) {
-    const res = [];
-
-    for (const i of numaricIndexes) {
-        let min = Number.MAX_VALUE;
-        let max = Number.MIN_VALUE;
-
-        // find the min and the max
-        for (const row of cars) {
-            const num = parseFloat(row[i]);
-            if (num < min) {
-                min = num;
-            }
-            if (num > max) {
-                max = num;
-            }
-        }
-
-        // Calculation
-        for (let j = 0; j < list.length; j++) {
-            if (i === j) {
-                res.push((parseFloat(list[i]) - min) / (max - min));
-            }
-        }
-    }
-
-    return res;
-}
-
-
 function CreateSuggestionCard(nameText, priceText, imgPath, itemId, isRecommended){
-    const cardsGrid = document.getElementById("cards-grid");
-
-
-    const card = document.createElement('div');
-    card.classList.add('card');
+        const cardsGrid = document.getElementById("cards-grid");
     
-    const image = document.createElement('img');
-    image.setAttribute('src', imgPath);
-
-
-    const text = document.createElement('span');
-    if(isRecommended){
-        text.classList.add('recommended-tag');
-        text.innerText = "Recommended";
-    }else{
-        text.classList.add('new-tag');
-        text.innerText = "Newly Added";
+    
+        const card = document.createElement('div');
+        card.classList.add('card');
+        
+        const image = document.createElement('img');
+        image.setAttribute('src', imgPath);
+    
+    
+        const text = document.createElement('span');
+        if(isRecommended){
+            text.classList.add('recommended-tag');
+            text.innerText = "Recommended";
+        }else{
+            text.classList.add('new-tag');
+            text.innerText = "Newly Added";
+        }
+        card.appendChild(text);
+        
+        const br = document.createElement("br");
+    
+        const name = document.createElement('span');
+        name.setAttribute('id', 'name');
+        name.innerText = nameText;
+    
+        
+        const price = document.createElement('span');
+        price.innerText = "Price: "+priceText+"$";
+        price.id="price";
+        const link = document.createElement('a');
+        // const button = document.createElement('button');
+        // button.classList.add('button', 'b_card');
+        // if(!isRecommended){
+        //     button.style.color = "#00377f";
+        //     button.style.border = "3px solid #00377f";
+        // }else{
+        //     button.style.color = "var(--color)";
+        // }
+        
+        link.setAttribute('href', '/Nova-Auction/pages/item.php?item_id=' + itemId);
+        // link.appendChild(button);
+        
+        card.appendChild(image);
+        card.appendChild(name);
+        card.appendChild(br);
+        card.appendChild(price);
+        link.appendChild(card);
+    
+        cardsGrid.appendChild(link);
     }
-    card.appendChild(text);
-    
-    const br = document.createElement("br");
 
-    const name = document.createElement('span');
-    name.setAttribute('id', 'name');
-    name.innerText = nameText;
 
-    
-    const price = document.createElement('span');
-    price.innerText = "Price: "+priceText+"$";
-    price.id="price";
-    const link = document.createElement('a');
-    // const button = document.createElement('button');
-    // button.classList.add('button', 'b_card');
-    // if(!isRecommended){
-    //     button.style.color = "#00377f";
-    //     button.style.border = "3px solid #00377f";
-    // }else{
-    //     button.style.color = "var(--color)";
-    // }
-    
-    link.setAttribute('href', '/Nova-Auction/pages/item.php?item_id=' + itemId);
-    // link.appendChild(button);
-    
-    card.appendChild(image);
-    card.appendChild(name);
-    card.appendChild(br);
-    card.appendChild(price);
-    link.appendChild(card);
-
-    cardsGrid.appendChild(link);
-    
-}
 </script>
 </html>
