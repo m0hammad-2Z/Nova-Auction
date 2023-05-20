@@ -1,0 +1,14 @@
+Options +FollowSymLinks -MultiViews
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^Nova-Auction/products$ /Nova-Auction/pages/products.php [L]
+
+
+
+DirectoryIndex index.php
+
+#redirect errors 404
+ErrorDocument 404 /Nova-Auction/pages/error.php
+
+Options -Indexes
