@@ -101,7 +101,7 @@ if(!checkUserId()){
                     
                 }else{
                     print("<div class='users-items-no-items'>
-                            <i class='fa fa-gears fa-beat-fade'></i>
+                            <i class='fa fa-gears'></i>
                             <h3>You Have Not Post Any Car Yet!</h3>
                             <a class = 'button' href='/Nova-Auction/pages/sell.php'>Post A Car Now</a>
                         </div>    

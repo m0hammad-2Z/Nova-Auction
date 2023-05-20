@@ -7,7 +7,8 @@ if(!isset($_GET["item_id"]) ||  count(Database("select id from items where id = 
 
 $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
 
-$notifications = Database("delete from notifications where item_id = {$_GET["item_id"]} and user_id = {$_SESSION["user_id"]} and (readed = 0 or readed = 1)", 0);
+if(checkUserId())
+Database("delete from notifications where item_id = {$_GET["item_id"]} and user_id = {$_SESSION["user_id"]} and (readed = 0 or readed = 1)", 0);
 
     // foreach($notifications as $n){
     //     Database("UPDATE notifications SET readed = 1 where id = $n[id]", 0);
