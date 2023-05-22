@@ -43,8 +43,12 @@ require_once "../lib.php";
             <i class='fa fa-gears'></i>
             <h3>404</h3>
             <h2>Page not found</h2>
-            <p>The you are looknig is Does exist</p>
+            <p>The page you are looknig for does not exist!</p>
             
     </div>
+
+    <footer class='footer'>
+        <p>Copyright © 2022 Nova Auction | Design By <a href='/Nova-Auction/pages/about.php'>Humble Ghost Team</a></p>
+    </footer>
 </body>
 </html>
