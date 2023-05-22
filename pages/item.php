@@ -1,8 +1,8 @@
 <?php
 // init PHP
 require_once "../lib.php"; 
-if(!isset($_GET["item_id"]) ||  count(Database("select id from items where id = {$_GET['item_id']}", 1)) <= 0){
-    header("Location: /Nova-Auction/pages/products.php"); 
+if(!isset($_GET["item_id"]) || !is_numeric($_GET["item_id"])||  count(Database("select id from items where id = {$_GET['item_id']}", 1)) <= 0){
+    header("Location: /Nova-Auction/pages/error.php"); 
 }
 
 $item = Database("select * from items,cars,user_info where items.id = {$_GET["item_id"]} and user_info.id = (select user_id from items where items.id = {$_GET["item_id"]}) and cars.id = (select car_id from items where items.id = {$_GET["item_id"]})",1);
