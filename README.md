@@ -18,3 +18,7 @@ The idea behind CarMarket is to create a centralized location where individuals 
 - User profile management.
 - Responsive design for mobile and desktop platforms.
 - Recommendation system that shows suggestions to the user based on the last cars seen by them.
+
+## License
+
+MIT License [Link to MIT License](https://opensource.org/licenses/MIT)
