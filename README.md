@@ -7,9 +7,9 @@ CarMarket is a platform designed to facilitate the buying and selling of cars. I
 The idea behind CarMarket is to create a centralized location where individuals can list their cars for sale and potential buyers can browse through a wide range of options. The platform aims to simplify the car trading process, making it more efficient and accessible for everyone involved.
 
 ## Technologies Used
-- **Frontend**: Describe the frontend technologies used (e.g., HTML, CSS. JavaScript).
-- **Backend**: Outline the backend technologies (PHP).
-- **Database**: Mention the type of database used (MySQL).
+- **Frontend**: (HTML, CSS. JavaScript).
+- **Backend**: (PHP).
+- **Database**: (MySQL).
 
 ## Features
 - User authentication and authorization.
